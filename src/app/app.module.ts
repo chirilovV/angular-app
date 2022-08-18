@@ -9,6 +9,10 @@ import {PageNotFoundComponent} from './pages/not-found-404/page-not-found.compon
 import {MatButtonModule} from "@angular/material/button";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {AppRoutingModule} from "./modules/routingModule";
+import { AboutBannerComponent } from './pages/home/about-banner/about-banner.component';
+import { ArticleComponent } from './pages/news/article/article.component';
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -16,13 +20,17 @@ import {AppRoutingModule} from "./modules/routingModule";
     WelcomeComponent,
     HomePageComponent,
     NewsPageComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AboutBannerComponent,
+    ArticleComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatButtonModule,
     MatToolbarModule,
+    MatGridListModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
