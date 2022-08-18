@@ -15,4 +15,8 @@ mat-toolbar {
   z-index: 99;
 }
 
+mat-slide-toggle {
+  margin-left: auto;
+}
+
 /*# sourceMappingURL=app.component.css.map */

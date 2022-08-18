@@ -8,6 +8,10 @@
   mat-card {
     background-color: #919196;
     margin-bottom: 30px;
+
+    &:hover {
+      box-shadow: 0 1px 15px 0 #919196;
+    }
   }
 
   mat-card-content {
@@ -16,7 +20,8 @@
 
   mat-card-footer {
     margin: unset;
-    i{
+
+    i {
       color: #452259;
       font-weight: bold;
     }
@@ -26,5 +31,7 @@
     font-size: 20px;
     line-height: 1.2;
     height: 75px;
+    color: #452259;
+    font-weight: bold;
   }
 }

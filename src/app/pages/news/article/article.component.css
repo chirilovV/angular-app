@@ -7,6 +7,9 @@
   background-color: #919196;
   margin-bottom: 30px;
 }
+.articles mat-card:hover {
+  box-shadow: 0 1px 15px 0 #919196;
+}
 .articles mat-card-content {
   display: flex;
 }
@@ -21,6 +24,8 @@
   font-size: 20px;
   line-height: 1.2;
   height: 75px;
+  color: #452259;
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=article.component.css.map */
