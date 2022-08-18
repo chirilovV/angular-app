@@ -10,3 +10,8 @@ a {
 .active-button {
   background: #bddbfa linear-gradient(to bottom, #5e2179 35%, #452259 100%);
 }
+
+mat-toolbar{
+  position: fixed;
+  z-index: 99;
+}

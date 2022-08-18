@@ -1,0 +1,26 @@
+.articles img {
+  max-width: 50%;
+  margin-right: 15px;
+  border-radius: 4px;
+}
+.articles mat-card {
+  background-color: #919196;
+  margin-bottom: 30px;
+}
+.articles mat-card-content {
+  display: flex;
+}
+.articles mat-card-footer {
+  margin: unset;
+}
+.articles mat-card-footer i {
+  color: #452259;
+  font-weight: bold;
+}
+.articles mat-card-header {
+  font-size: 20px;
+  line-height: 1.2;
+  height: 75px;
+}
+
+/*# sourceMappingURL=article.component.css.map */

@@ -1,0 +1,14 @@
+<div class="articles">
+  <div class="row" *ngFor="let article of articles">
+    <mat-card>
+      <mat-card-header>{{ article.title }}</mat-card-header>
+      <mat-card-content>
+        <img src="{{ article.imagePath }}" alt="news">
+        <p>{{ article.text }}</p>
+      </mat-card-content>
+      <mat-card-footer>
+        Posted By <i>{{ article.postedBy }}</i>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>
