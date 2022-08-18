@@ -1,13 +1,14 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
-import {RouterModule} from "@angular/router";
-
 import {AppComponent} from './app.component';
-import {WelcomeComponent} from './welcome/welcome.component';
-import {HomePageComponent} from './home-page/home-page.component';
-import {NewsPageComponent} from './news-page/news-page.component';
-import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {WelcomeComponent} from './components/welcome/welcome.component';
+import {HomePageComponent} from './pages/home/home-page.component';
+import {NewsPageComponent} from './pages/news/news-page.component';
+import {PageNotFoundComponent} from './pages/not-found-404/page-not-found.component';
+import {MatButtonModule} from "@angular/material/button";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {AppRoutingModule} from "./modules/routingModule";
 
 @NgModule({
   declarations: [
@@ -19,12 +20,9 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([
-      {path: 'home', component: HomePageComponent},
-      {path: 'news', component: NewsPageComponent},
-      {path: '', redirectTo: '/home', pathMatch: 'full'},
-      {path: '**', component: PageNotFoundComponent}
-    ])
+    AppRoutingModule,
+    MatButtonModule,
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
