@@ -1,19 +1,6 @@
-<h1>Angular Router Sample</h1>
-
-<nav>
-  <a class="button"
-     routerLink="/home"
-     routerLinkActive="active-button"
-     ariaCurrentWhenActive="page"
-  >Home</a>
-  <a class="button"
-     routerLink="/news"
-     routerLinkActive="active-button"
-     ariaCurrentWhenActive="page"
-  >News</a>
-</nav>
-
+<mat-toolbar color="primary">
+    <a mat-button routerLink="/home" routerLinkActive="active-button">Home</a>
+    <a mat-button routerLink="/news" routerLinkActive="active-button">News</a>
+</mat-toolbar>
 
 <router-outlet></router-outlet>
-
-

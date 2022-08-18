@@ -14,5 +14,4 @@ export class WelcomeComponent implements OnInit {
   ngOnInit(): void {
     this.pageTitle = this.title
   }
-
 }
