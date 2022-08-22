@@ -17,10 +17,23 @@ html body {
   display: none;
 }
 
+.home, .news, .users, .cars {
+  color: #2C3333;
+}
+
 .darkMode .home, .darkMode .news, .darkMode .users, .darkMode .cars {
   background-color: #2C3333;
   color: white;
   min-height: 100vh;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: #5f6262;
+  opacity: 0.6;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: black;
 }
 
 /*# sourceMappingURL=styles.css.map */
