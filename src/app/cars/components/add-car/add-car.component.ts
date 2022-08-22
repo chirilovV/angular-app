@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from "@angular/forms";
+import {Component} from '@angular/core';
 import {Car} from "../../models/car.interface";
 
 @Component({
@@ -7,28 +6,19 @@ import {Car} from "../../models/car.interface";
   templateUrl: './add-car.component.html',
   styleUrls: ['./add-car.component.scss']
 })
-export class AddCarComponent implements OnInit {
-  cars: Car[] = []
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
-  carFormControl = new FormControl(
-    '',
-    [
-      Validators.minLength(4),
-      Validators.maxLength(30),
-    ]);
+export class AddCarComponent {
+  cars: Car[] = [];
+  carFormControl: string = 'Audi A7';
 
   addNewCar() {
-    this.cars.push(<Car>{name: this.carFormControl.value});
-    this.clear()
+    if (this.carFormControl !== '') {
+      this.cars.push(<Car>{name: this.carFormControl});
+      this.clear()
+    }
   }
 
-  clear(){
-    this.carFormControl.reset();
+  clear() {
+    this.carFormControl = '';
   }
+
 }

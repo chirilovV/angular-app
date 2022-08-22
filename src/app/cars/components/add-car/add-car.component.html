@@ -1,25 +1,21 @@
 <div class="cars">
   <div class="container">
     <div class="row">
-      <mat-form-field appearance="fill">
-        <mat-label>My favorite car</mat-label>
-        <input type="text"
-               matInput
-               minlength="3"
-               maxlength="30"
-               required="true"
-               [formControl]="carFormControl"
-               placeholder="Audi A7">
-      </mat-form-field>
+      <label>My favorite car</label>
+      <input type="text"
+             [(ngModel)]="carFormControl"
+             placeholder="Audi A7">
       <button type="submit" (click)="addNewCar()">Add</button>
     </div>
 
     <div class="row" *ngIf="cars.length>0">
       <p>Cars List</p>
       <hr>
-      <div class="row car-list" *ngFor="let car of cars; let i = index">
-        <span>{{i + 1}}.</span><span>{{car.name}}</span>
-      </div>
+      <ul>
+        <li class="car-list" *ngFor="let car of cars; let i = index">
+          <span>{{i + 1}}.</span>  {{car.name}}
+        </li>
+      </ul>
     </div>
   </div>
 </div>

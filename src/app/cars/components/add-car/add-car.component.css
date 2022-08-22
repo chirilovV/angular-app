@@ -5,26 +5,37 @@
   font-size: 28px;
   font-weight: bold;
 }
-.cars mat-form-field {
+.cars input {
+  height: 35px;
   width: 30%;
-  margin-bottom: 50px;
+  border-radius: 8px;
+  border: 2px solid;
+  padding: 0 10px;
+  margin: 15px 15px 100px 0;
 }
 .cars button {
   width: 100px;
   height: 40px;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+.cars ul {
+  list-style-type: none;
+}
+.cars ul li {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  padding: 12px;
   border-radius: 8px;
 }
 .cars .car-list {
   margin-bottom: 15px;
 }
 .cars .car-list span {
-  display: inline-block;
-  width: 30%;
-}
-.cars .car-list span:first-of-type {
   width: 10px;
   font-weight: bold;
   color: #5e2179;
+  margin-right: 15px;
 }
 .cars h4 {
   color: #5e2179;
