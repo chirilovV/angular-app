@@ -1,0 +1,34 @@
+.cars {
+  padding: 100px;
+}
+.cars p {
+  font-size: 28px;
+  font-weight: bold;
+}
+.cars mat-form-field {
+  width: 30%;
+  margin-bottom: 50px;
+}
+.cars button {
+  width: 100px;
+  height: 40px;
+  border-radius: 8px;
+}
+.cars .car-list {
+  margin-bottom: 15px;
+}
+.cars .car-list span {
+  display: inline-block;
+  width: 30%;
+}
+.cars .car-list span:first-of-type {
+  width: 10px;
+  font-weight: bold;
+  color: #5e2179;
+}
+.cars h4 {
+  color: #5e2179;
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=add-car.component.css.map */

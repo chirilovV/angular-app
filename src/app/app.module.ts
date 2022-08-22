@@ -15,6 +15,8 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatIconModule} from "@angular/material/icon";
 import {ReactiveFormsModule} from "@angular/forms";
+import {CarModule} from "./cars/car.module";
+import {UserModule} from "./users/user.module";
 
 
 @NgModule({
@@ -25,7 +27,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     NewsPageComponent,
     PageNotFoundComponent,
     AboutBannerComponent,
-    ArticleComponent
+    ArticleComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,8 +38,13 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatSlideToggleModule,
     MatIconModule,
     ReactiveFormsModule,
+    UserModule,
+    CarModule,
   ],
   providers: [],
+  exports: [
+    WelcomeComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

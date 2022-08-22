@@ -1,0 +1,40 @@
+.cars {
+  padding: 100px;
+
+  p {
+    font-size: 28px;
+    font-weight: bold;
+
+  }
+
+  mat-form-field {
+    width: 30%;
+    margin-bottom: 50px;
+  }
+
+  button {
+    width: 100px;
+    height: 40px;
+    border-radius: 8px;
+  }
+
+  .car-list {
+    margin-bottom: 15px;
+
+    span {
+      display: inline-block;
+      width: 30%;
+
+      &:first-of-type {
+        width: 10px;
+        font-weight: bold;
+        color: #5e2179;
+      }
+    }
+  }
+
+  h4 {
+    color: #5e2179;
+    font-weight: bold;
+  }
+}
