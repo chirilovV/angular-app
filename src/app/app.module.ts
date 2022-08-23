@@ -1,22 +1,22 @@
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {HomePageComponent} from './pages/home/home-page.component';
-import {NewsPageComponent} from './pages/news/news-page.component';
-import {PageNotFoundComponent} from './pages/not-found-404/page-not-found.component';
-import {AppRoutingModule} from "./modules/routingModule";
-import {AboutBannerComponent} from "./pages/home/about-banner/about-banner.component";
-import {ArticleComponent} from "./pages/news/article/article.component";
+import {AppRoutingModule} from "./app-routing.module";
+import {WelcomeComponent} from "./modules/shared/components/welcome/welcome.component";
+import {HomePageComponent} from "./modules/home/pages/home-page.component";
+import {PageNotFoundComponent} from "./modules/core/components/not-found-404/page-not-found.component";
+import {NewsPageComponent} from "./modules/news/pages/news-page/news-page.component";
+import {ArticleComponent} from "./modules/news/components/article/article.component";
+import {AboutBannerComponent} from "./modules/home/components/about-banner/about-banner.component";
 import {BrowserModule} from "@angular/platform-browser";
 import {MatButtonModule} from "@angular/material/button";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatCardModule} from "@angular/material/card";
-import {WelcomeComponent} from "./components/welcome/welcome.component";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatIconModule} from "@angular/material/icon";
 import {ReactiveFormsModule} from "@angular/forms";
-import {CarModule} from "./cars/car.module";
-import {UserModule} from "./users/user.module";
+import {UserModule} from "./modules/users/user.module";
+import {CarModule} from "./modules/cars/car.module";
 
 
 @NgModule({

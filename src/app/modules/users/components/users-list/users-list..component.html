@@ -1,0 +1,25 @@
+<div class="users-info">
+  <mat-slide-toggle (click)=toggleDisplay()>Show only active users</mat-slide-toggle>
+
+  <div class="users-list d-flex flex-wrap justify-content-center">
+    <div *ngFor="let user of users">
+      <mat-card [ngClass]="{'hidden': isVisible(user.isActivated)}">
+        <img mat-card-avatar src="{{ user.imagePath }}" alt="avatar">
+        <mat-card-title> {{ user.name }}</mat-card-title>
+        <mat-card-content>
+          <p> Age : {{ user.age }}</p>
+              Status : <span [ngClass]="{
+              'active' : user.isActivated,
+              'non-active' : !user.isActivated
+              }">
+            {{ user.isActivated ? ' Active' : ' Non-Active' }}</span>
+          <div *ngIf="user.isActivated">
+            <hr>
+            <button (click)="updateStatus(user)">Deactivate</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+</div>

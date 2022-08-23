@@ -1,0 +1,60 @@
+.users-info {
+  mat-slide-toggle {
+    margin: 30px 0;
+  }
+
+  mat-card {
+    background-color: #d7d7d9;
+    min-width: 145px;
+    width:200px;
+    min-height: 225px;
+    margin: 5px;
+    color: #2C3333;
+    font-weight: bold;
+
+    &:hover {
+      box-shadow: 0 1px 2px 2px #919196;
+    }
+
+    img {
+      margin-right: 15px;
+    }
+
+    mat-card-title {
+      display: inline-block;
+      margin-top: 15px;
+      font-size: 20px;
+    }
+
+    mat-card-content {
+      margin: 15px 0;
+
+      hr {
+        margin-top: 15px;
+      }
+    }
+
+    button {
+      border-radius: 8px;
+      padding: 5px 15px;
+      border: none;
+      font-weight: bold;
+      width: 100px;
+      background: #bddbfa linear-gradient(to bottom, #919196 35%, #58595c 100%);
+    }
+
+    .active {
+      color: green;
+      font-weight: bold;
+    }
+
+    .non-active {
+      color: darkred;
+      font-weight: bold;
+    }
+  }
+
+  .hidden {
+    display: none
+  }
+}

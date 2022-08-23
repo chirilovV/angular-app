@@ -1,0 +1,10 @@
+.users p {
+  padding-top: 100px;
+  font-weight: bold;
+}
+.users .header p {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=user-page.component.css.map */

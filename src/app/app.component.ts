@@ -9,8 +9,7 @@ import {OverlayContainer} from "@angular/cdk/overlay";
 })
 export class AppComponent implements OnInit {
   title = 'angular-app';
-  @Input()
-  toggleControl = new FormControl(true);
+  @Input() toggleControl = new FormControl(false);
 
   @HostBinding('class') className = '';
 
@@ -19,6 +18,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.toggleControl.valueChanges.subscribe((darkMode) => {
       const darkClassName = 'darkMode';
+      console.log('here',darkMode)
       this.className = darkMode ? darkClassName : '';
       if (darkMode) {
         this.overlay.getContainerElement().classList.add(darkClassName);
