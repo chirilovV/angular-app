@@ -1,64 +1,44 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {User} from "../../models/user.interface";
+import {UsersService} from "../../services/users.service";
+import {UserListItemComponent} from "../user-list-item/user-list-item.component";
 
 @Component({
-  selector: 'app-user-info',
-  templateUrl: './users-list..component.html',
+  selector: 'users-list',
+  templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.scss']
 })
-export class UsersListComponent implements OnInit {
-  users: User[] | undefined;
-  isShow: boolean = false;
+export class UsersListComponent implements OnInit, AfterViewInit {
+  users: User[] = [];
+  isShowing: boolean = false;
+  isActive: boolean = false;
+  @ViewChildren('userItem') userComponents!: QueryList<UserListItemComponent>;
 
-  constructor() {
+  constructor(private userService: UsersService) {
+    this.users = this.userService.getUsers();
   }
 
   ngOnInit(): void {
-    this.users = [
-      {
-        name: 'Jon Smith',
-        age: 20,
-        isActivated: true,
-        imagePath: 'assets/img/avatar1.png'
-      },
-      {
-        name: 'Ana Maria',
-        age: 27,
-        isActivated: false,
-        imagePath: 'assets/img/avatar2.png'
-      }, {
-        name: 'Ion Popes',
-        age: 22,
-        isActivated: true,
-        imagePath: 'assets/img/avatar3.png'
-      }, {
-        name: 'Gina Bush',
-        age: 37,
-        isActivated: false,
-        imagePath: 'assets/img/avatar4.png'
-      }, {
-        name: 'George Duct',
-        age: 67,
-        isActivated: false,
-        imagePath: 'assets/img/avatar5.png'
-      }, {
-        name: 'Carl Marks',
-        age: 41,
-        isActivated: true,
-        imagePath: 'assets/img/avatar6.png'
-      },
-    ]
   }
 
-  updateStatus(user: User): void {
-    user.isActivated = !user.isActivated;
+  ngAfterViewInit(): void {
   }
 
   toggleDisplay(): void {
-    this.isShow = !this.isShow;
+    this.isShowing = !this.isShowing;
+    this.userComponents.forEach(component => {
+      component.isShowing = this.isShowing && component.user.isActivated;
+    });
   }
 
   isVisible(isActive: boolean): boolean {
-    return this.isShow && !isActive;
+    return this.isShowing && !isActive;
+  }
+
+  deactivateAll(): void {
+    this.isActive = !this.isActive;
+    this.userComponents.forEach(component => {
+      component.user.isActivated = !this.isActive;
+    });
   }
 }

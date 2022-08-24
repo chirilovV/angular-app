@@ -1,0 +1,18 @@
+<div class="users-info">
+  <mat-slide-toggle (click)=toggleDisplay()>Show only active users</mat-slide-toggle>
+  <mat-slide-toggle (click)=deactivateAll()>Deactivate all users</mat-slide-toggle>
+  <div class="users-list d-flex flex-wrap justify-content-center">
+    <div *ngFor="let user of users" class="user-item">
+      <app-user
+        #userItem
+        [ngClass]="{ 'hidden' : isVisible(user.isActivated) }"
+        [user]="user">
+      </app-user>
+      <button
+        (click)="userItem.changeStatus(user)"
+        [ngClass]="{ 'hidden' : !userItem.isActive(user) }">
+        Deactivate
+      </button>
+    </div>
+  </div>
+</div>

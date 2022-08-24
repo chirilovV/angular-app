@@ -7,12 +7,14 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {ReactiveFormsModule} from "@angular/forms";
 import {UsersListComponent} from "./components/users-list/users-list.component";
 import {UserPageComponent} from "./pages/userPage/user-page.component";
+import {UserListItemComponent} from "./components/user-list-item/user-list-item.component";
 
 
 @NgModule({
   declarations: [
     UserPageComponent,
     UsersListComponent,
+    UserListItemComponent,
   ],
 
   imports: [

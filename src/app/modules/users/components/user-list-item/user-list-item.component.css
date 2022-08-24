@@ -1,0 +1,29 @@
+mat-card {
+  background-color: #d7d7d9;
+  min-width: 145px;
+  width: 200px;
+  margin: 5px;
+  color: #2C3333;
+  font-weight: bold;
+}
+mat-card:not([class*=mat-elevation-z]) {
+  box-shadow: none;
+}
+mat-card img {
+  margin-right: 15px;
+}
+mat-card mat-card-title {
+  display: inline-block;
+  margin-top: 15px;
+  font-size: 20px;
+}
+mat-card .active {
+  color: green;
+  font-weight: bold;
+}
+mat-card .non-active {
+  color: darkred;
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=user-list-item.component.css.map */
