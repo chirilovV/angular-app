@@ -6,7 +6,7 @@ import {User} from "../models/user.interface";
 })
 export class UsersService {
 
-  users = [
+  users: User[] = [
     {
       name: 'Jon Smith',
       age: 17,
@@ -43,13 +43,13 @@ export class UsersService {
     return this.users;
   };
 
-  changeStatusForAllUsers(status: boolean) {
+  changeStatusForAllUsers(status: boolean): void {
     this.users.forEach(user => {
       user.isActivated = !status;
     });
   };
 
-  updateStatus(user: User) {
+  updateStatus(user: User): void {
     user.isActivated = !user.isActivated;
   };
 }
