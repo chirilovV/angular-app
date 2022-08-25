@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, Input, OnInit} from '@angular/core';
 import {User} from "../../models/user.interface";
 import {UsersService} from "../../services/users.service";
 
@@ -6,16 +6,24 @@ import {UsersService} from "../../services/users.service";
   selector: 'app-user',
   templateUrl: './user-list-item.component.html',
   styleUrls: ['./user-list-item.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UserListItemComponent implements OnInit {
+export class UserListItemComponent implements OnInit, DoCheck {
   isShowing: boolean = false;
   @Input() user!: User;
+  private oldUser!: User;
 
-  constructor(private userService: UsersService,) {
+  constructor(private userService: UsersService, private cd: ChangeDetectorRef) {
   };
 
   ngOnInit(): void {
+    this.oldUser = this.user
+  };
+
+  ngDoCheck() {
+    if (this.user !== this.oldUser) {
+      this.cd.markForCheck();
+    }
   };
 
   getStatusName(status: boolean): string {
@@ -27,6 +35,13 @@ export class UserListItemComponent implements OnInit {
   };
 
   deactivateUser(user: User): void {
+    this.user = {
+      name: user.name,
+      age: user.age,
+      isActivated: !user.isActivated,
+      imagePath: user.imagePath
+    }
+
     this.userService.updateStatus(user);
   };
 }
