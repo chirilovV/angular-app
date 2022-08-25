@@ -1,8 +1,9 @@
 <mat-card *ngIf="user" [ngClass]="getClassName(user.isActivated)">
   <img mat-card-avatar src="{{ user.imagePath }}" alt="avatar">
   <mat-card-title> {{ user.name }}</mat-card-title>
+
   <mat-card-content>
     <p> Age : {{ user.age }} </p>
-    <p [ngClass]="getStatus(user.isActivated)"> {{ getStatus(user.isActivated) | uppercase }} </p>
+    <p [ngClass]=" getStatusName(user.isActivated) "> {{ getStatusName(user.isActivated) | uppercase }} </p>
   </mat-card-content>
 </mat-card>

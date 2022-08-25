@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {Component, Input, OnInit, QueryList, TemplateRef, ViewChildren} from '@angular/core';
 import {User} from "../../models/user.interface";
 import {UsersService} from "../../services/users.service";
 import {UserListItemComponent} from "../user-list-item/user-list-item.component";
@@ -8,37 +8,40 @@ import {UserListItemComponent} from "../user-list-item/user-list-item.component"
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.scss']
 })
-export class UsersListComponent implements OnInit, AfterViewInit {
-  users: User[] = [];
-  isShowing: boolean = false;
-  isActive: boolean = false;
+export class UsersListComponent implements OnInit {
+
+  private isShowing: boolean = false;
+  private isActive: boolean = false;
+
+  @Input() users!: User[];
+  @Input() actionButtons!: TemplateRef<any>;
   @ViewChildren('userItem') userComponents!: QueryList<UserListItemComponent>;
 
   constructor(private userService: UsersService) {
-    this.users = this.userService.getUsers();
-  }
+  };
+
 
   ngOnInit(): void {
-  }
-
-  ngAfterViewInit(): void {
-  }
+    this.users = this.userService.getUsers();
+  };
 
   toggleDisplay(): void {
     this.isShowing = !this.isShowing;
-    this.userComponents.forEach(component => {
-      component.isShowing = this.isShowing && component.user.isActivated;
-    });
-  }
+  };
 
   isVisible(isActive: boolean): boolean {
     return this.isShowing && !isActive;
-  }
+  };
 
-  deactivateAll(): void {
+  changeUsersStatus(): void {
     this.isActive = !this.isActive;
     this.userComponents.forEach(component => {
-      component.user.isActivated = !this.isActive;
+      component.user.isActivated = !this.isActive
     });
-  }
+    // this.userService.changeStatusForAllUsers(this.isActive)
+  };
+
+  canBeDeactivated(user: User): boolean {
+    return user.isActivated && (user.age >= 18)
+  };
 }

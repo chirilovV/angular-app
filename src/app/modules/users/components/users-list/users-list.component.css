@@ -1,23 +1,7 @@
-.users-info mat-slide-toggle {
-  margin: 30px 30px;
-}
-.users-info button {
-  border-radius: 8px;
-  padding: 5px 15px;
-  border: none;
-  font-weight: bold;
-  width: 100px;
-  height: 45px;
-  background: #bddbfa linear-gradient(to bottom, #919196 35%, #58595c 100%);
-  margin: 5px 0 15px 15px;
-}
-.users-info .user-item {
+.user-item {
   background-color: #d7d7d9;
   border-radius: 8px;
   margin: 5px;
-}
-.users-info .hidden {
-  display: none;
 }
 
 /*# sourceMappingURL=users-list.component.css.map */

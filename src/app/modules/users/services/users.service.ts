@@ -6,9 +6,6 @@ import {User} from "../models/user.interface";
 })
 export class UsersService {
 
-  constructor() {
-  }
-
   users = [
     {
       name: 'Jon Smith',
@@ -19,11 +16,11 @@ export class UsersService {
     {
       name: 'Ana Maria',
       age: 27,
-      isActivated: false,
+      isActivated: true,
       imagePath: 'assets/img/avatar2.png'
     }, {
       name: 'Ion Popes',
-      age: 22,
+      age: 15,
       isActivated: true,
       imagePath: 'assets/img/avatar3.png'
     }, {
@@ -34,23 +31,25 @@ export class UsersService {
     }, {
       name: 'George Duct',
       age: 67,
-      isActivated: false,
-      imagePath: 'assets/img/avatar5.png'
-    }, {
-      name: 'Carl Marks',
-      age: 41,
       isActivated: true,
-      imagePath: 'assets/img/avatar6.png'
+      imagePath: 'assets/img/avatar5.png'
     },
-  ]
+  ];
+
+  constructor() {
+  }
 
   getUsers(): User[] {
     return this.users;
-  }
+  };
 
-  deactivateAll(status: boolean) {
+  changeStatusForAllUsers(status: boolean) {
     this.users.forEach(user => {
       user.isActivated = !status;
-    })
-  }
+    });
+  };
+
+  updateStatus(user: User) {
+    user.isActivated = !user.isActivated;
+  };
 }
