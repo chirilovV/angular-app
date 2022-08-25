@@ -6,9 +6,9 @@ import {UsersService} from "../../services/users.service";
   selector: 'app-user',
   templateUrl: './user-list-item.component.html',
   styleUrls: ['./user-list-item.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UserListItemComponent implements OnInit, DoCheck {
+export class UserListItemComponent implements OnInit {
   isShowing: boolean = false;
   @Input() user!: User;
   private oldUser!: User;
@@ -20,11 +20,11 @@ export class UserListItemComponent implements OnInit, DoCheck {
     this.oldUser = this.user
   };
 
-  ngDoCheck() {
-    if (this.user !== this.oldUser) {
-      this.cd.markForCheck();
-    }
-  };
+  // ngDoCheck() {
+  //   if (this.user !== this.oldUser) {
+  //     this.cd.markForCheck();
+  //   }
+  // };
 
   getStatusName(status: boolean): string {
     return status ? 'active' : 'non-active';
@@ -35,12 +35,12 @@ export class UserListItemComponent implements OnInit, DoCheck {
   };
 
   deactivateUser(user: User): void {
-    this.user = {
-      name: user.name,
-      age: user.age,
-      isActivated: !user.isActivated,
-      imagePath: user.imagePath
-    }
+    // this.user = {
+    //   name: user.name,
+    //   age: user.age,
+    //   isActivated: !user.isActivated,
+    //   imagePath: user.imagePath
+    // }
 
     this.userService.updateStatus(user);
   };
