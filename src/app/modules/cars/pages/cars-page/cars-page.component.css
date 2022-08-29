@@ -1,12 +1,12 @@
-.users {
+.cars {
   width: 70%;
   padding: 35px 35px 35px 0;
 }
 
 .favorites {
-  margin-top: 35px;
-  padding: 15px;
-  width: 20%;
+  margin-top: 65px;
+  width: 30%;
+  padding: 10px;
   background-color: antiquewhite;
   border-radius: 8px;
 }
@@ -15,4 +15,4 @@ h2 {
   text-align: center;
 }
 
-/*# sourceMappingURL=user-page.component.css.map */
+/*# sourceMappingURL=cars-page.component.css.map */

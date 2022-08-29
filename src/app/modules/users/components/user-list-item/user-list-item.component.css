@@ -1,7 +1,7 @@
 mat-card {
   background-color: #d7d7d9;
   min-width: 145px;
-  width: 200px;
+  width: 220px;
   margin: 5px;
   color: #2C3333;
   font-weight: bold;
@@ -11,6 +11,7 @@ mat-card:not([class*=mat-elevation-z]) {
 }
 mat-card img {
   margin-right: 15px;
+  height: 200px;
 }
 mat-card mat-card-title {
   display: inline-block;

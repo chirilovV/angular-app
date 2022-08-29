@@ -1,9 +1,9 @@
-<mat-card *ngIf="user">
+<mat-card *ngIf="car">
 
   <mat-card-header>
-    <mat-card-title> {{ user.name }} <span> {{ user.age}}</span></mat-card-title>
+    <mat-card-title> {{ car.name }} <span> {{ car.releaseYear }}</span></mat-card-title>
   </mat-card-header>
-  <img mat-card-image src="{{ user.imageUrl }}" alt="avatar">
+  <img mat-card-image src="{{ car.imageUrl }}" alt="avatar">
 
   <div class="{{actionDisplay}}">
     <mat-card-actions>
@@ -12,3 +12,5 @@
   </div>
 
 </mat-card>
+
+

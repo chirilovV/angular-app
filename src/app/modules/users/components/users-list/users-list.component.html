@@ -1,7 +1,5 @@
-<div class="users-list">
-  <div class="d-flex flex-wrap justify-content-center">
-    <div *ngFor="let user of users" class="user-item">
-      <app-user [user]="user"></app-user>
-    </div>
+<div class="d-flex flex-wrap justify-content-center">
+  <div *ngFor="let user of users" class="user-item">
+    <user-list-item [user]="user"></user-list-item>
   </div>
 </div>

@@ -1,3 +1,8 @@
 export interface Car {
-  name:string
+  id: string,
+  name: string,
+  color: string,
+  releaseYear: number,
+  number: number,
+  imageUrl: string
 }

@@ -8,12 +8,18 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {UsersListComponent} from "./components/users-list/users-list.component";
 import {UserPageComponent} from "./pages/userPage/user-page.component";
 import {UserListItemComponent} from "./components/user-list-item/user-list-item.component";
+import {MatButtonModule} from "@angular/material/button";
+import { UsersFavoriteListComponent } from './components/users-favorite-list/users-favorite-list.component';
 
 
 @NgModule({
   declarations: [
     UserPageComponent,
     UsersListComponent,
+    UserListItemComponent,
+    UsersFavoriteListComponent,
+  ],
+  exports: [
     UserListItemComponent,
   ],
 
@@ -24,6 +30,7 @@ import {UserListItemComponent} from "./components/user-list-item/user-list-item.
     MatChipsModule,
     MatSlideToggleModule,
     ReactiveFormsModule,
+    MatButtonModule,
   ]
 })
 export class UserModule {
