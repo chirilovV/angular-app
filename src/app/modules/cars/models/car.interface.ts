@@ -4,5 +4,6 @@ export interface Car {
   color: string,
   releaseYear: number,
   number: number,
-  imageUrl: string
+  imageUrl: string,
+  isFavorite?: boolean
 }

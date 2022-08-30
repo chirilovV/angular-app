@@ -1,4 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {User} from "../../models/user.interface";
+import {UsersService} from "../../services/users.service";
 
 @Component({
   selector: 'app-user-page',
@@ -7,9 +9,20 @@ import {Component, OnInit} from '@angular/core';
 })
 export class UserPageComponent implements OnInit {
 
-  constructor() {
-  }
+  @Input() users!: User[];
+
+  constructor(private usersService: UsersService) {
+  };
 
   ngOnInit(): void {
+    this.users = this.usersService.getUsers();
+  };
+
+  get favorites(): User[] {
+    return this.usersService.getFavorites();
+  }
+
+  toggleFavorites(user: User) {
+    this.usersService.toggleFavorites(user.id)
   }
 }

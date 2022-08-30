@@ -1,27 +1,33 @@
 import {Injectable} from "@angular/core";
-import {Favorite} from "../models/favorite.interface";
 import {EntitiesEnum} from "../Enums/entities.enum";
+
+type FavoriteStorage = {
+  [key in EntitiesEnum]: string[];
+}
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class FavoriteService {
-  private favoritesItems: Favorite[] = [
-    {itemId: 'a1', discriminator: EntitiesEnum.car},
-    {itemId: 'a4', discriminator: EntitiesEnum.user}
-  ];
+  private favorites: FavoriteStorage = {
+    [EntitiesEnum.car]: [],
+    [EntitiesEnum.user]: [],
+  };
 
   constructor() {
   }
 
-  getItems(entityType: EntitiesEnum) {
-    return this.favoritesItems.filter(item => {
-      return (item.discriminator === entityType)
-    })
+  getItems(entityType: EntitiesEnum): string[] {
+    return this.favorites[entityType]
   }
 
-  addItem(item: Favorite): void {
-    this.favoritesItems.push(item);
+  toggleFavorites(type: EntitiesEnum, id: string): void {
+    let index = this.favorites[type].indexOf(id);
+    if (index == -1) {
+      this.favorites[type].push(id);
+    } else {
+      this.favorites[type].splice(index, 1);
+    }
   }
 }

@@ -1,0 +1,13 @@
+mat-card {
+  padding: 20px 0;
+  margin: 30px 15px 30px 0;
+  background-color: #dddddd;
+  color: #58595c;
+  width: 250px;
+}
+
+mat-card-actions {
+  margin: 15px;
+}
+
+/*# sourceMappingURL=list-item.component.css.map */

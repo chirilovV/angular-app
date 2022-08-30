@@ -1,21 +1,15 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {User} from "../../models/user.interface";
-import {UsersService} from "../../services/users.service";
 
 @Component({
   selector: 'users-list',
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.scss']
 })
-export class UsersListComponent implements OnInit {
-
+export class UsersListComponent {
   @Input() users!: User[];
+  @Output() addInFavoritesList = new EventEmitter();
 
-  constructor(private userService: UsersService) {
+  constructor() {
   };
-
-  ngOnInit(): void {
-    this.users = this.userService.getUsers();
-  };
-
 }

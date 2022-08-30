@@ -48,19 +48,24 @@ export class UsersService {
     },
   ];
 
-  constructor(private favoriteService: FavoriteService) {
+  constructor(private favoritesService: FavoriteService) {
   };
 
   getUsers(): User[] {
     return this.users;
   };
 
-  getFavorites() {
-    let favorite = this.favoriteService.getItems(EntitiesEnum.user);
-    return this.getUsers().filter(
-      user => favorite.some(favorite => user.id === favorite.itemId)
-    );
-  };
+  getFavorites(): User[] {
+    let favorite = this.favoritesService.getItems(EntitiesEnum.user);
 
+    let cars = this.getUsers().filter(item => favorite.includes(item.id));
+    cars.forEach(item => item.isFavorite = true);
+
+    return cars;
+  }
+
+  toggleFavorites(id: string): void {
+    this.favoritesService.toggleFavorites(EntitiesEnum.user, id);
+  }
 }
 

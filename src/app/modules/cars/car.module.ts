@@ -1,4 +1,3 @@
-
 import {NgModule} from "@angular/core";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -6,13 +5,13 @@ import {MatInputModule} from "@angular/material/input";
 import {CommonModule} from "@angular/common";
 import {NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {AddCarComponent} from "./components/add-car/add-car.component";
-import { CarsListComponent } from './components/cars-list/cars-list.component';
-import { CarsPageComponent } from './pages/cars-page/cars-page.component';
+import {CarsListComponent} from './components/cars-list/cars-list.component';
+import {CarsPageComponent} from './pages/cars-page/cars-page.component';
 import {UserModule} from "../users/user.module";
-import { CarListItemComponent } from './components/car-list-item/car-list-item.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
-import { CarFavoriteListComponent } from './components/car-favorite-list/car-favorite-list.component';
+import {CarFavoriteListComponent} from './components/car-favorite-list/car-favorite-list.component';
+import {SharedModule} from "../shared/shared.module";
 
 
 @NgModule({
@@ -20,12 +19,9 @@ import { CarFavoriteListComponent } from './components/car-favorite-list/car-fav
     AddCarComponent,
     CarsListComponent,
     CarsPageComponent,
-    CarListItemComponent,
     CarFavoriteListComponent
   ],
-  exports: [
-    CarListItemComponent
-  ],
+  exports: [],
 
   imports: [
     MatFormFieldModule,
@@ -36,7 +32,8 @@ import { CarFavoriteListComponent } from './components/car-favorite-list/car-fav
     FormsModule,
     UserModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    SharedModule
   ]
 })
 export class CarModule {

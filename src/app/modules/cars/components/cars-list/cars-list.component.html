@@ -1,3 +1,16 @@
-<div *ngFor="let car of cars">
-  <car-list-item [car]="car"></car-list-item>
+<div class="d-flex flex-wrap justify-content-center">
+  <div *ngFor="let car of cars">
+    <list-item [item]="car" (newItemEvent)="this.addInFavoritesList.emit(car)">
+
+      <mat-card-title header> {{ car.name }} <span> - {{ car.releaseYear }}</span></mat-card-title>
+
+      <img image mat-card-image src="{{ car.imageUrl }}" alt="avatar">
+
+      <mat-card-content content>
+        <p>Color: <span>{{ car.color }}</span></p>
+        <p>Number: <span>{{ car.number }}</span></p>
+      </mat-card-content>
+
+    </list-item>
+  </div>
 </div>

@@ -1,32 +1,14 @@
-import {Component, Input, OnInit, QueryList, ViewChildren} from '@angular/core';
-import {UserListItemComponent} from "../user-list-item/user-list-item.component";
+import {Component, Input} from '@angular/core';
 import {User} from "../../models/user.interface";
-import {UsersService} from "../../services/users.service";
 
 @Component({
   selector: 'users-favorite-list',
   templateUrl: './users-favorite-list.component.html',
   styleUrls: ['./users-favorite-list.component.scss']
 })
-export class UsersFavoriteListComponent implements OnInit {
-  @Input() favorites!: User[];
-  @ViewChildren('favorites') usersItems!: QueryList<UserListItemComponent>;
-  actionDisplay = 'hidden'
+export class UsersFavoriteListComponent  {
+@Input() favorites!:User[];
 
-
-  constructor(private usersService: UsersService) {
+  constructor() {
   }
-
-  ngOnInit(): void {
-    this.getFavoriteCars();
-  }
-
-  ngDoCheck() {
-    this.getFavoriteCars();
-  }
-
-  getFavoriteCars() {
-    this.favorites = this.usersService.getFavorites();
-  }
-
 }

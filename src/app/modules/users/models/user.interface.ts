@@ -8,4 +8,5 @@ export interface User {
   imageUrl: string
   department: string,
   company: string,
+  isFavorite?: boolean
 }

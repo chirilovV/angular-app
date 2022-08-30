@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"car-favorite-list.component.css"}
+{"version":3,"sourceRoot":"","sources":["car-favorite-list.component.scss"],"names":[],"mappings":"AAAA;EACE;EACA","file":"car-favorite-list.component.css"}

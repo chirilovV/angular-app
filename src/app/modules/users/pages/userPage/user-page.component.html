@@ -4,11 +4,11 @@
   </div>
   <div class="row">
     <div class="users">
-      <users-list></users-list>
+      <users-list [users]="users" (addInFavoritesList)="toggleFavorites($event)"></users-list>
     </div>
     <div class="favorites">
       <h2> Favorites </h2>
-      <users-favorite-list></users-favorite-list>
+      <users-favorite-list [favorites]="favorites"></users-favorite-list>
     </div>
   </div>
 </div>

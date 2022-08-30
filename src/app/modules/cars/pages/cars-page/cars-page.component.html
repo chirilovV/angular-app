@@ -4,11 +4,11 @@
   </div>
   <div class="row">
     <div class="cars">
-      <cars-list></cars-list>
+      <cars-list [cars]="cars" (addInFavoritesList)="addInFavoritesList($event)"></cars-list>
     </div>
     <div class="favorites">
       <h2> Favorites </h2>
-      <car-favorite-list></car-favorite-list>
+      <car-favorite-list [favorites]="favorites"></car-favorite-list>
     </div>
   </div>
 </div>

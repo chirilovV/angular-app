@@ -1,3 +1,6 @@
 <div *ngFor="let car of favorites">
-  <car-list-item [actionDisplay] = actionDisplay #favorites [car]="car"></car-list-item>
+  <list-item [item]="car" [isActionShowing]="false" >
+    <mat-card-title header> {{ car.name }} <span> - {{ car.releaseYear }}</span></mat-card-title>
+    <img image mat-card-image src="{{ car.imageUrl }}" alt="avatar">
+  </list-item>
 </div>

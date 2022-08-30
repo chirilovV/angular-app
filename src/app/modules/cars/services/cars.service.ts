@@ -47,22 +47,27 @@ export class CarsService {
       color: 'white',
       imageUrl: 'assets/img/auto6.png',
       number: 123456,
-      releaseYear: 2022
+      releaseYear: 2022,
     },
   ];
 
-  constructor(private favoriteService: FavoriteService) {
+  constructor(private favoritesService: FavoriteService) {
   };
 
   getFavorites() {
-    let favorite = this.favoriteService.getItems(EntitiesEnum.car);
-    return this.getCars().filter(
-      car => favorite.some(favorite => car.id === favorite.itemId)
-    )
+    let favorite = this.favoritesService.getItems(EntitiesEnum.car);
+    let cars = this.getCars().filter(item => favorite.includes(item.id));
+    cars.forEach(item => item.isFavorite = true);
+
+    return cars;
   };
 
   getCars(): Car[] {
     return this.cars;
   };
+
+  toggleFavorites(id: string) {
+    this.favoritesService.toggleFavorites(EntitiesEnum.car, id);
+  }
 }
 

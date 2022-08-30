@@ -1,15 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
+import {CarsService} from "../../services/cars.service";
+import {Car} from "../../models/car.interface";
 
 @Component({
   selector: 'app-cars-page',
   templateUrl: './cars-page.component.html',
   styleUrls: ['./cars-page.component.scss']
 })
-export class CarsPageComponent implements OnInit {
+export class CarsPageComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private carsService: CarsService) {
   }
 
+  get cars(): Car[] {
+    return this.carsService.getCars()
+  }
+
+  get favorites(): Car[] {
+    return this.carsService.getFavorites();
+  }
+
+  addInFavoritesList(car: Car) {
+    this.carsService.toggleFavorites(car.id)
+  }
 }
