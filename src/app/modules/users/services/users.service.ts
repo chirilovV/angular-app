@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {GenderEnum} from "../../core/Enums/gender.enum";
 import {EntitiesEnum} from "../../core/Enums/entities.enum";
-import {FavoriteService} from "../../core/services/favorite.service";
+import {FavoriteService} from "../../shared/services/favorite.service";
 import {User} from "../models/user.interface";
 
 @Injectable({

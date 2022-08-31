@@ -17,6 +17,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {UserModule} from "./modules/users/user.module";
 import {CarModule} from "./modules/cars/car.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import {SharedModule} from "./modules/shared/shared.module";
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     ReactiveFormsModule,
     UserModule,
     CarModule,
+    SharedModule
   ],
   providers: [],
   exports: [

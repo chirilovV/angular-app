@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Car} from "../models/car.interface";
-import {FavoriteService} from "../../core/services/favorite.service";
+import {FavoriteService} from "../../shared/services/favorite.service";
 import {EntitiesEnum} from "../../core/Enums/entities.enum";
 
 @Injectable({

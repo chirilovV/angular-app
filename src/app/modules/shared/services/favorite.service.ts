@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {EntitiesEnum} from "../Enums/entities.enum";
+import {EntitiesEnum} from "../../core/Enums/entities.enum";
 
 type FavoriteStorage = {
   [key in EntitiesEnum]: string[];

@@ -1,4 +1,4 @@
-import {EntitiesEnum} from "../Enums/entities.enum";
+import {EntitiesEnum} from "../../core/Enums/entities.enum";
 
 export interface Favorite {
   itemId: string,
