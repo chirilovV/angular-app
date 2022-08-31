@@ -1,0 +1,103 @@
+.container {
+  padding-top: 100px;
+}
+
+.radio-button {
+  padding-left: 100px;
+  margin-bottom: 50px;
+}
+
+.mat-form-field input {
+  max-width: 300px;
+  width: 60%;
+  height: 50px;
+  border-radius: 8px;
+  border: 2px solid #868484;
+  margin: 15px;
+  color: #2C3333;
+  padding: 10px;
+}
+.mat-form-field label {
+  min-width: 100px;
+  text-align: right;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.mat-radio-button {
+  width: 80%;
+  justify-content: center;
+  margin: 15px auto 30px;
+}
+.mat-radio-button input {
+  width: 15px;
+  height: 15px;
+  margin-top: 10px;
+}
+.mat-radio-button label {
+  padding: 10px 0;
+  margin: 15px 0 0 10px;
+}
+.mat-radio-button .radio {
+  width: 120px;
+  padding: 0;
+}
+.mat-radio-button span {
+  width: 100px;
+  text-align: right;
+  font-weight: bold;
+  font-size: 18px;
+  padding-top: 20px;
+}
+
+.new-user {
+  border-radius: 8px;
+  border: 2px solid #d7d3d3;
+  background-color: #fdfdfc;
+  padding: 30px 50px;
+  color: #2C3333;
+  text-align: center;
+}
+.new-user p {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 50px;
+  margin-left: 70px;
+}
+.new-user form {
+  margin: auto;
+  width: 80%;
+}
+.new-user mat-form-field {
+  margin-bottom: 15px;
+}
+.new-user .header {
+  text-align: center;
+  margin: 15px;
+}
+.new-user .form-element {
+  text-align: center;
+}
+.new-user .form-element button {
+  margin: auto;
+}
+.new-user mat-radio-label-content, .new-user .mat-radio-checked {
+  border-color: #5e2179;
+}
+.new-user .radio-button {
+  text-align: center;
+}
+
+.is-valid[required], .is-valid.required {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.invalid:not(form) {
+  color: #a94442;
+}
+
+.is-invalid:not(form) {
+  border: 2px solid #a94442 !important; /* red */
+}
+
+/*# sourceMappingURL=new-user.component.css.map */
