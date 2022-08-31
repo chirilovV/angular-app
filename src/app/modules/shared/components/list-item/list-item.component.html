@@ -12,7 +12,7 @@
 
   <mat-card-actions *ngIf="isActionShowing">
     <button mat-icon-button
-            color="{{item.isFavorite?'warn':''}}"
+            color="{{ item.isFavorite ? 'warn' : '' }}"
             (click)="this.newItemEvent.emit(item)"
             aria-label="favorite">
       <mat-icon>favorite</mat-icon>

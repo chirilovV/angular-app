@@ -1,18 +1,20 @@
 <div class="d-flex flex-wrap justify-content-center">
   <div *ngFor="let user of users" class="user-item">
-
     <list-item
       [item]="user"
       (newItemEvent)="this.addInFavoritesList.emit(user)"
     >
-      <mat-card-title header> {{user.name  }} <span> {{ user.age }} years</span></mat-card-title>
+
+      <mat-card-title header> {{ user.firstName + ' ' + user.lastName  }} <span> {{ user.age }} years</span></mat-card-title>
       <img image mat-card-image src="{{ user.imageUrl }}" alt="avatar">
+
       <mat-card-content content>
         <p>Gender: <span>{{ user.gender}}</span></p>
         <p>Department: <span>{{ user.department }}</span></p>
         <p>Company: <span>{{ user.company }}</span></p>
+        <p>Email: <span>{{ user.email }}</span></p>
       </mat-card-content>
-    </list-item>
 
+    </list-item>
   </div>
 </div>

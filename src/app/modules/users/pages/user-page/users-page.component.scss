@@ -1,0 +1,28 @@
+.users {
+  width: 70%;
+  padding: 35px 35px 35px 0;
+}
+
+.favorites {
+  margin-top: 35px;
+  width: 270px;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.header{
+justify-content: space-around;
+  padding-right: 450px;
+  a {
+    width: 150px;
+    background: #bddbfa linear-gradient(to bottom, #5e2179 35%, #452259 100%);
+    color: #dddddd;
+  }
+  p{
+    width: 200px;
+  }
+}

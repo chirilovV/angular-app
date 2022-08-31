@@ -1,13 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {User} from "../../models/user.interface";
 import {UsersService} from "../../services/users.service";
+import {User} from "../../models/user.interface";
 
 @Component({
-  selector: 'app-user-page',
-  templateUrl: './user-page.component.html',
-  styleUrls: ['./user-page.component.scss'],
+  selector: 'users-page',
+  templateUrl: './users-page.component.html',
+  styleUrls: ['./users-page.component.scss'],
 })
-export class UserPageComponent implements OnInit {
+export class UsersPageComponent implements OnInit {
 
   @Input() users!: User[];
 
@@ -23,6 +23,7 @@ export class UserPageComponent implements OnInit {
   }
 
   toggleFavorites(user: User) {
+    user.isFavorite = !user.isFavorite
     this.usersService.toggleFavorites(user.id)
   }
 }

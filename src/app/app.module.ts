@@ -14,9 +14,9 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatCardModule} from "@angular/material/card";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatIconModule} from "@angular/material/icon";
-import {ReactiveFormsModule} from "@angular/forms";
 import {UserModule} from "./modules/users/user.module";
 import {CarModule} from "./modules/cars/car.module";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({

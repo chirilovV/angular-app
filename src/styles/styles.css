@@ -23,7 +23,7 @@ html body {
   display: none;
 }
 
-.home, .news, .users, .cars {
+.home, .news, .users, .cars, .new-user {
   color: #2C3333;
 }
 

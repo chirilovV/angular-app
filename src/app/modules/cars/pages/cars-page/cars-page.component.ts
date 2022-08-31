@@ -20,7 +20,8 @@ export class CarsPageComponent {
     return this.carsService.getFavorites();
   }
 
-  addInFavoritesList(car: Car) {
+  toggleFavorites(car: Car) {
+    car.isFavorite = !car.isFavorite
     this.carsService.toggleFavorites(car.id)
   }
 }

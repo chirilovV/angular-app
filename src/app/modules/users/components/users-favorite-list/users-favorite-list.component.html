@@ -1,6 +1,8 @@
 <div *ngFor="let user of favorites">
   <list-item [item]="user" [isActionShowing]="false">
-    <mat-card-title header> {{user.name }} <span> {{ user.age }} years</span></mat-card-title>
+    <mat-card-title header> {{ user.firstName + ' ' + user.lastName }}
+      <span> {{ user.age }} years </span>
+    </mat-card-title>
     <img image mat-card-image src="{{ user.imageUrl }}" alt="avatar">
   </list-item>
 </div>

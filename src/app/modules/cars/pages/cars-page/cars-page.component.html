@@ -4,9 +4,9 @@
   </div>
   <div class="row">
     <div class="cars">
-      <cars-list [cars]="cars" (addInFavoritesList)="addInFavoritesList($event)"></cars-list>
+      <cars-list [cars]="cars" (addInFavoritesList)="toggleFavorites($event)"></cars-list>
     </div>
-    <div class="favorites">
+    <div class="favorites" *ngIf="favorites.length > 0">
       <h2> Favorites </h2>
       <car-favorite-list [favorites]="favorites"></car-favorite-list>
     </div>
