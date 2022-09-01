@@ -1,0 +1,92 @@
+<div class="new-user">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="mat-form-field">
+      <label for="firstName">First name</label>
+      <input
+        id="firstName"
+        type="string"
+        placeholder="Jon"
+        formControlName="firstName"
+        [class.is-invalid]="isControlInvalid('firstName')">
+      <br>
+    </div>
+    <div class="mat-form-field">
+      <label for="firstName">Last name</label>
+      <input
+        id="lastName"
+        type="string"
+        placeholder="Smith"
+        formControlName="lastName"
+        [class.is-invalid]="isControlInvalid('lastName')">
+    </div>
+    <div class="mat-form-field">
+      <label for="age">Age</label>
+      <input
+        id="age"
+        type="number"
+        placeholder="38"
+        formControlName="age"
+        [class.is-invalid]="isControlInvalid('age')">
+    </div>
+    <div class="mat-form-field">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        placeholder="some@address.com"
+        formControlName="email"
+        [class.is-invalid]="isControlInvalid('email')">
+    </div>
+    <div class="mat-form-field">
+      <label for="company">Company</label>
+      <input
+        id="company"
+        type="string"
+        placeholder="DEVAID COM"
+        formControlName="company"
+        [class.is-invalid]="isControlInvalid('company')">
+    </div>
+    <div class="mat-form-field">
+      <label for="department">Department</label>
+      <input
+        id="department"
+        type="string"
+        placeholder="Data Entry"
+        formControlName="department"
+        [class.is-invalid]="isControlInvalid('department')">
+    </div>
+
+    <div class="row mat-radio-button">
+      <span>Gender</span>
+      <div class="radio">
+        <input id="male"
+               type="radio"
+               name="gender"
+               formControlName="gender"
+               [value]="genderEnum.male"
+               [checked]="userForm.controls['gender']?.value === genderEnum.male">
+        <label for="male">Male</label></div>
+      <div class="radio">
+        <input id="female"
+               type="radio"
+               name="gender"
+               formControlName="gender"
+               [value]="genderEnum.female"
+               [checked]="userForm.controls['gender']?.value === genderEnum.female">
+        <label for="female">Female</label>
+      </div>
+      <div class="radio">
+        <input id="notSpecified"
+               type="radio"
+               name="gender"
+               formControlName="gender"
+               [value]="genderEnum.notSpecified"
+               [checked]="userForm.controls['gender']?.value === genderEnum.notSpecified">
+        <label for="notSpecified">Not specified</label>
+      </div>
+    </div>
+    {{userForm.status}}
+    <button mat-raised-button color="primary" type="submit" class="button" [disabled]="userForm.pristine">Submit
+    </button>
+  </form>
+</div>

@@ -14,15 +14,17 @@ h2 {
   text-align: center;
 }
 
-.header{
-justify-content: space-around;
+.header {
+  justify-content: space-around;
   padding-right: 450px;
+
   a {
     width: 150px;
     background: #bddbfa linear-gradient(to bottom, #5e2179 35%, #452259 100%);
     color: #dddddd;
   }
-  p{
+
+  p {
     width: 200px;
   }
 }

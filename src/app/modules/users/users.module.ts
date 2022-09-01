@@ -11,19 +11,21 @@ import {SharedModule} from "../shared/shared.module";
 import {UsersFavoriteListComponent} from "./components/users-favorite-list/users-favorite-list.component";
 import {MatDividerModule} from "@angular/material/divider";
 import {RouterModule} from "@angular/router";
-import {NewUserComponent} from "./pages/new-user/new-user.component";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {UsersPageComponent} from "./pages/user-page/users-page.component";
+import {UserCreationFormComponent} from "./components/user-creation-form/user-creation-form.component";
+import { NewUserPageComponent } from './pages/new-user-page/new-user-page.component';
 
 @NgModule({
   declarations: [
     UsersPageComponent,
     UsersListComponent,
     UsersFavoriteListComponent,
-    NewUserComponent
+    UserCreationFormComponent,
+    NewUserPageComponent
   ],
   exports: [
   ],

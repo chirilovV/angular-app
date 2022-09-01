@@ -6,15 +6,14 @@ import {User} from "../../models/user.interface";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'new-user',
-  templateUrl: './new-user.component.html',
-  styleUrls: ['./new-user.component.scss']
+  selector: 'user-creation-form',
+  templateUrl: 'user-creation-form.component.html',
+  styleUrls: ['user-creation-form.component.scss']
 })
-export class NewUserComponent implements OnInit {
+export class UserCreationFormComponent implements OnInit {
   @Output() formGroupInit = new EventEmitter<FormGroup>();
   user!: User;
-  userForm!: FormGroup
-  submitted: boolean = false;
+  userForm!: FormGroup;
   genderEnum = GenderEnum;
 
 
@@ -27,36 +26,8 @@ export class NewUserComponent implements OnInit {
     this.user = {} as User;
   }
 
-  get firstName() {
-    return this.userForm.get('firstName');
-  }
-
-  get lastName() {
-    return this.userForm.get('lastName');
-  }
-
-  get age() {
-    return this.userForm.get('age');
-  }
-
-  get email() {
-    return this.userForm.get('email');
-  }
-
-  get company() {
-    return this.userForm.get('company');
-  }
-
-  get department() {
-    return this.userForm.get('department');
-  }
-
-  get gender() {
-    return this.userForm.get('gender');
-  }
-
   public ngOnInit(): void {
-    this.userForm = this.createForm()
+    this.userForm = this.createForm();
   }
 
   createForm() {
@@ -64,30 +35,26 @@ export class NewUserComponent implements OnInit {
       firstName: [this.user.firstName, [Validators.required, Validators.minLength(4), Validators.maxLength(15)]],
       lastName: [this.user.lastName, [Validators.required, Validators.minLength(4), Validators.maxLength(30)]],
       age: [this.user.age, [Validators.required, Validators.min(16), Validators.max(99),]],
-      email: [this.user.email, [Validators.required]],
-      company: [this.user.company, [Validators.maxLength(50)]],
-      department: [this.user.department, [Validators.maxLength(50)]],
+      email: [this.user.email, [Validators.required, Validators.email]],
+      company: [this.user.company, [Validators.required, Validators.maxLength(50)]],
+      department: [this.user.department, [Validators.required, Validators.maxLength(50)]],
       gender: [GenderEnum.notSpecified, [Validators.required]],
     })
   }
 
-  public validate(): void {
+
+  onSubmit() {
     if (this.userForm.invalid) {
       for (const control of Object.keys(this.userForm.controls)) {
         this.userForm.controls[control].markAsTouched();
       }
+
       return;
     }
-  }
 
-  onSubmit() {
-    this.validate();
-    this.submitted = true;
-    if (this.userForm.valid) {
-      this.userService.addNewUser(this.retrieveUserData())
-      this.userForm.reset();
-      this.router.navigate(['users']);
-    }
+    this.userService.addNewUser(this.retrieveUserData())
+    this.userForm.reset();
+    this.router.navigate(['users']);
   }
 
   retrieveUserData(): User {
@@ -96,6 +63,12 @@ export class NewUserComponent implements OnInit {
     newUser.imageUrl = (newUser.imageUrl === undefined) ? this.defaultAvatarPath : newUser.imageUrl;
 
     return newUser
+  }
+
+  isControlInvalid(controlName: string): boolean {
+    const control = this.userForm.controls[controlName];
+
+    return control.invalid && control.touched;
   }
 
 }
