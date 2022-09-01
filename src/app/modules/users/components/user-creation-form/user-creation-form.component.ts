@@ -25,12 +25,12 @@ export class UserCreationFormComponent implements OnInit {
 
   createForm() {
     return this.formBuilder.group({
-      firstName: [this.user.firstName, [Validators.required, Validators.minLength(4), Validators.maxLength(15)]],
-      lastName: [this.user.lastName, [Validators.required, Validators.minLength(4), Validators.maxLength(30)]],
+      firstName: [this.user.firstName, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+      lastName: [this.user.lastName, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
       age: [this.user.age, [Validators.required, Validators.min(16), Validators.max(99),]],
       email: [this.user.email, [Validators.required, Validators.email]],
-      company: [this.user.company, [Validators.required, Validators.maxLength(50)]],
-      department: [this.user.department, [Validators.required, Validators.maxLength(50)]],
+      company: [this.user.company, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      department: [this.user.department, [Validators.required,Validators.minLength(3), Validators.maxLength(50)]],
       gender: [GenderEnum.notSpecified, [Validators.required]],
     });
   }

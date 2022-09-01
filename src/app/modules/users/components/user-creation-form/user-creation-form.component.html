@@ -7,7 +7,11 @@
       placeholder="Jon"
       formControlName="firstName"
       [class.is-invalid]="isControlInvalid('firstName')">
-    <br>
+    <div *ngIf="isControlInvalid('firstName')" class="invalid-feedback">
+      <span class="invalid" *ngIf="userForm.controls['firstName'].errors?.['required']">This field is required.</span>
+      <span class="invalid" *ngIf="userForm.controls['firstName'].errors?.['minlength']">This field must have at least 3 character.</span>
+      <span class="invalid" *ngIf="userForm.controls['firstName'].errors?.['maxlength']"> This field must have at most 15 characters</span>
+    </div>
   </div>
   <div class="mat-form-field">
     <label for="firstName">Last name</label>
@@ -17,6 +21,11 @@
       placeholder="Smith"
       formControlName="lastName"
       [class.is-invalid]="isControlInvalid('lastName')">
+    <div *ngIf="isControlInvalid('lastName')" class="invalid-feedback">
+      <span class="invalid" *ngIf="userForm.controls['lastName'].errors?.['required']">This field is required.</span>
+      <span class="invalid" *ngIf="userForm.controls['lastName'].errors?.['minlength']">This field must have at least 3 character.</span>
+      <span class="invalid" *ngIf="userForm.controls['lastName'].errors?.['maxlength']"> This field must have at most 15 characters</span>
+    </div>
   </div>
   <div class="mat-form-field">
     <label for="age">Age</label>
@@ -26,6 +35,11 @@
       placeholder="38"
       formControlName="age"
       [class.is-invalid]="isControlInvalid('age')">
+    <div *ngIf="isControlInvalid('age')" class="invalid-feedback">
+      <span class="invalid" *ngIf="userForm.controls['age'].errors?.['required']">This field is required.</span>
+      <span class="invalid" *ngIf="userForm.controls['age'].errors?.['min']">This field must be > 16.</span>
+      <span class="invalid" *ngIf="userForm.controls['age'].errors?.['max']"> This field must be < 99</span>
+    </div>
   </div>
   <div class="mat-form-field">
     <label for="email">Email</label>
@@ -35,6 +49,10 @@
       placeholder="some@address.com"
       formControlName="email"
       [class.is-invalid]="isControlInvalid('email')">
+    <div *ngIf="isControlInvalid('email')" class="invalid-feedback">
+      <span class="invalid" *ngIf="userForm.controls['email'].errors?.['required']">This field is required.</span>
+      <span class="invalid" *ngIf="userForm.controls['email'].errors?.['email']">Invalid email address</span>
+    </div>
   </div>
   <div class="mat-form-field">
     <label for="company">Company</label>
@@ -44,6 +62,11 @@
       placeholder="DEVAID COM"
       formControlName="company"
       [class.is-invalid]="isControlInvalid('company')">
+    <div *ngIf="isControlInvalid('company')" class="invalid-feedback">
+      <span class="invalid" *ngIf="userForm.controls['company'].errors?.['required']">This field is required.</span>
+      <span class="invalid" *ngIf="userForm.controls['company'].errors?.['minlength']">This field must have at least 3 character.</span>
+      <span class="invalid" *ngIf="userForm.controls['company'].errors?.['maxlength']"> This field must have at most 50 characters</span>
+    </div>
   </div>
   <div class="mat-form-field">
     <label for="department">Department</label>
@@ -53,6 +76,11 @@
       placeholder="Data Entry"
       formControlName="department"
       [class.is-invalid]="isControlInvalid('department')">
+    <div *ngIf="isControlInvalid('department')" class="invalid-feedback">
+      <span class="invalid" *ngIf="userForm.controls['department'].errors?.['required']">This field is required.</span>
+      <span class="invalid" *ngIf="userForm.controls['department'].errors?.['minlength']">This field must have at least 3 character.</span>
+      <span class="invalid" *ngIf="userForm.controls['department'].errors?.['maxlength']"> This field must have at most 50 characters</span>
+    </div>
   </div>
 
   <div class="row mat-radio-button">
