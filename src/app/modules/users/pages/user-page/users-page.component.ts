@@ -22,7 +22,7 @@ export class UsersPageComponent implements OnInit {
     return this.usersService.getFavorites();
   }
 
-  toggleFavorites(user: User) {
+  toggleFavorites(user: User): void {
     user.isFavorite = !user.isFavorite
     this.usersService.toggleFavorites(user.id)
   }

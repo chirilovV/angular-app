@@ -10,7 +10,7 @@ export class AddCarComponent {
   cars: Car[] = [];
   carFormControl: string = 'Audi A7';
 
-  addNewCar() {
+  addNewCar(): void {
     if (this.carFormControl !== '') {
       this.cars.push(<Car>{name: this.carFormControl});
       this.clear();

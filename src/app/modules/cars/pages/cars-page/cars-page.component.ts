@@ -13,7 +13,7 @@ export class CarsPageComponent {
   }
 
   get cars(): Car[] {
-    return this.carsService.getCars()
+    return this.carsService.getCars();
   }
 
   get favorites(): Car[] {
@@ -21,7 +21,7 @@ export class CarsPageComponent {
   }
 
   toggleFavorites(car: Car) {
-    car.isFavorite = !car.isFavorite
-    this.carsService.toggleFavorites(car.id)
+    car.isFavorite = !car.isFavorite;
+    this.carsService.toggleFavorites(car.id);
   }
 }

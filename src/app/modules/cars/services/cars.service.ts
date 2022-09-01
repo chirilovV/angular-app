@@ -54,7 +54,7 @@ export class CarsService {
   constructor(private favoritesService: FavoriteService) {
   };
 
-  getFavorites() {
+  getFavorites(): Car[] {
     let favorite = this.favoritesService.getItems(EntitiesEnum.car);
     let cars = this.getCars().filter(item => favorite.includes(item.id));
     cars.forEach(item => item.isFavorite = true);
@@ -66,7 +66,7 @@ export class CarsService {
     return this.cars;
   };
 
-  toggleFavorites(id: string) {
+  toggleFavorites(id: string): void {
     this.favoritesService.toggleFavorites(EntitiesEnum.car, id);
   }
 }

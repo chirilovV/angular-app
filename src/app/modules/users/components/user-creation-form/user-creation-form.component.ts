@@ -1,9 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {GenderEnum} from "../../../core/Enums/gender.enum";
-import {UsersService} from "../../services/users.service";
 import {User} from "../../models/user.interface";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'user-creation-form',
@@ -16,18 +14,13 @@ export class UserCreationFormComponent implements OnInit {
   userForm!: FormGroup;
   genderEnum = GenderEnum;
 
-
-  private defaultAvatarPath = ' assets/img/defaultUserAvatar.png'
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private userService: UsersService,
-    private router: Router) {
+  constructor(private formBuilder: FormBuilder) {
     this.user = {} as User;
   }
 
   public ngOnInit(): void {
     this.userForm = this.createForm();
+    this.formGroupInit.emit(this.userForm);
   }
 
   createForm() {
@@ -39,30 +32,7 @@ export class UserCreationFormComponent implements OnInit {
       company: [this.user.company, [Validators.required, Validators.maxLength(50)]],
       department: [this.user.department, [Validators.required, Validators.maxLength(50)]],
       gender: [GenderEnum.notSpecified, [Validators.required]],
-    })
-  }
-
-
-  onSubmit() {
-    if (this.userForm.invalid) {
-      for (const control of Object.keys(this.userForm.controls)) {
-        this.userForm.controls[control].markAsTouched();
-      }
-
-      return;
-    }
-
-    this.userService.addNewUser(this.retrieveUserData())
-    this.userForm.reset();
-    this.router.navigate(['users']);
-  }
-
-  retrieveUserData(): User {
-    const newUser: User = {...this.userForm.value};
-    newUser.id = Math.random().toString(16).slice(2);
-    newUser.imageUrl = (newUser.imageUrl === undefined) ? this.defaultAvatarPath : newUser.imageUrl;
-
-    return newUser
+    });
   }
 
   isControlInvalid(controlName: string): boolean {

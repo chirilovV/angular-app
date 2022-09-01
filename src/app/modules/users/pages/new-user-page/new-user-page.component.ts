@@ -1,15 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {UsersService} from "../../services/users.service";
+import {Router} from "@angular/router";
+import {User} from "../../models/user.interface";
+import {ValidationService} from "../../../shared/services/validation.service";
 
 @Component({
   selector: 'app-new-user-page',
   templateUrl: './new-user-page.component.html',
   styleUrls: ['./new-user-page.component.scss']
 })
-export class NewUserPageComponent implements OnInit {
+export class NewUserPageComponent  {
+  userForm!: FormGroup;
+  private defaultAvatarPath = ' assets/img/defaultUserAvatar.png'
 
-  constructor() { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UsersService,
+    private validatorService: ValidationService,
+    private router: Router
+  ) {
+  }
 
-  ngOnInit(): void {
+  onFormGroupInit(userForm: FormGroup): void {
+    this.userForm = userForm;
+  }
+
+  onCreateButtonClick(): void {
+    if (this.validatorService.validate(this.userForm)) {
+      this.userService.addNewUser(this.retrieveUserData());
+      this.userForm.reset();
+      this.router.navigate(['users']);
+    }
+  }
+
+  retrieveUserData(): User {
+    const newUser: User = {...this.userForm.value};
+    newUser.id = Math.random().toString(16).slice(2);
+    newUser.imageUrl = (newUser.imageUrl === undefined) ? this.defaultAvatarPath : newUser.imageUrl;
+
+    return newUser;
   }
 
 }

@@ -22,27 +22,16 @@ export class UsersService {
       email: 'some@mail.com'
     },
     {
-      id: 'a3',
+      id: 'a5',
       firstName: 'George',
       lastName: 'Bush',
       age:38,
-      imageUrl: 'assets/img/avatar3.png',
+      imageUrl: 'assets/img/avatar5.png',
       department: 'Data Management',
       company: 'Coherent Solutions',
       gender: GenderEnum.male,
       email: 'some@mail.com'
     },
-    {
-      id: 'a4',
-      firstName: 'Ana',
-      lastName: 'Maria',
-      age: 45,
-      imageUrl: 'assets/img/avatar4.png',
-      department: 'Data Entry',
-      company: 'DAAC Hermes',
-      gender: GenderEnum.female,
-      email: 'some@mail.com'
-    }
   ];
 
   constructor(private favoritesService: FavoriteService) {
