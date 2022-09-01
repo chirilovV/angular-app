@@ -2,10 +2,10 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {HomePageComponent} from "./modules/home/pages/home-page.component";
 import {NewsPageComponent} from "./modules/news/pages/news-page/news-page.component";
-import {PageNotFoundComponent} from "./modules/core/components/not-found-404/page-not-found.component";
 import {CarsPageComponent} from "./modules/cars/pages/cars-page/cars-page.component";
 import {NewUserComponent} from "./modules/users/pages/new-user/new-user.component";
 import {UsersPageComponent} from "./modules/users/pages/user-page/users-page.component";
+import {PageNotFoundComponent} from "./modules/core/components/not-found-404/page-not-found.component";
 
 const routes: Routes = [
   {path: 'home', component: HomePageComponent},

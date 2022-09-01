@@ -46,5 +46,5 @@ import {UsersPageComponent} from "./pages/user-page/users-page.component";
     FormsModule,
   ]
 })
-export class UserModule {
+export class UsersModule {
 }
