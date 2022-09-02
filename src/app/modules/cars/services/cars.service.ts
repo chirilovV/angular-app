@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Car} from "../models/car.interface";
 import {FavoriteService} from "../../shared/services/favorite.service";
 import {EntitiesEnum} from "../../core/Enums/entities.enum";
+import {Observable, of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -25,45 +26,31 @@ export class CarsService {
       number: 123456,
       releaseYear: 2021
     },
-    {
-      id: 'a3',
-      name: 'Mercedes',
-      color: 'yellow',
-      imageUrl: 'assets/img/auto3.png',
-      number: 123456,
-      releaseYear: 2019
-    },
-    {
-      id: 'a4',
-      name: 'Audi',
-      color: 'red',
-      imageUrl: 'assets/img/auto4.png',
-      number: 123456,
-      releaseYear: 2020
-    },
-    {
-      id: 'a5',
-      name: 'Tesla',
-      color: 'white',
-      imageUrl: 'assets/img/auto6.png',
-      number: 123456,
-      releaseYear: 2022,
-    },
   ];
 
   constructor(private favoritesService: FavoriteService) {
   };
 
   getFavorites(): Car[] {
-    let favorite = this.favoritesService.getItems(EntitiesEnum.car);
-    let cars = this.getCars().filter(item => favorite.includes(item.id));
-    cars.forEach(item => item.isFavorite = true);
+    let favoriteCars: Car[] = []
+    let cars: Car[] = [];
 
-    return cars;
+    this.getCars().subscribe(value => {
+      cars = value
+    })
+
+    this.favoritesService.getItems(EntitiesEnum.car).subscribe(value => {
+      favoriteCars = cars.filter(
+        item => value.includes(item.id)).map(
+        cars => ({...cars, isFavorite: true}
+        ));
+    });
+
+    return favoriteCars;
   };
 
-  getCars(): Car[] {
-    return this.cars;
+  getCars(): Observable<Car[]> {
+    return of(this.cars);
   };
 
   toggleFavorites(id: string): void {

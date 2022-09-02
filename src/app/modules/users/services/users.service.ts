@@ -38,17 +38,26 @@ export class UsersService {
   constructor(private favoritesService: FavoriteService) {
   };
 
-  getUsers(): User[] {
-    return this.users;
-  };
+  getUsers(): Observable<User[]> {
+    return of(this.users)
+  }
 
   getFavorites(): User[] {
-    let favorite = this.favoritesService.getItems(EntitiesEnum.user);
+    let favoriteUsers: User[] = []
+    let users: User[] = [];
 
-    let cars = this.getUsers().filter(item => favorite.includes(item.id));
-    cars.forEach(item => item.isFavorite = true);
+    this.getUsers().subscribe(value => {
+      users = value
+    })
 
-    return cars;
+    this.favoritesService.getItems(EntitiesEnum.user).subscribe(value => {
+      favoriteUsers = users.filter(
+        item => value.includes(item.id)).map(
+        user => ({...user, isFavorite: true}
+        ));
+    });
+
+    return favoriteUsers;
   }
 
   toggleFavorites(id: string): void {

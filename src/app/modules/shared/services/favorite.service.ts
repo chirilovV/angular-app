@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
 import {EntitiesEnum} from "../../core/Enums/entities.enum";
+import {Observable, of} from "rxjs";
 
 type FavoriteStorage = {
   [key in EntitiesEnum]: string[];
@@ -18,8 +19,8 @@ export class FavoriteService {
   constructor() {
   }
 
-  getItems(entityType: EntitiesEnum): string[] {
-    return this.favorites[entityType]
+  getItems(entityType: EntitiesEnum): Observable<string[]> {
+    return of(this.favorites[entityType])
   }
 
   toggleFavorites(type: EntitiesEnum, id: string): void {
