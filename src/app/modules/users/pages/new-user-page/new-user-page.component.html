@@ -2,6 +2,6 @@
   <div class="row header">
     <p> Add new user </p>
   </div>
-  <user-creation-form (formGroupInit)="onFormGroupInit($event)">></user-creation-form>
+  <user-creation-form (formGroupInit)="onFormGroupInit($event)"></user-creation-form>
   <button (click)="onCreateButtonClick()" [disabled]="userForm.pristine">Create</button>
 </div>

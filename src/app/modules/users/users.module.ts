@@ -18,6 +18,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {UsersPageComponent} from "./pages/user-page/users-page.component";
 import {UserCreationFormComponent} from "./components/user-creation-form/user-creation-form.component";
 import { NewUserPageComponent } from './pages/new-user-page/new-user-page.component';
+import {UsersRouting} from "./users.routing";
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { NewUserPageComponent } from './pages/new-user-page/new-user-page.compon
     MatInputModule,
     MatIconModule,
     FormsModule,
+    UsersRouting
   ]
 })
 export class UsersModule {

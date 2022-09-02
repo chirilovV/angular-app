@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormGroup} from "@angular/forms";
 import {UsersService} from "../../services/users.service";
 import {Router} from "@angular/router";
 import {User} from "../../models/user.interface";
@@ -10,12 +10,11 @@ import {ValidationService} from "../../../shared/services/validation.service";
   templateUrl: './new-user-page.component.html',
   styleUrls: ['./new-user-page.component.scss']
 })
-export class NewUserPageComponent  {
+export class NewUserPageComponent {
   userForm!: FormGroup;
   private defaultAvatarPath = ' assets/img/defaultUserAvatar.png'
 
   constructor(
-    private formBuilder: FormBuilder,
     private userService: UsersService,
     private validatorService: ValidationService,
     private router: Router

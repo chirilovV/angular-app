@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AppRouteEnum} from "../../Enums/AppRouteEnum";
 
 @Component({
   selector: 'header',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  appPaths = AppRouteEnum;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

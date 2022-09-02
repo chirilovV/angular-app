@@ -7,15 +7,16 @@ import {CarsPageComponent} from "./modules/cars/pages/cars-page/cars-page.compon
 import {UsersPageComponent} from "./modules/users/pages/user-page/users-page.component";
 import {PageNotFoundComponent} from "./modules/core/components/not-found-404/page-not-found.component";
 import {NewUserPageComponent} from "./modules/users/pages/new-user-page/new-user-page.component";
+import {AppRouteEnum} from "./modules/core/Enums/AppRouteEnum";
 
 const routes: Routes = [
-  {path: 'home', component: HomePageComponent},
-  {path: 'news', component: NewsPageComponent},
-  {path: 'users', component: UsersPageComponent},
-  {path: 'cars', component: CarsPageComponent},
-  {path: 'new-user', component: NewUserPageComponent},
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: '**', component: PageNotFoundComponent},
+  {path: AppRouteEnum.Home, component: HomePageComponent},
+  {path: AppRouteEnum.News, component: NewsPageComponent},
+  {path: AppRouteEnum.Users, component: UsersPageComponent},
+  {path: AppRouteEnum.Cars, component: CarsPageComponent},
+  {path: AppRouteEnum.NewUser, component: NewUserPageComponent},
+  {path: AppRouteEnum.Default, redirectTo: AppRouteEnum.Home, pathMatch: 'full'},
+  {path: AppRouteEnum.Error404, component: PageNotFoundComponent},
 ];
 
 @NgModule({
