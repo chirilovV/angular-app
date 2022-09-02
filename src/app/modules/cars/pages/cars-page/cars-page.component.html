@@ -4,6 +4,7 @@
   </div>
   <div class="row">
     <div class="cars">
+      <img *ngIf="!cars" src="/assets/img/loading.gif" alt="loading">
       <cars-list [cars]="cars" (addInFavoritesList)="toggleFavorites($event)"></cars-list>
     </div>
     <div class="favorites" *ngIf="favorites.length > 0">

@@ -4,6 +4,7 @@ import {EntitiesEnum} from "../../core/Enums/entities.enum";
 import {FavoriteService} from "../../shared/services/favorite.service";
 import {User} from "../models/user.interface";
 import {Observable, of} from "rxjs";
+import {delay} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -39,25 +40,20 @@ export class UsersService {
   };
 
   getUsers(): Observable<User[]> {
-    return of(this.users)
+    return of(this.users).pipe(delay(500));
   }
 
-  getFavorites(): User[] {
-    let favoriteUsers: User[] = []
-    let users: User[] = [];
-
-    this.getUsers().subscribe(value => {
-      users = value
-    })
+  getFavorites(): Observable<User[]> {
+    let favoriteUsers: User[] = [];
 
     this.favoritesService.getItems(EntitiesEnum.user).subscribe(value => {
-      favoriteUsers = users.filter(
+      favoriteUsers = this.users.filter(
         item => value.includes(item.id)).map(
         user => ({...user, isFavorite: true}
         ));
     });
 
-    return favoriteUsers;
+    return of(favoriteUsers);
   }
 
   toggleFavorites(id: string): void {

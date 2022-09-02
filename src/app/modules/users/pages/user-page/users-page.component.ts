@@ -25,7 +25,12 @@ export class UsersPageComponent implements OnInit {
   }
 
   get favorites(): User[] {
-    return this.usersService.getFavorites();
+    let favoriteUsers: User[] = [];
+    this.usersService.getFavorites().subscribe(items => {
+      favoriteUsers = items
+    });
+
+    return favoriteUsers;
   }
 
   toggleFavorites(user: User): void {

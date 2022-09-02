@@ -5,11 +5,13 @@
   </div>
   <div class="row">
     <div class="users">
-      <users-list [users]="users" (addInFavoritesList)="toggleFavorites($event)"></users-list>
+      <img *ngIf="!users" src="/assets/img/loading.gif" alt="loading">
+      <users-list [users]="users" (addInFavoritesList)="toggleFavorites($event)"
+      ></users-list>
     </div>
     <div class="favorites" *ngIf="favorites.length > 0">
       <h2> Favorites </h2>
-      <users-favorite-list [favorites]="favorites"> </users-favorite-list>
+      <users-favorite-list [favorites]="favorites"></users-favorite-list>
     </div>
   </div>
 </div>
