@@ -13,6 +13,9 @@
   color: #2C3333;
   padding: 10px;
 }
+.mat-form-field input.ng-valid {
+  border: 2px solid green;
+}
 .mat-form-field label {
   min-width: 100px;
   text-align: right;
@@ -46,12 +49,8 @@
   padding-top: 20px;
 }
 
-.is-valid[required], .is-valid.required {
-  border-left: 5px solid #42A948; /* green */
-}
-
 .is-invalid:not(form) {
-  border: 2px solid #a94442 !important; /* red */
+  border: 2px solid crimson !important; /* red */
 }
 
 /*# sourceMappingURL=user-creation-form.component.css.map */

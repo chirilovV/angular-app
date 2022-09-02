@@ -3,6 +3,7 @@ import {GenderEnum} from "../../core/Enums/gender.enum";
 import {EntitiesEnum} from "../../core/Enums/entities.enum";
 import {FavoriteService} from "../../shared/services/favorite.service";
 import {User} from "../models/user.interface";
+import {Observable, of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class UsersService {
       department: 'Data Management',
       company: 'Coherent Solutions',
       gender: GenderEnum.female,
-      email: 'some@mail.com'
+      email: 'some@gmail.com'
     },
     {
       id: 'a5',
@@ -54,8 +55,13 @@ export class UsersService {
     this.favoritesService.toggleFavorites(EntitiesEnum.user, id);
   }
 
-  addNewUser(user:User){
+  addNewUser(user:User): void {
     this.users.push(user);
+  }
+
+  findUserByEmail(email: string): Observable<boolean> {
+    let result = !!this.users.find(user => user.email === email)
+    return of(result);
   }
 }
 

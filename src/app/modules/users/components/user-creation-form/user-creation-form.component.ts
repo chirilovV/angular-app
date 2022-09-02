@@ -2,6 +2,8 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {GenderEnum} from "../../../core/Enums/gender.enum";
 import {User} from "../../models/user.interface";
+import {CustomValidatorService} from "../../../shared/services/customValidator.service";
+import {UsersService} from "../../services/users.service";
 
 @Component({
   selector: 'user-creation-form',
@@ -14,7 +16,7 @@ export class UserCreationFormComponent implements OnInit {
   userForm!: FormGroup;
   genderEnum = GenderEnum;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private usersService: UsersService) {
     this.user = {} as User;
   }
 
@@ -25,13 +27,17 @@ export class UserCreationFormComponent implements OnInit {
 
   createForm() {
     return this.formBuilder.group({
-      firstName: [this.user.firstName, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
-      lastName: [this.user.lastName, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
-      age: [this.user.age, [Validators.required, Validators.min(16), Validators.max(99),]],
-      email: [this.user.email, [Validators.required, Validators.email]],
-      company: [this.user.company, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-      department: [this.user.department, [Validators.required,Validators.minLength(3), Validators.maxLength(50)]],
+      firstName: [this.user.firstName, [Validators.required]],
+      lastName: [this.user.lastName, [Validators.required]],
+      age: [this.user.age, [Validators.required, Validators.min(15), Validators.max(100)]],
+      company: [this.user.company, [Validators.required, Validators.maxLength(35)]],
+      department: [this.user.department, [Validators.minLength(6)]],
       gender: [GenderEnum.notSpecified, [Validators.required]],
+      email: [
+        this.user.email,
+        [Validators.required, Validators.email, CustomValidatorService.validateEmail],
+        [CustomValidatorService.existingEmailValidator(this.usersService)]
+      ],
     });
   }
 
