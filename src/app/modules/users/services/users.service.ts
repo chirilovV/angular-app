@@ -20,7 +20,7 @@ export class UsersService {
       imageUrl: 'assets/img/avatar2.png',
       department: 'Data Management',
       company: 'Coherent Solutions',
-      gender: GenderEnum.female,
+      gender: GenderEnum.Female,
       email: 'some@gmail.com'
     },
     {
@@ -31,7 +31,7 @@ export class UsersService {
       imageUrl: 'assets/img/avatar5.png',
       department: 'Data Management',
       company: 'Coherent Solutions',
-      gender: GenderEnum.male,
+      gender: GenderEnum.Male,
       email: 'some@mail.com'
     },
   ];
