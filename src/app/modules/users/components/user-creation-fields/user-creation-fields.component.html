@@ -1,4 +1,4 @@
-<form [formGroup]="userForm">
+<div [formGroup]="userFormGroup" (change)="emitFormValue()">
   <div class="mat-form-field">
     <label for="firstName">First name</label>
     <input
@@ -8,7 +8,8 @@
       formControlName="firstName"
       [class.is-invalid]="isControlInvalid('firstName')">
     <div *ngIf="isControlInvalid('firstName')" class="invalid-feedback">
-      <span class="invalid" *ngIf="userForm.controls['firstName'].errors?.['required']">This field is required.</span>
+      <span class="invalid"
+            *ngIf="userFormGroup.get('firstName')?.errors?.['required']">This field is required.</span>
     </div>
   </div>
   <div class="mat-form-field">
@@ -20,7 +21,7 @@
       formControlName="lastName"
       [class.is-invalid]="isControlInvalid('lastName')">
     <div *ngIf="isControlInvalid('lastName')" class="invalid-feedback">
-      <span class="invalid" *ngIf="userForm.controls['lastName'].errors?.['required']">This field is required.</span>
+      <span class="invalid" *ngIf="userFormGroup.get('lastName')?.errors?.['required']">This field is required.</span>
     </div>
   </div>
   <div class="mat-form-field">
@@ -32,9 +33,9 @@
       formControlName="age"
       [class.is-invalid]="isControlInvalid('age')">
     <div *ngIf="isControlInvalid('age')" class="invalid-feedback">
-      <span class="invalid" *ngIf="userForm.controls['age'].errors?.['required']">This field is required.</span>
-      <span class="invalid" *ngIf="userForm.controls['age'].errors?.['min']">This field must be > 15.</span>
-      <span class="invalid" *ngIf="userForm.controls['age'].errors?.['max']"> This field must be <  or = 100</span>
+      <span class="invalid" *ngIf="userFormGroup.controls['age'].errors?.['required']">This field is required.</span>
+      <span class="invalid" *ngIf="userFormGroup.controls['age'].errors?.['min']">This field must be > 15.</span>
+      <span class="invalid" *ngIf="userFormGroup.controls['age'].errors?.['max']"> This field must be <  or = 100</span>
     </div>
   </div>
   <div class="mat-form-field">
@@ -46,11 +47,11 @@
       formControlName="email"
       [class.is-invalid]="isControlInvalid('email')">
     <div *ngIf="isControlInvalid('email')" class="invalid-feedback">
-      <span class="invalid" *ngIf="userForm.controls['email'].errors?.['required']">This field is required.</span>
-      <span class="invalid" *ngIf="userForm.controls['email'].errors?.['email']">Invalid email address.</span>
-      <span class="invalid" *ngIf="userForm.controls['email'].errors?.['existingEmail']">The email address is already registered with another account.</span>
+      <span class="invalid" *ngIf="userFormGroup.controls['email'].errors?.['required']">This field is required.</span>
+      <span class="invalid" *ngIf="userFormGroup.controls['email'].errors?.['email']">Invalid email address.</span>
+      <span class="invalid" *ngIf="userFormGroup.controls['email'].errors?.['existingEmail']">The email address is already registered with another account.</span>
       <span class="invalid"
-            *ngIf="!userForm.controls['email'].errors?.['required']&&userForm.controls['email'].errors?.['validateEmail']">Email should be ....@gmail.com</span>
+            *ngIf="!userFormGroup.controls['email'].errors?.['required']&&userFormGroup.controls['email'].errors?.['validateEmail']">Email should be ....@gmail.com</span>
     </div>
   </div>
   <div class="mat-form-field">
@@ -62,8 +63,9 @@
       formControlName="company"
       [class.is-invalid]="isControlInvalid('company')">
     <div *ngIf="isControlInvalid('company')" class="invalid-feedback">
-      <span class="invalid" *ngIf="userForm.controls['company'].errors?.['required']">This field is required.</span>
-      <span class="invalid" *ngIf="userForm.controls['company'].errors?.['maxlength']"> This field must have at most 35 characters</span>
+      <span class="invalid"
+            *ngIf="userFormGroup.controls['company'].errors?.['required']">This field is required.</span>
+      <span class="invalid" *ngIf="userFormGroup.controls['company'].errors?.['maxlength']"> This field must have at most 35 characters</span>
     </div>
   </div>
   <div class="mat-form-field">
@@ -75,7 +77,7 @@
       formControlName="department"
       [class.is-invalid]="isControlInvalid('department')">
     <div *ngIf="isControlInvalid('department')" class="invalid-feedback">
-      <span class="invalid" *ngIf="userForm.controls['company'].errors?.['minlength']"> This field must have less than 6 characters</span>
+      <span class="invalid" *ngIf="userFormGroup.controls['department'].errors?.['minLength']"> This field must have less than 6 characters</span>
     </div>
   </div>
 
@@ -86,16 +88,14 @@
              type="radio"
              name="gender"
              formControlName="gender"
-             [value]="genderEnum.male"
-             [checked]="userForm.controls['gender'].value === genderEnum.male">
+             [value]="GenderEnum.Male">
       <label for="male">Male</label></div>
     <div class="radio">
       <input id="female"
              type="radio"
              name="gender"
              formControlName="gender"
-             [value]="genderEnum.female"
-             [checked]="userForm.controls['gender'].value === genderEnum.female">
+             [value]="GenderEnum.Female">
       <label for="female">Female</label>
     </div>
     <div class="radio">
@@ -103,9 +103,8 @@
              type="radio"
              name="gender"
              formControlName="gender"
-             [value]="genderEnum.notSpecified"
-             [checked]="userForm.controls['gender'].value === genderEnum.notSpecified">
+             [value]="GenderEnum.NotSpecified">
       <label for="notSpecified">Not specified</label>
     </div>
   </div>
-</form>
+</div>

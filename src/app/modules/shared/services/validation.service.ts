@@ -12,11 +12,14 @@ export class ValidationService {
     let isFormValid: boolean = true;
     if (formGroup.invalid) {
       for (const control of Object.keys(formGroup.controls)) {
-        formGroup.controls[control].markAsTouched();
+        if (formGroup.controls[control]?.errors?.['required']) {
+          formGroup.controls[control].markAsTouched();
+        }
       }
 
       isFormValid = false;
     }
+
     return isFormValid;
   }
 

@@ -1,5 +1,5 @@
 export enum GenderEnum {
-  male = 'Male',
-  female = "Female",
-  notSpecified = "Not Specified"
+  Male = 'Male',
+  Female = "Female",
+  NotSpecified = "Not Specified"
 }

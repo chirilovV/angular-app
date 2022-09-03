@@ -16,17 +16,19 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {UsersPageComponent} from "./pages/user-page/users-page.component";
-import {UserCreationFormComponent} from "./components/user-creation-form/user-creation-form.component";
 import { NewUserPageComponent } from './pages/new-user-page/new-user-page.component';
 import {UsersRouting} from "./users.routing";
+import { UserFormShellComponent } from './components/user-form-shell/user-form-shell.component';
+import {UserCreationFieldsComponent} from "./components/user-creation-fields/user-creation-fields.component";
 
 @NgModule({
   declarations: [
     UsersPageComponent,
     UsersListComponent,
     UsersFavoriteListComponent,
-    UserCreationFormComponent,
-    NewUserPageComponent
+    UserCreationFieldsComponent,
+    NewUserPageComponent,
+    UserFormShellComponent
   ],
   exports: [
   ],
