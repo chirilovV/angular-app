@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormControl} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {debounceTime, distinctUntilChanged} from "rxjs";
 
 @Component({
   selector: 'app-user-search',
@@ -8,15 +9,31 @@ import {FormControl} from "@angular/forms";
 })
 export class UserSearchComponent implements OnInit {
   keyword!: FormControl;
+  formGroup!: FormGroup;
 
   @Output() searchByName = new EventEmitter();
   @Output() resetSearch = new EventEmitter();
 
-  ngOnInit(): void {
-    this.keyword = new FormControl('');
+  constructor(private formBuilder: FormBuilder) {
   }
 
-  applyFilter(search: string): void {
-    this.searchByName.emit(search)
+  ngOnInit(): void {
+    this.formGroup = this.formBuilder.group({
+      keyword: ['']
+    });
+  }
+
+  applyFilter(): void {
+    this.formGroup.get('keyword')?.valueChanges?.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+    ).subscribe(
+      value => this.searchByName.emit(value?.trim().toLowerCase())
+    )
+  }
+
+  reset() {
+    this.formGroup.reset()
+    this.resetSearch.emit()
   }
 }

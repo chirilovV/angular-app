@@ -44,11 +44,9 @@ export class UsersService {
   }
 
   findUserByName(keyword: string): Observable<User[]> {
+    console.log(keyword)
     let users = this.users.filter(
-      user => (
-        user.firstName.toLowerCase().includes(keyword.toLowerCase())
-        || user.lastName.toLowerCase().includes(keyword.toLowerCase())
-      )
+      user => (user.firstName.toLowerCase().includes(keyword) || user.lastName.toLowerCase().includes(keyword))
     )
 
     return of(users).pipe(delay(1000));

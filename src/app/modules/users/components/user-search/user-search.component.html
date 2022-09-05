@@ -1,8 +1,10 @@
 <div class="row">
-  <input
-    #input
-    (keyup.enter)="applyFilter(input.value)"
-    formControlName="keyword"
-    placeholder="Search by keyword">
-  <button class="button" (click)="input.value=''; this.resetSearch.emit();">Reset</button>
+  <form [formGroup]="formGroup">
+    <input
+      (keyup)="applyFilter()"
+      formControlName="keyword"
+      placeholder="Search by keyword">
+
+    <button class="button" (click)="reset()">Reset</button>
+  </form>
 </div>
