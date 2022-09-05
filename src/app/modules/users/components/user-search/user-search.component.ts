@@ -24,16 +24,13 @@ export class UserSearchComponent implements OnInit {
   }
 
   applyFilter(): void {
-    this.formGroup.get('keyword')?.valueChanges?.pipe(
-      debounceTime(500),
-      distinctUntilChanged(),
-    ).subscribe(
-      value => this.searchByName.emit(value?.trim().toLowerCase())
-    );
+    this.formGroup.get('keyword')?.valueChanges
+      .pipe(debounceTime(500), distinctUntilChanged())
+      .subscribe(value => this.searchByName.emit(value?.trim().toLowerCase()));
   }
 
   reset(): void {
-    this.formGroup.reset();
+    this.formGroup.reset({}, {emitEvent: false});
     this.resetSearch.emit();
   }
 }
