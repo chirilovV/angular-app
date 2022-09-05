@@ -29,11 +29,11 @@ export class UserSearchComponent implements OnInit {
       distinctUntilChanged(),
     ).subscribe(
       value => this.searchByName.emit(value?.trim().toLowerCase())
-    )
+    );
   }
 
-  reset() {
-    this.formGroup.reset()
-    this.resetSearch.emit()
+  reset(): void {
+    this.formGroup.reset();
+    this.resetSearch.emit();
   }
 }

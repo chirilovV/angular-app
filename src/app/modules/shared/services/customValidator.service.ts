@@ -5,8 +5,7 @@ import {UsersService} from "../../users/services/users.service";
 
 export class CustomValidatorService {
 
-  // TODO to add interface for return type
-  static validateEmail(control: FormControl) {
+  static validateEmail(control: FormControl): null | { validateEmail: { valid: boolean } } {
     let EMAIL_REGEXP = new RegExp(`^[\\w.+\\-]+@gmail\\.com$`);
 
     return EMAIL_REGEXP.test(control.value) ? null : {

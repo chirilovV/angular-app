@@ -77,7 +77,7 @@
       formControlName="department"
       [class.is-invalid]="isControlInvalid('department')">
     <div *ngIf="isControlInvalid('department')" class="invalid-feedback">
-      <span class="invalid" *ngIf="userFormGroup.controls['department'].errors?.['minLength']"> This field must have less than 6 characters</span>
+      <span class="invalid" *ngIf="userFormGroup.controls['department'].errors?.['minlength']"> This field must have less than 6 characters</span>
     </div>
   </div>
 

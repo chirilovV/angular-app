@@ -1,10 +1,6 @@
 <div class="row">
   <form [formGroup]="formGroup">
-    <input
-      (keyup)="applyFilter()"
-      formControlName="keyword"
-      placeholder="Search by keyword">
-
+    <input (keyup)="applyFilter()" formControlName="keyword" placeholder="Search by keyword">
     <button class="button" (click)="reset()">Reset</button>
   </form>
 </div>
