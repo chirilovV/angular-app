@@ -8,26 +8,30 @@ import {User} from "../../models/user.interface";
   styleUrls: ['./users-page.component.scss'],
 })
 export class UsersPageComponent implements OnInit {
-
-  users!: User[];
+  users: User[] = [];
+  loader: boolean = true;
 
   constructor(private usersService: UsersService) {
   };
 
   ngOnInit(): void {
-    this.getUsers();
+    this.getAllUsers();
   };
 
-  getUsers(): void {
+  getAllUsers(): void {
+    this.loader = true;
     this.usersService.getUsers().subscribe(
-      items => this.users = items
+      items => {
+        this.users = items;
+        this.loader = false;
+      },
     );
   }
 
   get favorites(): User[] {
     let favoriteUsers: User[] = [];
     this.usersService.getFavorites().subscribe(items => {
-      favoriteUsers = items
+      favoriteUsers = items;
     });
 
     return favoriteUsers;
@@ -36,5 +40,17 @@ export class UsersPageComponent implements OnInit {
   toggleFavorites(user: User): void {
     user.isFavorite = !user.isFavorite;
     this.usersService.toggleFavorites(user.id);
+  }
+
+  search(keyword: string): void {
+    this.loader = true;
+    this.users = [];
+
+    this.usersService.findUserByName(keyword).subscribe(
+      items => {
+        this.users = items;
+        this.loader = false;
+      },
+    );
   }
 }

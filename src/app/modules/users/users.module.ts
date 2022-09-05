@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatCardModule} from "@angular/material/card";
 import {MatRadioModule} from "@angular/material/radio";
-import {MatChipsModule} from "@angular/material/chips";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {UsersListComponent} from "./components/users-list/users-list.component";
@@ -16,10 +15,11 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {UsersPageComponent} from "./pages/user-page/users-page.component";
-import { NewUserPageComponent } from './pages/new-user-page/new-user-page.component';
+import {NewUserPageComponent} from './pages/new-user-page/new-user-page.component';
 import {UsersRouting} from "./users.routing";
-import { UserFormShellComponent } from './components/user-form-shell/user-form-shell.component';
+import {UserFormShellComponent} from './components/user-form-shell/user-form-shell.component';
 import {UserCreationFieldsComponent} from "./components/user-creation-fields/user-creation-fields.component";
+import {UserSearchComponent} from './components/user-search/user-search.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,8 @@ import {UserCreationFieldsComponent} from "./components/user-creation-fields/use
     UsersFavoriteListComponent,
     UserCreationFieldsComponent,
     NewUserPageComponent,
-    UserFormShellComponent
+    UserFormShellComponent,
+    UserSearchComponent
   ],
   exports: [
   ],
@@ -37,7 +38,6 @@ import {UserCreationFieldsComponent} from "./components/user-creation-fields/use
     CommonModule,
     MatCardModule,
     MatRadioModule,
-    MatChipsModule,
     MatSlideToggleModule,
     ReactiveFormsModule,
     MatButtonModule,

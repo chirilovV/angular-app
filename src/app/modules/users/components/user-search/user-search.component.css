@@ -1,0 +1,16 @@
+.row {
+  width: 70%;
+  margin: 50px 100px 0;
+}
+
+input {
+  border-radius: 8px;
+  width: 60%;
+  height: 45px;
+}
+
+button {
+  width: 10%;
+}
+
+/*# sourceMappingURL=user-search.component.css.map */

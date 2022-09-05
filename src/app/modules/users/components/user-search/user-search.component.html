@@ -1,0 +1,8 @@
+<div class="row">
+  <input
+    #input
+    (keyup.enter)="applyFilter(input.value)"
+    formControlName="keyword"
+    placeholder="Search by keyword">
+  <button class="button" (click)="input.value=''; this.resetSearch.emit();">Reset</button>
+</div>

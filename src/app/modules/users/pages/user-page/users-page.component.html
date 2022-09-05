@@ -3,11 +3,16 @@
     <p> Users List </p>
     <a mat-button routerLink="/new-user" routerLinkActive="active-button">Add new user</a>
   </div>
+  <app-user-search (searchByName)="search($event)" (resetSearch)="getAllUsers()"></app-user-search>
   <div class="row">
     <div class="users">
-      <img *ngIf="!users" src="/assets/img/loading.gif" alt="loading">
-      <users-list [users]="users" (addInFavoritesList)="toggleFavorites($event)"
-      ></users-list>
+      <img *ngIf="loader" src="/assets/img/loading.gif" alt="loading">
+      <div class="row not-found" *ngIf="!loader && users.length===0">Not Found any user</div>
+      <users-list
+        *ngIf="!loader"
+        [users]="users"
+        (addInFavoritesList)="toggleFavorites($event)">
+      </users-list>
     </div>
     <div class="favorites" *ngIf="favorites.length > 0">
       <h2> Favorites </h2>

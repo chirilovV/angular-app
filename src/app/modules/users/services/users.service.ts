@@ -43,6 +43,17 @@ export class UsersService {
     return of(this.users).pipe(delay(500));
   }
 
+  findUserByName(keyword: string): Observable<User[]> {
+    let users = this.users.filter(
+      user => (
+        user.firstName.toLowerCase().includes(keyword.toLowerCase())
+        || user.lastName.toLowerCase().includes(keyword.toLowerCase())
+      )
+    )
+
+    return of(users).pipe(delay(1000));
+  }
+
   getFavorites(): Observable<User[]> {
     let favoriteUsers: User[] = [];
 
