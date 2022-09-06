@@ -1,4 +1,5 @@
-<form [formGroup]="userForm">
-  <user-creation-fields [userFormGroup]="userForm" (formGroupInit)="sendFormValue($event)"></user-creation-fields>
-  <button (click)="onCreateButtonClick()" [disabled]="!isFormValid">Create</button>
+<form [formGroup]="formGroup">
+  <user-creation-fields [formGroup]="formGroup"></user-creation-fields>
+  <user-addresses [formGroup]="formGroup"></user-addresses>
+  <button (click)="onSubmit()">Create</button>
 </form>

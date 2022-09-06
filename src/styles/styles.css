@@ -1,4 +1,4 @@
-@import '../../node_modules/@angular/material/prebuilt-themes/purple-green.css';
+@import '../../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css';
 html {
   padding: 0;
   margin: 0;
@@ -25,6 +25,10 @@ html body {
 
 .home, .news, .users, .cars, .new-user {
   color: #2C3333;
+}
+
+.new-user {
+  height: 100vh;
 }
 
 .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {

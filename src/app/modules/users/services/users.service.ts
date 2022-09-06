@@ -5,6 +5,8 @@ import {FavoriteService} from "../../shared/services/favorite.service";
 import {User} from "../models/user.interface";
 import {Observable, of} from "rxjs";
 import {delay} from 'rxjs/operators';
+import { FormGroup} from "@angular/forms";
+import {Address} from "../models/address.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +29,7 @@ export class UsersService {
       id: 'a5',
       firstName: 'George',
       lastName: 'Bush',
-      age:38,
+      age: 38,
       imageUrl: 'assets/img/avatar5.png',
       department: 'Data Management',
       company: 'Coherent Solutions',
@@ -35,6 +37,8 @@ export class UsersService {
       email: 'some@mail.com'
     },
   ];
+
+  private defaultAvatarPath = ' assets/img/defaultUserAvatar.png';
 
   constructor(private favoritesService: FavoriteService) {
   };
@@ -68,8 +72,36 @@ export class UsersService {
     this.favoritesService.toggleFavorites(EntitiesEnum.user, id);
   }
 
-  addNewUser(user:User): void {
-    this.users.push(user);
+  addNewUser(user: any): void {
+    let userData = user.controls.user.controls;
+    let addressesData:FormGroup[] = user.controls.addresses.controls;
+    let addresses:Address[]=[];
+
+    let newUser: User = {
+      age: userData.age.value,
+      company: userData.company.value,
+      department: userData.department.value,
+      email: userData.email.value,
+      firstName: userData.firstName.value,
+      gender: userData.gender.value,
+      id: Math.random().toString(16).slice(2),
+      imageUrl: this.defaultAvatarPath,
+      lastName: userData.lastName.value,
+    };
+
+    if (addressesData.length !== 0) {
+      addressesData.forEach((address) => {
+        addresses.push({
+            addressLine: address.controls['addressLine'].value,
+            city: address.controls['city'].value,
+            zip: address.controls['zip'].value,
+          })
+        }
+      )
+    }
+    if(addresses.length>0) newUser.addresses=addresses
+
+    this.users.push(newUser);
   }
 
   findUserByEmail(email: string): Observable<boolean> {

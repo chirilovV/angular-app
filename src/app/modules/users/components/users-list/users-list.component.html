@@ -1,11 +1,9 @@
 <div class="d-flex flex-wrap justify-content-center">
   <div *ngFor="let user of users" class="user-item">
-    <list-item
-      [item]="user"
-      (newItemEvent)="this.addInFavoritesList.emit(user)"
-    >
+    <list-item [item]="user" (newItemEvent)="this.addInFavoritesList.emit(user)">
 
-      <mat-card-title header> {{ user.firstName + ' ' + user.lastName  }} <span> {{ user.age }} years</span></mat-card-title>
+      <mat-card-title header> {{ user.firstName + ' ' + user.lastName  }} <span> {{ user.age }} years</span>
+      </mat-card-title>
       <img image mat-card-image src="{{ user.imageUrl }}" alt="avatar">
 
       <mat-card-content content>
@@ -13,6 +11,12 @@
         <p>Department: <span>{{ user.department }}</span></p>
         <p>Company: <span>{{ user.company }}</span></p>
         <p>Email: <span>{{ user.email }}</span></p>
+
+        <div *ngIf="user.addresses">
+          <div *ngFor="let address of user.addresses; let i = index">
+            <p>Address{{i + 1}} : <span>{{ address.addressLine + ', ' + address.city + ', ' + address.zip }}</span></p>
+          </div>
+        </div>
       </mat-card-content>
 
     </list-item>

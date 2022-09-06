@@ -1,9 +1,11 @@
-import {AbstractControl, AsyncValidatorFn, FormControl, ValidationErrors} from "@angular/forms";
+import {AbstractControl, AsyncValidatorFn, FormControl, ValidationErrors, Validators} from "@angular/forms";
 import {map, Observable} from "rxjs";
 import {UsersService} from "../../users/services/users.service";
 
 
 export class CustomValidatorService {
+  constructor() {
+  }
 
   static validateEmail(control: FormControl): null | { validateEmail: { valid: boolean } } {
     let EMAIL_REGEXP = new RegExp(`^[\\w.+\\-]+@gmail\\.com$`);
@@ -24,5 +26,16 @@ export class CustomValidatorService {
           } : null
         }))
     }
+  }
+
+  static conditionallyRequiredValidator(formControl: AbstractControl) {
+    if (!formControl.parent) {
+      return null;
+    }
+
+    if (formControl.parent.get('city')?.value) {
+      return Validators.required(formControl);
+    }
+    return null;
   }
 }

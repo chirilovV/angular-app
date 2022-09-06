@@ -20,6 +20,7 @@ import {UsersRouting} from "./users.routing";
 import {UserFormShellComponent} from './components/user-form-shell/user-form-shell.component';
 import {UserCreationFieldsComponent} from "./components/user-creation-fields/user-creation-fields.component";
 import {UserSearchComponent} from './components/user-search/user-search.component';
+import { UserAddressesComponent } from './components/user-addresses/user-addresses.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import {UserSearchComponent} from './components/user-search/user-search.componen
     UserCreationFieldsComponent,
     NewUserPageComponent,
     UserFormShellComponent,
-    UserSearchComponent
+    UserSearchComponent,
+    UserAddressesComponent,
+
   ],
   exports: [
   ],
@@ -49,7 +52,7 @@ import {UserSearchComponent} from './components/user-search/user-search.componen
     MatInputModule,
     MatIconModule,
     FormsModule,
-    UsersRouting
+    UsersRouting,
   ]
 })
 export class UsersModule {

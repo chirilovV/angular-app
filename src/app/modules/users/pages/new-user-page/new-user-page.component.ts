@@ -1,16 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
+import {UsersService} from "../../services/users.service";
+import {Router} from "@angular/router";
+import {AppRouteEnum} from "../../../core/Enums/AppRouteEnum";
 
 @Component({
   selector: 'app-new-user-page',
   templateUrl: './new-user-page.component.html',
   styleUrls: ['./new-user-page.component.scss']
 })
-export class NewUserPageComponent implements OnInit {
+export class NewUserPageComponent {
 
-  constructor() {
+  constructor(private userService: UsersService, private router: Router) {
   }
 
-  ngOnInit(): void {
+  saveUser(user: any) {
+    this.userService.addNewUser(user);
+    this.router.navigate([AppRouteEnum.Users]);
   }
-
 }

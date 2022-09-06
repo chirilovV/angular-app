@@ -1,85 +1,25 @@
-<div [formGroup]="userFormGroup" (change)="emitFormValue()">
-  <div class="mat-form-field">
-    <label for="firstName">First name</label>
-    <input
-      id="firstName"
-      type="string"
-      placeholder="Jon"
-      formControlName="firstName"
-      [class.is-invalid]="isControlInvalid('firstName')">
-    <div *ngIf="isControlInvalid('firstName')" class="invalid-feedback">
-      <span class="invalid"
-            *ngIf="userFormGroup.get('firstName')?.errors?.['required']">This field is required.</span>
-    </div>
-  </div>
-  <div class="mat-form-field">
-    <label for="firstName">Last name</label>
-    <input
-      id="lastName"
-      type="string"
-      placeholder="Smith"
-      formControlName="lastName"
-      [class.is-invalid]="isControlInvalid('lastName')">
-    <div *ngIf="isControlInvalid('lastName')" class="invalid-feedback">
-      <span class="invalid" *ngIf="userFormGroup.get('lastName')?.errors?.['required']">This field is required.</span>
-    </div>
-  </div>
-  <div class="mat-form-field">
-    <label for="age">Age</label>
-    <input
-      id="age"
-      type="number"
-      placeholder="38"
-      formControlName="age"
-      [class.is-invalid]="isControlInvalid('age')">
-    <div *ngIf="isControlInvalid('age')" class="invalid-feedback">
-      <span class="invalid" *ngIf="userFormGroup.controls['age'].errors?.['required']">This field is required.</span>
-      <span class="invalid" *ngIf="userFormGroup.controls['age'].errors?.['min']">This field must be > 15.</span>
-      <span class="invalid" *ngIf="userFormGroup.controls['age'].errors?.['max']"> This field must be <  or = 100</span>
-    </div>
-  </div>
-  <div class="mat-form-field">
-    <label for="email">Email</label>
-    <input
-      id="email"
-      type="email"
-      placeholder="some@address.com"
-      formControlName="email"
-      [class.is-invalid]="isControlInvalid('email')">
-    <div *ngIf="isControlInvalid('email')" class="invalid-feedback">
-      <span class="invalid" *ngIf="userFormGroup.controls['email'].errors?.['required']">This field is required.</span>
-      <span class="invalid" *ngIf="userFormGroup.controls['email'].errors?.['email']">Invalid email address.</span>
-      <span class="invalid" *ngIf="userFormGroup.controls['email'].errors?.['existingEmail']">The email address is already registered with another account.</span>
-      <span class="invalid"
-            *ngIf="!userFormGroup.controls['email'].errors?.['required']&&userFormGroup.controls['email'].errors?.['validateEmail']">Email should be ....@gmail.com</span>
-    </div>
-  </div>
-  <div class="mat-form-field">
-    <label for="company">Company</label>
-    <input
-      id="company"
-      type="string"
-      placeholder="DEVAID COM"
-      formControlName="company"
-      [class.is-invalid]="isControlInvalid('company')">
-    <div *ngIf="isControlInvalid('company')" class="invalid-feedback">
-      <span class="invalid"
-            *ngIf="userFormGroup.controls['company'].errors?.['required']">This field is required.</span>
-      <span class="invalid" *ngIf="userFormGroup.controls['company'].errors?.['maxlength']"> This field must have at most 35 characters</span>
-    </div>
-  </div>
-  <div class="mat-form-field">
-    <label for="department">Department</label>
-    <input
-      id="department"
-      type="string"
-      placeholder="Data Entry"
-      formControlName="department"
-      [class.is-invalid]="isControlInvalid('department')">
-    <div *ngIf="isControlInvalid('department')" class="invalid-feedback">
-      <span class="invalid" *ngIf="userFormGroup.controls['department'].errors?.['minlength']"> This field must have less than 6 characters</span>
-    </div>
-  </div>
+<div [formGroup]="userFormGroup" class="user-fields">
+  <mat-form-field appearance="fill">
+    <input matInput placeholder="Firs Name" formControlName="firstName" required>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <input matInput placeholder="lastName" formControlName="lastName" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <input matInput placeholder="age" type="number" formControlName="age" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <input matInput type="email" placeholder="some@address.com" formControlName="email" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <input matInput type="string" placeholder="DEVAID COM" formControlName="company">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <input matInput type="string" placeholder="Data Entry" formControlName="department">
+  </mat-form-field>
 
   <div class="row mat-radio-button">
     <span>Gender</span>

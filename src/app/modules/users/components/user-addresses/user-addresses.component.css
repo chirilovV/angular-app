@@ -1,0 +1,48 @@
+mat-form-field {
+  margin: 15px;
+}
+
+.mat-button.mat-primary {
+  border-radius: 8px;
+  padding: 5px 15px;
+  border: none;
+  font-weight: bold;
+  width: 150px;
+  height: 45px;
+  background: #bddbfa linear-gradient(to bottom, #919196 35%, #58595c 100%);
+  margin: 30px auto;
+  color: #2C3333;
+}
+
+.mat-input-element {
+  font: inherit;
+  background-color: rgba(221, 221, 221, 0) !important;
+  color: currentColor;
+}
+
+div {
+  justify-content: right;
+}
+
+.row {
+  border-radius: 8px;
+  border: 2px solid #f8f6f6;
+  width: 70%;
+  margin: 50px auto;
+  justify-content: left;
+  padding: 30px 10px;
+}
+
+button {
+  display: inline-block;
+}
+
+span {
+  font-size: 24px;
+  font-weight: bold;
+  width: auto;
+  display: inline-block;
+  line-height: 1.4;
+}
+
+/*# sourceMappingURL=user-addresses.component.css.map */

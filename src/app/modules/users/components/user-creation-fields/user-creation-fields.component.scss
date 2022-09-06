@@ -1,34 +1,12 @@
-.radio-button {
-  padding-left: 100px;
-  margin-bottom: 50px;
-}
-
-.mat-form-field {
+mat-form-field {
   input {
     max-width: 300px;
-    width: 60%;
-    height: 50px;
-    border-radius: 8px;
-    border: 2px solid #868484;
-    margin: 15px;
     color: #2C3333;
-    padding: 10px;
-
-  }
-  input.ng-touched.ng-valid {
-    border: 2px solid green;
   }
 
-  input.is-invalid:not(form) {
-    border: 2px solid crimson;
-  }
-
-  label {
-    min-width: 100px;
-    text-align: right;
-    font-weight: bold;
-    font-size: 18px;
-  }
+  width: 50%;
+  margin: auto;
+  display: block;
 }
 
 .mat-radio-button {
