@@ -5,11 +5,11 @@ import {CustomValidatorService} from "../../../shared/services/customValidator.s
 import {UsersService} from "../../services/users.service";
 
 @Component({
-  selector: 'user-creation-fields',
-  templateUrl: 'user-creation-fields.component.html',
-  styleUrls: ['user-creation-fields.component.scss']
+  selector: 'user-form-controls',
+  templateUrl: 'user-form-controls.component.html',
+  styleUrls: ['user-form-controls.component.scss']
 })
-export class UserCreationFieldsComponent implements OnInit {
+export class UserFormControlsComponent implements OnInit {
 
   @Input() formGroup!: FormGroup;
 

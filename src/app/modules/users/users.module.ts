@@ -18,16 +18,16 @@ import {UsersPageComponent} from "./pages/user-page/users-page.component";
 import {NewUserPageComponent} from './pages/new-user-page/new-user-page.component';
 import {UsersRouting} from "./users.routing";
 import {UserFormShellComponent} from './components/user-form-shell/user-form-shell.component';
-import {UserCreationFieldsComponent} from "./components/user-creation-fields/user-creation-fields.component";
 import {UserSearchComponent} from './components/user-search/user-search.component';
 import { UserAddressesComponent } from './components/user-addresses/user-addresses.component';
+import {UserFormControlsComponent} from "./components/user-form-controls/user-form-controls.component";
 
 @NgModule({
   declarations: [
     UsersPageComponent,
     UsersListComponent,
     UsersFavoriteListComponent,
-    UserCreationFieldsComponent,
+    UserFormControlsComponent,
     NewUserPageComponent,
     UserFormShellComponent,
     UserSearchComponent,
