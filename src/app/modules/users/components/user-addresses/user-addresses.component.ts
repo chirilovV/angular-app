@@ -13,7 +13,7 @@ export class UserAddressesComponent {
   constructor(private formBuilder: FormBuilder) {
   }
 
-  addAddress() {
+  addAddress(): void {
     this.addressFormGroup = this.formBuilder.group({
       addressLine: ['', Validators.required],
       city: [''],
@@ -23,7 +23,7 @@ export class UserAddressesComponent {
     this.addresses.push(this.addressFormGroup)
   }
 
-  updateZipValidator() {
+  updateZipValidator(): void {
     if (this.addressFormGroup.get('city')?.value !== '') {
       this.addressFormGroup.get('zip')?.setValidators(Validators.required);
       this.addressFormGroup.get('zip')?.updateValueAndValidity();
@@ -35,15 +35,15 @@ export class UserAddressesComponent {
     }
   }
 
-  deleteAddress(lessonIndex: number) {
+  deleteAddress(lessonIndex: number): void {
     this.addresses.removeAt(lessonIndex);
   }
 
-  get addresses() {
+  get addresses(): FormArray {
     return this.formGroup.get('addresses') as FormArray
   }
 
-  public myError = (controlName: string, errorName: string) =>{
-    return  this.addressFormGroup.controls[controlName].hasError(errorName);
+  public errorHandler(controlName: string, errorName: string): boolean {
+    return this.addressFormGroup.controls[controlName].hasError(errorName);
   }
 }

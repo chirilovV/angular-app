@@ -10,7 +10,7 @@
 
           <mat-form-field appearance="fill">
             <input matInput type="string" placeholder="Address line" formControlName="addressLine" required>
-            <mat-error *ngIf="myError('addressLine', 'required')">Address line is required</mat-error>
+            <mat-error *ngIf="errorHandler('addressLine', 'required')">Address line is required</mat-error>
           </mat-form-field>
 
           <mat-form-field>
@@ -19,7 +19,7 @@
 
           <mat-form-field>
             <input matInput type="string"  placeholder="Zip Code" formControlName="zip">
-            <mat-error *ngIf="myError('zip', 'required')">Zip Code is required</mat-error>
+            <mat-error *ngIf="errorHandler('zip', 'required')">Zip Code is required</mat-error>
           </mat-form-field>
 
           <button mat-mini-fab (click)="deleteAddress(i)">

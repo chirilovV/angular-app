@@ -21,9 +21,7 @@ export class UserSearchComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       keyword: ['']
     });
-  }
 
-  applyFilter(): void {
     this.formGroup.get('keyword')?.valueChanges
       .pipe(debounceTime(500), distinctUntilChanged())
       .subscribe(value => this.searchByName.emit(value?.trim().toLowerCase()));

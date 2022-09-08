@@ -28,15 +28,19 @@ export class UserFormControlsComponent implements OnInit {
     return this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      age: [0, [Validators.required, Validators.min(15), Validators.max(100)]],
+      age: [null, [Validators.required, Validators.min(15), Validators.max(100)]],
       company: ['', [Validators.required, Validators.maxLength(35)]],
       department: ['', Validators.minLength(6)],
       gender: [GenderEnum.NotSpecified, Validators.required],
       email: [
         '',
-        [Validators.required, Validators.email, CustomValidatorService.validateEmail],
+        Validators.compose([Validators.required, Validators.email, CustomValidatorService.validateEmail]),
         [CustomValidatorService.existingEmailValidator(this.userService)]
       ],
     });
+  }
+
+  public errorHandler (controlName: string, errorName: string): boolean {
+    return  this.userFormGroup.controls[controlName].hasError(errorName);
   }
 }
