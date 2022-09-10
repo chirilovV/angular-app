@@ -1,5 +1,11 @@
 <form [formGroup]="formGroup">
-  <user-form-controls [formGroup]="formGroup"></user-form-controls>
-  <user-addresses [formGroup]="formGroup"></user-addresses>
-  <button (click)="onSubmit()">Create</button>
+  <user-form-controls
+    (onFormGroupChange)="onInit('user',$event)"
+    [formGroup]="formGroup">
+  </user-form-controls>
+  <user-addresses
+    (onFormGroupChange)="onInit('addresses',$event)"
+    [formGroup]="formGroup">
+  </user-addresses>
+  <button (click)="onSubmit()" type="submit">Submit</button>
 </form>

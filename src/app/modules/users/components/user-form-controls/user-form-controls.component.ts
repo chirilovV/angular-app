@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {GenderEnum} from "../../../core/Enums/gender.enum";
 import {CustomValidatorService} from "../../../shared/services/customValidator.service";
@@ -12,6 +12,7 @@ import {UsersService} from "../../services/users.service";
 export class UserFormControlsComponent implements OnInit {
 
   @Input() formGroup!: FormGroup;
+  @Output() onFormGroupChange: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
   userFormGroup!: FormGroup;
   GenderEnum = GenderEnum;
@@ -21,7 +22,7 @@ export class UserFormControlsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.userFormGroup = this.createUserFormGroup();
-    this.formGroup.addControl('user', this.userFormGroup)
+    this.onFormGroupChange.emit(this.userFormGroup);
   }
 
   createUserFormGroup(): FormGroup {

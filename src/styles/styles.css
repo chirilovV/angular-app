@@ -63,4 +63,11 @@ button {
   display: none;
 }
 
+.success-snackbar {
+  height: 75px;
+  width: 150px;
+  padding: 30px;
+  background-color: #37a185;
+}
+
 /*# sourceMappingURL=styles.css.map */

@@ -20,6 +20,7 @@ h2 {
 }
 .header a {
   width: 150px;
+  min-width: 150px;
   background: #bddbfa linear-gradient(to bottom, #5e2179 35%, #452259 100%);
   color: #dddddd;
 }

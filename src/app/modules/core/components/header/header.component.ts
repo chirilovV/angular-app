@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AppRouteEnum} from "../../Enums/AppRouteEnum";
+import {AppRouteEnum} from "../../Enums/appRouteEnum";
 
 @Component({
   selector: 'header',

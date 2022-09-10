@@ -1,0 +1,9 @@
+<div class="container new-user">
+  <div class="row header">
+    <p> Edit user </p>
+  </div>
+  <user-form-shell
+    (submitForm)="updateUser($event)"
+    [user]="user">
+  </user-form-shell>
+</div>

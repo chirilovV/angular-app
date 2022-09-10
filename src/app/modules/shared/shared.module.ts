@@ -12,7 +12,7 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
 @NgModule({
   declarations: [
     ListItemComponent,
-    WelcomeComponent
+    WelcomeComponent,
   ],
   exports: [
     ListItemComponent,

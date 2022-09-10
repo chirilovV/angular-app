@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -6,31 +6,29 @@ import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
   templateUrl: './user-addresses.component.html',
   styleUrls: ['./user-addresses.component.scss']
 })
-export class UserAddressesComponent {
+export class UserAddressesComponent implements OnInit {
   @Input() formGroup!: FormGroup;
-  addressFormGroup!: FormGroup;
+  @Output() onFormGroupChange: EventEmitter<FormArray> = new EventEmitter<FormArray>();
+
+  addressFormGroup!: FormArray;
 
   constructor(private formBuilder: FormBuilder) {
   }
 
-  addAddress(): void {
-    this.addressFormGroup = this.formBuilder.group({
-      addressLine: ['', Validators.required],
-      city: [''],
-      zip: [{value: '', disabled: true}]
-    });
+  get addresses(): FormArray {
+    return this.formGroup.get('addresses') as FormArray
+  }
 
+  addAddress(): void {
     this.addresses.push(this.addressFormGroup)
   }
 
   updateZipValidator(): void {
     if (this.addressFormGroup.get('city')?.value !== '') {
       this.addressFormGroup.get('zip')?.setValidators(Validators.required);
-      this.addressFormGroup.get('zip')?.updateValueAndValidity();
       this.addressFormGroup.get('zip')?.enable()
     } else {
       this.addressFormGroup.get('zip')?.clearValidators();
-      this.addressFormGroup.get('zip')?.updateValueAndValidity();
       this.addressFormGroup.get('zip')?.disable()
     }
   }
@@ -39,11 +37,19 @@ export class UserAddressesComponent {
     this.addresses.removeAt(lessonIndex);
   }
 
-  get addresses(): FormArray {
-    return this.formGroup.get('addresses') as FormArray
+  ngOnInit(): void {
+    this.addressFormGroup = this.formBuilder.array([
+      this.formBuilder.group({
+        addressLine: ['', Validators.required],
+        city: [''],
+        zip: [{value: '', disabled: true}]
+      })
+    ]);
+
+    this.onFormGroupChange.emit(this.addressFormGroup);
   }
 
   public errorHandler(controlName: string, errorName: string): boolean {
-    return this.addressFormGroup.controls[controlName].hasError(errorName);
+    return false;
   }
 }

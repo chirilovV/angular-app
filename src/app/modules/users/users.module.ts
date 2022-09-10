@@ -19,8 +19,10 @@ import {NewUserPageComponent} from './pages/new-user-page/new-user-page.componen
 import {UsersRouting} from "./users.routing";
 import {UserFormShellComponent} from './components/user-form-shell/user-form-shell.component';
 import {UserSearchComponent} from './components/user-search/user-search.component';
-import { UserAddressesComponent } from './components/user-addresses/user-addresses.component';
+import {UserAddressesComponent} from './components/user-addresses/user-addresses.component';
 import {UserFormControlsComponent} from "./components/user-form-controls/user-form-controls.component";
+import {EditUserPageComponent} from './pages/edit-user-page/edit-user-page.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -32,7 +34,7 @@ import {UserFormControlsComponent} from "./components/user-form-controls/user-fo
     UserFormShellComponent,
     UserSearchComponent,
     UserAddressesComponent,
-
+    EditUserPageComponent,
   ],
   exports: [
   ],
@@ -53,6 +55,7 @@ import {UserFormControlsComponent} from "./components/user-form-controls/user-fo
     MatIconModule,
     FormsModule,
     UsersRouting,
+    MatSnackBarModule
   ]
 })
 export class UsersModule {

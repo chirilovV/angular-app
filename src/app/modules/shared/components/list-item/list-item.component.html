@@ -17,6 +17,12 @@
             aria-label="favorite">
       <mat-icon>favorite</mat-icon>
     </button>
+    <button aria-label="edit"
+            mat-icon-button
+            routerLink="/edit-user/{{item.id}}"
+            routerLinkActive="active-button">
+      <mat-icon>edit</mat-icon>
+    </button>
   </mat-card-actions>
 
 </mat-card>

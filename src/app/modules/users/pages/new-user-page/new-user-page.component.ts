@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {UsersService} from "../../services/users.service";
 import {Router} from "@angular/router";
-import {AppRouteEnum} from "../../../core/Enums/AppRouteEnum";
+import {AppRouteEnum} from "../../../core/Enums/appRouteEnum";
 
 @Component({
   selector: 'app-new-user-page',
