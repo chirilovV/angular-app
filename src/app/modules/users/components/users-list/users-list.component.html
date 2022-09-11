@@ -14,7 +14,11 @@
 
         <div *ngIf="user.addresses">
           <div *ngFor="let address of user.addresses; let i = index">
-            <p>Address{{i + 1}} : <span>{{ address.addressLine + ', ' + address.city + ', ' + address.zip }}</span></p>
+            <p>Address {{ i + 1 }} :
+              <span> {{ address.addressLine }} </span>
+              <b>{{ address.city ? address.city : '' }} </b>
+              <i>{{ address.zip ? address.zip : '' }}</i>
+            </p>
           </div>
         </div>
       </mat-card-content>

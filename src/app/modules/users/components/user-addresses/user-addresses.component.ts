@@ -15,28 +15,6 @@ export class UserAddressesComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {
   }
 
-  get addresses(): FormArray {
-    return this.formGroup.get('addresses') as FormArray
-  }
-
-  addAddress(): void {
-    this.addresses.push(this.addressFormGroup)
-  }
-
-  updateZipValidator(): void {
-    if (this.addressFormGroup.get('city')?.value !== '') {
-      this.addressFormGroup.get('zip')?.setValidators(Validators.required);
-      this.addressFormGroup.get('zip')?.enable()
-    } else {
-      this.addressFormGroup.get('zip')?.clearValidators();
-      this.addressFormGroup.get('zip')?.disable()
-    }
-  }
-
-  deleteAddress(lessonIndex: number): void {
-    this.addresses.removeAt(lessonIndex);
-  }
-
   ngOnInit(): void {
     this.addressFormGroup = this.formBuilder.array([
       this.formBuilder.group({
@@ -49,7 +27,25 @@ export class UserAddressesComponent implements OnInit {
     this.onFormGroupChange.emit(this.addressFormGroup);
   }
 
-  public errorHandler(controlName: string, errorName: string): boolean {
-    return false;
+  get addresses(): FormArray {
+    return this.formGroup.get('addresses') as FormArray;
+  }
+
+  getAddressForm(i: number): FormGroup {
+    return this.addresses.controls[i] as FormGroup;
+  }
+
+  addAddress(): void {
+    let newForm = this.formBuilder.group({
+      addressLine: ['', Validators.required],
+      city: [''],
+      zip: [{value: '', disabled: true}]
+    });
+
+    this.addresses.push(newForm)
+  }
+
+  deleteAddress(lessonIndex: number): void {
+    this.addresses.removeAt(lessonIndex);
   }
 }

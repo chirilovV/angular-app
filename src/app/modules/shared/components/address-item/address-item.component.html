@@ -1,0 +1,16 @@
+<form [formGroup]="addressForm">
+  <mat-form-field appearance="fill">
+    <input formControlName="addressLine" matInput placeholder="Address line" required type="string">
+    <mat-error *ngIf="errorHandler('addressLine', 'required')">Address line is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input (keyup)="updateZipValidator()" formControlName="city" matInput placeholder="City" type="string">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input formControlName="zip" matInput placeholder="Zip Code" type="string">
+    <mat-error *ngIf="errorHandler('zip', 'required')">Zip Code is required</mat-error>
+  </mat-form-field>
+</form>
+

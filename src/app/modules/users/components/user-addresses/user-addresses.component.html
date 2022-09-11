@@ -1,35 +1,24 @@
 <div class="row">
   <span>Add address:</span>
+
   <button mat-mini-fab (click)="addAddress()">
     <mat-icon class="add-course-btn">add</mat-icon>
   </button>
+
   <div class="add-lessons-form" [formGroup]="formGroup">
-    <ng-container formArrayName="addresses">
-      <ng-container *ngFor="let addressForm of addresses.controls; let i = index">
-        <div [formGroupName]="i">
 
-          <mat-form-field appearance="fill">
-            <input matInput type="string" placeholder="Address line" formControlName="addressLine" required>
-            <mat-error *ngIf="errorHandler('addressLine', 'required')">Address line is required</mat-error>
-          </mat-form-field>
+    <ng-container *ngFor="let form of addresses.controls; let i = index">
 
-          <mat-form-field>
-            <input matInput type="string" placeholder="City" (keyup)="updateZipValidator()" formControlName="city">
-          </mat-form-field>
+      <address-item [addressForm]="getAddressForm(i)"></address-item>
 
-          <mat-form-field>
-            <input matInput type="string"  placeholder="Zip Code" formControlName="zip">
-            <mat-error *ngIf="errorHandler('zip', 'required')">Zip Code is required</mat-error>
-          </mat-form-field>
+      <button (click)="deleteAddress(i)" mat-mini-fab>
+        <mat-icon class="delete-btn">delete_forever</mat-icon>
+      </button>
 
-          <button mat-mini-fab (click)="deleteAddress(i)">
-            <mat-icon class="delete-btn">delete_forever</mat-icon>
-          </button>
-
-        </div>
-      </ng-container>
     </ng-container>
+
   </div>
+
 </div>
 
 

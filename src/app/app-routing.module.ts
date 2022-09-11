@@ -9,14 +9,15 @@ import {PageNotFoundComponent} from "./modules/core/components/not-found-404/pag
 import {NewUserPageComponent} from "./modules/users/pages/new-user-page/new-user-page.component";
 import {AppRouteEnum} from "./modules/core/Enums/appRouteEnum";
 import {EditUserPageComponent} from "./modules/users/pages/edit-user-page/edit-user-page.component";
+import {CanDeactivateGuard} from "./modules/users/gurads/can-deactivate-guard.service";
 
 const routes: Routes = [
   {path: AppRouteEnum.Home, component: HomePageComponent},
   {path: AppRouteEnum.News, component: NewsPageComponent},
   {path: AppRouteEnum.Users, component: UsersPageComponent},
   {path: AppRouteEnum.Cars, component: CarsPageComponent},
-  {path: AppRouteEnum.NewUser, component: NewUserPageComponent},
-  {path: AppRouteEnum.EditUser, component: EditUserPageComponent},
+  {path: AppRouteEnum.NewUser, component: NewUserPageComponent, canDeactivate: [CanDeactivateGuard]},
+  {path: AppRouteEnum.EditUser, component: EditUserPageComponent, canDeactivate: [CanDeactivateGuard]},
   {path: AppRouteEnum.Default, redirectTo: AppRouteEnum.Home, pathMatch: 'full'},
   {path: AppRouteEnum.Error404, component: PageNotFoundComponent},
 ];
@@ -25,7 +26,10 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    CanDeactivateGuard
+  ],
 })
 
 export class AppRoutingModule {

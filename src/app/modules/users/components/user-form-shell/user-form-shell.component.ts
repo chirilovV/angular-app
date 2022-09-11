@@ -13,7 +13,7 @@ import {Address} from "../../models/address.interface";
 export class UserFormShellComponent implements OnInit {
   formGroup!: FormGroup;
   id!: string;
-  isAddMode!: boolean;
+  isUpdateMode!: boolean;
 
   @Input() user!: User;
   @Output() submitForm = new EventEmitter();
@@ -25,20 +25,21 @@ export class UserFormShellComponent implements OnInit {
     this.formGroup = this.fb.group({})
 
     this.id = this.route.snapshot.params['id'];
-    this.isAddMode = this.id !== undefined;
+    this.isUpdateMode = this.id !== undefined;
 
-    if (this.isAddMode) {
+    if (this.isUpdateMode) {
       this.userService.getUserById(this.id).subscribe(response => {
-        if (response) this.user = response
+        if (response !== undefined) {
+          this.user = response
+        }
       })
     }
-
   }
 
-  onInit(name: string, form: AbstractControl): void {
+  formInit(name: string, form: AbstractControl): void {
     this.formGroup.addControl(name, form);
 
-    if (this.isAddMode) {
+    if (this.isUpdateMode) {
       if (name === 'user') {
         this.formGroup.get('user')?.patchValue(this.user);
       }

@@ -11,6 +11,7 @@ import {UsersService} from "../../services/users.service";
 })
 export class UserFormControlsComponent implements OnInit {
 
+  @Input() isUpdateMode!: boolean;
   @Input() formGroup!: FormGroup;
   @Output() onFormGroupChange: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
@@ -26,22 +27,31 @@ export class UserFormControlsComponent implements OnInit {
   }
 
   createUserFormGroup(): FormGroup {
-    return this.formBuilder.group({
+
+    let userFormGroup = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       age: [null, [Validators.required, Validators.min(15), Validators.max(100)]],
       company: ['', [Validators.required, Validators.maxLength(35)]],
       department: ['', Validators.minLength(6)],
       gender: [GenderEnum.NotSpecified, Validators.required],
-      email: [
-        '',
-        Validators.compose([Validators.required, Validators.email, CustomValidatorService.validateEmail]),
-        [CustomValidatorService.existingEmailValidator(this.userService)]
+      email: ['', Validators.compose([
+        Validators.required,
+        Validators.email,
+        CustomValidatorService.validateEmail
+      ]),
       ],
     });
+
+    if (!this.isUpdateMode) {
+      userFormGroup.get('email')?.addAsyncValidators([
+        CustomValidatorService.existingEmailValidator(this.userService)
+      ])
+    }
+    return userFormGroup
   }
 
-  public errorHandler (controlName: string, errorName: string): boolean {
-    return  this.userFormGroup.controls[controlName].hasError(errorName);
+  public errorHandler(controlName: string, errorName: string): boolean {
+    return this.userFormGroup.controls[controlName].hasError(errorName);
   }
 }

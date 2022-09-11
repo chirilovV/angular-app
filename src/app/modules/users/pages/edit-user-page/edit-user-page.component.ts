@@ -3,6 +3,7 @@ import {UsersService} from "../../services/users.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../../models/user.interface";
 import {NotificationService} from "../../../shared/services/notification.service";
+import {Observable, of, Subscription, take} from "rxjs";
 
 @Component({
   selector: 'edit-user-page',
@@ -12,6 +13,8 @@ import {NotificationService} from "../../../shared/services/notification.service
 export class EditUserPageComponent implements OnInit {
 
   user!: User;
+  isFormSaved: boolean = true;
+  subscription: Subscription | undefined;
   private userId: string = '';
 
   constructor(
@@ -28,8 +31,9 @@ export class EditUserPageComponent implements OnInit {
     });
 
     if (this.userId !== '') {
-      this.userService.getUserById(this.userId).subscribe(
+      this.userService.getUserById(this.userId).pipe(take(1)).subscribe(
         response => {
+          console.log('here 111')
           if (response !== undefined)
             this.user = response
         }
@@ -38,12 +42,22 @@ export class EditUserPageComponent implements OnInit {
   }
 
   updateUser(userForm: any) {
-    this.userService.updateUser(this.userId, userForm).subscribe(response => {
+    this.userService.updateUser(this.userId, userForm).pipe(take(1)).subscribe(response => {
       this.notificationService.success(response);
     });
+
+    this.isFormSaved = false;
 
     // setInterval(() => {
     //   this.router.navigate([AppRouteEnum.Users]);
     // }, 2500)
+  }
+
+  canDeactivate(): Observable<boolean> | boolean {
+    if (this.isFormSaved) {
+      const result = window.confirm('There are unsaved changes! Are you sure?');
+      return of(result);
+    }
+    return true;
   }
 }

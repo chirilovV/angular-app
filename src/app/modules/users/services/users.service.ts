@@ -37,7 +37,17 @@ export class UsersService {
       email: 'some@mail.com',
       addresses: [{
         addressLine: 'czxczcz',
-      }]
+      },
+        {
+          addressLine: 'czxczcz',
+          city: 'London',
+          zip: 'MD-2021'
+        },
+        {
+          addressLine: 'czxczcz',
+          city: 'Chisinau',
+          zip: 'MD-2021'
+        }]
     },
   ];
 
@@ -106,8 +116,7 @@ export class UsersService {
       }
     })
 
-
-    return of('User successfully was updated.')
+    return of('User successfully was updated.').pipe(delay(500));
   }
 
   toggleFavorites(id: string): void {
@@ -143,7 +152,8 @@ export class UsersService {
           })
         }
       )
-      user.addresses = addresses
     }
+
+    user.addresses = addresses
   }
 }

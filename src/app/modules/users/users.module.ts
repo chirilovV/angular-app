@@ -36,8 +36,6 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     UserAddressesComponent,
     EditUserPageComponent,
   ],
-  exports: [
-  ],
 
   imports: [
     CommonModule,
@@ -56,7 +54,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     FormsModule,
     UsersRouting,
     MatSnackBarModule
-  ]
+  ],
+
 })
 export class UsersModule {
 }

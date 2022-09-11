@@ -7,16 +7,22 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {RouterModule} from "@angular/router";
 import {WelcomeComponent} from "./components/welcome/welcome.component";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatInputModule} from "@angular/material/input";
+import {AddressItemComponent} from "./components/address-item/address-item.component";
 
 
 @NgModule({
   declarations: [
     ListItemComponent,
     WelcomeComponent,
+    AddressItemComponent,
   ],
   exports: [
     ListItemComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    AddressItemComponent,
   ],
   imports: [
     CommonModule,
@@ -24,7 +30,11 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
-    RouterModule
+    RouterModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}
