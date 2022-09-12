@@ -4,13 +4,14 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../../models/user.interface";
 import {NotificationService} from "../../../shared/services/notification.service";
 import {Observable, of, Subscription, take} from "rxjs";
+import {CanComponentDeactivateInterface} from "../../../shared/models/canComponentDeactivate.interface";
 
 @Component({
   selector: 'edit-user-page',
   templateUrl: './edit-user-page.component.html',
   styleUrls: ['./edit-user-page.component.scss']
 })
-export class EditUserPageComponent implements OnInit {
+export class EditUserPageComponent implements OnInit, CanComponentDeactivateInterface {
 
   user!: User;
   isFormSaved: boolean = true;
@@ -26,16 +27,13 @@ export class EditUserPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.userId = params['id']
-    });
+    this.userId = this.route.snapshot.params['id'];
 
     if (this.userId !== '') {
       this.userService.getUserById(this.userId).pipe(take(1)).subscribe(
         response => {
-          console.log('here 111')
           if (response !== undefined)
-            this.user = response
+            this.user = response;
         }
       );
     }

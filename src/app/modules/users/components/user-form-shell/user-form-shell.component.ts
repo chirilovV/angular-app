@@ -23,15 +23,16 @@ export class UserFormShellComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.formGroup = this.fb.group({})
+    this.formGroup = this.fb.group({});
 
     this.id = this.route.snapshot.params['id'];
+
     this.isUpdateMode = this.id !== undefined;
 
     if (this.isUpdateMode) {
       this.userService.getUserById(this.id).pipe(take(1)).subscribe(response => {
         if (response !== undefined) {
-          this.user = response
+          this.user = response;
         }
       })
     }

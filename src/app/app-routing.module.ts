@@ -6,10 +6,10 @@ import {CarsPageComponent} from "./modules/cars/pages/cars-page/cars-page.compon
 
 import {UsersPageComponent} from "./modules/users/pages/user-page/users-page.component";
 import {PageNotFoundComponent} from "./modules/core/components/not-found-404/page-not-found.component";
-import {NewUserPageComponent} from "./modules/users/pages/new-user-page/new-user-page.component";
 import {AppRouteEnum} from "./modules/core/Enums/appRouteEnum";
 import {EditUserPageComponent} from "./modules/users/pages/edit-user-page/edit-user-page.component";
 import {CanDeactivateGuard} from "./modules/users/gurads/can-deactivate-guard.service";
+import {NewUserPageComponent} from "./modules/users/pages/new-user-page/new-user-page.component";
 
 const routes: Routes = [
   {path: AppRouteEnum.Home, component: HomePageComponent},

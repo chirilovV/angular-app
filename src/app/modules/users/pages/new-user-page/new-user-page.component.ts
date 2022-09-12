@@ -3,13 +3,14 @@ import {UsersService} from "../../services/users.service";
 import {Router} from "@angular/router";
 import {AppRouteEnum} from "../../../core/Enums/appRouteEnum";
 import {Observable, of} from "rxjs";
+import {CanComponentDeactivateInterface} from "../../../shared/models/canComponentDeactivate.interface";
 
 @Component({
   selector: 'app-new-user-page',
   templateUrl: './new-user-page.component.html',
   styleUrls: ['./new-user-page.component.scss']
 })
-export class NewUserPageComponent {
+export class NewUserPageComponent implements CanComponentDeactivateInterface {
   unSaved: boolean = true;
 
   constructor(private userService: UsersService, private router: Router) {
@@ -27,6 +28,7 @@ export class NewUserPageComponent {
       const result = window.confirm('You have some unsaved changes and it will be lost. Do you want to leave the page?');
       return of(result);
     }
+
     return true;
   }
 }
