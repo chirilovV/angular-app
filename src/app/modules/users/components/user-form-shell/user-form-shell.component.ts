@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {User} from '../../models/user.interface';
 import {UsersService} from "../../services/users.service";
 import {Address} from "../../models/address.interface";
+import {take} from "rxjs";
 
 @Component({
   selector: 'user-form-shell',
@@ -28,7 +29,7 @@ export class UserFormShellComponent implements OnInit {
     this.isUpdateMode = this.id !== undefined;
 
     if (this.isUpdateMode) {
-      this.userService.getUserById(this.id).subscribe(response => {
+      this.userService.getUserById(this.id).pipe(take(1)).subscribe(response => {
         if (response !== undefined) {
           this.user = response
         }

@@ -33,7 +33,6 @@ export class UserSearchComponent implements OnInit, OnDestroy {
     this.resetSearch.emit();
   }
 
-
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
   }

@@ -1,15 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UsersService} from "../../services/users.service";
 import {User} from "../../models/user.interface";
+import {Subscription, take} from "rxjs";
 
 @Component({
   selector: 'users-page',
   templateUrl: './users-page.component.html',
   styleUrls: ['./users-page.component.scss'],
 })
-export class UsersPageComponent implements OnInit {
+export class UsersPageComponent implements OnInit, OnDestroy {
   users: User[] = [];
   loader: boolean = true;
+  usersSubscription: Subscription | undefined;
+  favoritesSubscription: Subscription | undefined;
 
   constructor(private usersService: UsersService) {
   };
@@ -18,23 +21,23 @@ export class UsersPageComponent implements OnInit {
     this.getAllUsers();
   };
 
+  get favorites(): User[] {
+    let favoriteUsers: User[] = [];
+    this.favoritesSubscription = this.usersService.getFavorites().subscribe(items => {
+      favoriteUsers = items;
+    });
+
+    return favoriteUsers;
+  }
+
   getAllUsers(): void {
     this.loader = true;
-    this.usersService.getUsers().subscribe(
+    this.usersSubscription = this.usersService.getUsers().subscribe(
       items => {
         this.users = items;
         this.loader = false;
       },
     );
-  }
-
-  get favorites(): User[] {
-    let favoriteUsers: User[] = [];
-    this.usersService.getFavorites().subscribe(items => {
-      favoriteUsers = items;
-    });
-
-    return favoriteUsers;
   }
 
   toggleFavorites(user: User): void {
@@ -46,11 +49,16 @@ export class UsersPageComponent implements OnInit {
     this.loader = true;
     this.users = [];
 
-    this.usersService.findUserByName(keyword).subscribe(
+    this.usersService.findUserByName(keyword).pipe(take(1)).subscribe(
       items => {
         this.users = items;
         this.loader = false;
       },
     );
+  }
+
+  ngOnDestroy(): void {
+    this.usersSubscription?.unsubscribe();
+    this.favoritesSubscription?.unsubscribe()
   }
 }

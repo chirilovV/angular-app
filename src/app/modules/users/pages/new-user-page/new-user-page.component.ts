@@ -17,6 +17,8 @@ export class NewUserPageComponent {
 
   saveUser(user: any) {
     this.userService.addNewUser(user);
+    this.unSaved = false;
+
     this.router.navigate([AppRouteEnum.Users]);
   }
 

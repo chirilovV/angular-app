@@ -1,5 +1,5 @@
 import {AbstractControl, AsyncValidatorFn, FormControl, ValidationErrors, Validators} from "@angular/forms";
-import {map, Observable} from "rxjs";
+import {map, Observable, take} from "rxjs";
 import {UsersService} from "../../users/services/users.service";
 
 
@@ -19,7 +19,7 @@ export class CustomValidatorService {
 
   static existingEmailValidator(usersService: UsersService): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return usersService.findUserByEmail(control.value).pipe(
+      return usersService.findUserByEmail(control.value).pipe(take(1),
         map(val => {
           return val ? {
             existingEmail: {valid: false}
