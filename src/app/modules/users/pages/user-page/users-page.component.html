@@ -3,21 +3,39 @@
     <p> Users List </p>
     <a mat-button routerLink="/new-user" routerLinkActive="active-button">Add new user</a>
   </div>
-  <app-user-search (searchByName)="search($event)" (resetSearch)="getAllUsers()"></app-user-search>
+
+  <user-search
+    (resetSearch)="getAllUsers()"
+    (searchByName)="search($event)">
+  </user-search>
+
+  <div *ngIf="10 < totalItems" class="paginator">
+    <paginator
+      (nextPageEvent)="getAllUsers($event)"
+      [totalCount]=totalItems>
+    </paginator>
+  </div>
+
   <div class="row">
     <div class="users">
-      <img *ngIf="loader" src="/assets/img/loading.gif" alt="loading">
-      <div class="row not-found" *ngIf="!loader && users.length===0">Not Found any user</div>
+      <img *ngIf="loader" alt="loading" src="/assets/img/loading.gif">
+      <div *ngIf="!loader && 0 === totalItems" class="row not-found">Not Found any user</div>
+
       <users-list
+        (addInFavoritesList)="toggleFavorites($event)"
         *ngIf="!loader"
-        [users]="users"
-        (addInFavoritesList)="toggleFavorites($event)">
+        [users]="users">
       </users-list>
+
     </div>
-    <div class="favorites" *ngIf="favorites.length > 0">
+    <div *ngIf="0 < favorites.length" class="favorites">
       <h2> Favorites </h2>
+
       <users-favorite-list [favorites]="favorites"></users-favorite-list>
+
     </div>
+  </div>
+  <div *ngIf="!loader">
   </div>
 </div>
 

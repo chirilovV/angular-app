@@ -1,64 +1,73 @@
 <div [formGroup]="userFormGroup" class="user-fields">
   <mat-form-field appearance="fill">
-    <input matInput placeholder="Firs Name" formControlName="firstName" required>
+    <mat-label>Firs name</mat-label>
+    <input formControlName="firstName" matInput placeholder="Firs Name" required>
     <mat-error *ngIf="errorHandler('firstName', 'required')">First Name is required</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <input matInput placeholder="lastName" formControlName="lastName" required>
+    <mat-label>Last name</mat-label>
+    <input formControlName="lastName" matInput placeholder="lastName" required>
     <mat-error *ngIf="errorHandler('lastName', 'required')">Last Name is required</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <input matInput placeholder="age" type="number" formControlName="age" required>
+    <mat-label>Age</mat-label>
+    <input formControlName="age" matInput placeholder="age" required type="number">
     <mat-error *ngIf="errorHandler('age', 'required')">Age is required</mat-error>
     <mat-error *ngIf="errorHandler('age', 'min')">This field must be > 15.</mat-error>
     <mat-error *ngIf="errorHandler('age', 'max')"> This field must be < or = 100</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <input matInput type="email" placeholder="some@address.com" formControlName="email" required>
+    <mat-label>Email</mat-label>
+    <input formControlName="email" matInput placeholder="some@address.com" required type="email">
     <mat-error *ngIf="errorHandler('email', 'required')">Email is required</mat-error>
     <mat-error *ngIf="errorHandler('email', 'email')">Invalid email address.</mat-error>
-    <mat-error *ngIf="errorHandler('email', 'existingEmail')">The email address is already registered with another account.</mat-error>
-    <mat-error *ngIf="errorHandler('email', 'validateEmail') && !errorHandler('email', 'required')">Email should be ....@gmail.com</mat-error>
-
+    <mat-error *ngIf="errorHandler('email', 'existingEmail')">The email address is already registered with another
+      account.
+    </mat-error>
+    <mat-error *ngIf="errorHandler('email', 'validateEmail') && !errorHandler('email', 'required')">Email should be
+      ....@gmail.com
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <input matInput type="string" placeholder="DEVAID COM" formControlName="company">
+    <mat-label>Company</mat-label>
+    <input formControlName="company" matInput placeholder="DEVAID COM" type="string">
     <mat-error *ngIf="errorHandler('company', 'required')">Company is required.</mat-error>
     <mat-error *ngIf="errorHandler('company', 'maxlength')"> This field must have at most 35 characters.</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <input matInput type="string" placeholder="Data Entry" formControlName="department">
+    <mat-label>Department</mat-label>
+    <input formControlName="department" matInput placeholder="Data Entry" type="string">
     <mat-error *ngIf="errorHandler('department', 'minlength')">This field must have less than 6 characters.</mat-error>
   </mat-form-field>
 
   <div class="row mat-radio-button">
     <span>Gender</span>
     <div class="radio">
-      <input id="male"
-             type="radio"
-             name="gender"
+      <input [value]="GenderEnum.Male"
              formControlName="gender"
-             [value]="GenderEnum.Male">
+             id="male"
+             name="gender"
+             type="radio">
       <label for="male">Male</label></div>
     <div class="radio">
-      <input id="female"
-             type="radio"
-             name="gender"
+      <input [value]="GenderEnum.Female"
              formControlName="gender"
-             [value]="GenderEnum.Female">
+             id="female"
+             name="gender"
+             type="radio">
       <label for="female">Female</label>
     </div>
     <div class="radio">
-      <input id="notSpecified"
-             type="radio"
-             name="gender"
+      <input [value]="GenderEnum.NotSpecified"
              formControlName="gender"
-             [value]="GenderEnum.NotSpecified">
+             id="notSpecified"
+             name="gender"
+             type="radio">
       <label for="notSpecified">Not specified</label>
     </div>
   </div>

@@ -1,16 +1,17 @@
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {AppRoutingModule} from "./app-routing.module";
-import {SharedModule} from "./modules/shared/shared.module";
-import {CoreModule} from "./modules/core/core.module";
-import {HomeModule} from "./modules/home/home.module";
-import {NewsModule} from "./modules/news/news.module";
-import {CarsModule} from "./modules/cars/cars.module";
-import {UsersModule} from "./modules/users/users.module";
+import {AppRoutingModule} from './app-routing.module';
+import {CoreModule} from './modules/core/core.module';
+import {HomeModule} from './modules/home/home.module';
+import {NewsModule} from './modules/news/news.module';
+import {CarsModule} from './modules/cars/cars.module';
+import {UsersModule} from './modules/users/users.module';
+import {HttpClientModule} from '@angular/common/http';
+import {SharedModule} from './modules/shared/shared.module';
 
 
-@NgModule({
+@NgModule ({
   declarations: [
     AppComponent
   ],
@@ -21,7 +22,8 @@ import {UsersModule} from "./modules/users/users.module";
     SharedModule,
     CoreModule,
     HomeModule,
-    NewsModule
+    NewsModule,
+    HttpClientModule
   ],
   providers: [],
   exports: [],

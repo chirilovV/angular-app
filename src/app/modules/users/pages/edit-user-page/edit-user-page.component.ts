@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {UsersService} from "../../services/users.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {User} from "../../models/user.interface";
-import {NotificationService} from "../../../shared/services/notification.service";
-import {Observable, of, Subscription, take} from "rxjs";
-import {CanComponentDeactivateInterface} from "../../../shared/models/canComponentDeactivate.interface";
+import {UsersService} from '../../services/users.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {User} from '../../models/user.interface';
+import {NotificationService} from '../../../shared/services/notification.service';
+import {Observable, Subscription, take} from 'rxjs';
+import {CanComponentDeactivateInterface} from '../../../shared/models/canComponentDeactivate.interface';
 
-@Component({
+@Component ({
   selector: 'edit-user-page',
   templateUrl: './edit-user-page.component.html',
   styleUrls: ['./edit-user-page.component.scss']
@@ -18,7 +18,7 @@ export class EditUserPageComponent implements OnInit, CanComponentDeactivateInte
   subscription: Subscription | undefined;
   private userId: string = '';
 
-  constructor(
+  constructor (
     private userService: UsersService,
     private router: Router,
     private route: ActivatedRoute,
@@ -26,22 +26,25 @@ export class EditUserPageComponent implements OnInit, CanComponentDeactivateInte
   ) {
   }
 
-  ngOnInit(): void {
+  ngOnInit (): void {
     this.userId = this.route.snapshot.params['id'];
 
-    if (this.userId !== '') {
-      this.userService.getUserById(this.userId).pipe(take(1)).subscribe(
-        response => {
-          if (response !== undefined)
-            this.user = response;
-        }
-      );
+    if ('' !== this.userId) {
+      this.userService.getUserById (this.userId)
+        .pipe (take (1))
+        .subscribe (
+          response => {
+            if (response !== undefined) {
+              this.user = response;
+            }
+          }
+        );
     }
   }
 
-  updateUser(userForm: any) {
-    this.userService.updateUser(this.userId, userForm).pipe(take(1)).subscribe(response => {
-      this.notificationService.success(response);
+  updateUser (userForm: any) {
+    this.userService.updateUser (this.userId, userForm).pipe (take (1)).subscribe (response => {
+      this.notificationService.success (response);
     });
 
     this.isFormSaved = false;
@@ -51,11 +54,11 @@ export class EditUserPageComponent implements OnInit, CanComponentDeactivateInte
     // }, 2500)
   }
 
-  canDeactivate(): Observable<boolean> | boolean {
-    if (this.isFormSaved) {
-      const result = window.confirm('There are unsaved changes! Are you sure?');
-      return of(result);
-    }
+  canDeactivate (): Observable<boolean> | boolean {
+//    if (this.isFormSaved) {
+//      const result = window.confirm ('There are unsaved changes! Are you sure?');
+//      return of (result);
+//    }
     return true;
   }
 }

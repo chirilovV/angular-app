@@ -1,26 +1,29 @@
 <div class="d-flex flex-wrap justify-content-center">
   <div *ngFor="let user of users" class="user-item">
-    <list-item [item]="user" (newItemEvent)="this.addInFavoritesList.emit(user)">
+    <list-item (newItemEvent)="this.addInFavoritesList.emit(user)" [item]="user">
 
-      <mat-card-title header> {{ user.firstName + ' ' + user.lastName  }} <span> {{ user.age }} years</span>
+      <!--      <mat-card-title header> {{ user.login + ' ' + user.name.last  }} <span> {{ user.dob.age }} years</span>-->
+      <!--      </mat-card-title>-->
+
+      <mat-card-title header> {{ user.login }}
       </mat-card-title>
-      <img image mat-card-image src="{{ user.imageUrl }}" alt="avatar">
+      <img alt="avatar" image mat-card-image src="{{ user.avatar_url }}">
 
       <mat-card-content content>
-        <p>Gender: <span>{{ user.gender}}</span></p>
-        <p>Department: <span>{{ user.department }}</span></p>
-        <p>Company: <span>{{ user.company }}</span></p>
-        <p>Email: <span>{{ user.email }}</span></p>
+        <!--        <p>Gender: <span>{{ user.gender}}</span></p>-->
+        <!--        <p>Department: <span>{{ user.department }}</span></p>-->
+        <!--        <p>Company: <span>{{ user.company }}</span></p>-->
+        <!--        <p>Email: <span>{{ user.email }}</span></p>-->
 
-        <div *ngIf="user.addresses">
-          <div *ngFor="let address of user.addresses; let i = index">
-            <p>Address {{ i + 1 }} :
-              <span> {{ address.addressLine }} </span>
-              <b>{{ address.city ? address.city : '' }} </b>
-              <i>{{ address.zip ? address.zip : '' }}</i>
-            </p>
-          </div>
-        </div>
+        <!--        <div *ngIf="user.addresses">-->
+        <!--          <div *ngFor="let address of user.addresses; let i = index">-->
+        <!--            <p>Address {{ i + 1 }} :-->
+        <!--              <span> {{ address.addressLine }} </span>-->
+        <!--              <b>{{ address.city ? address.city : '' }} </b>-->
+        <!--              <i>{{ address.zip ? address.zip : '' }}</i>-->
+        <!--            </p>-->
+        <!--          </div>-->
+        <!--        </div>-->
       </mat-card-content>
 
     </list-item>
