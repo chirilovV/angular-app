@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {AppRouteEnum} from '../../../core/Enums/appRouteEnum';
 import {CanComponentDeactivateInterface} from '../../../shared/models/canComponentDeactivate.interface';
 import {UsersResourceService} from '../../services/users-resource.service';
+import {UserDataPreparationService} from '../../services/user-data-preparation.service';
 
 @Component ({
   selector: 'app-new-user-page',
@@ -12,11 +13,16 @@ import {UsersResourceService} from '../../services/users-resource.service';
 export class NewUserPageComponent implements CanComponentDeactivateInterface {
   unSaved: boolean = false;
 
-  constructor (private userService: UsersResourceService, private router: Router) {
+  constructor (
+    private userData: UserDataPreparationService,
+    private userService: UsersResourceService,
+    private router: Router
+  ) {
   }
 
-  saveUser (user: any) {
-    this.userService.addNewUser (user);
+  saveUser (user: any): void {
+    let newUser = this.userData.createNewUser (user);
+    this.userService.addNewUser (newUser);
     this.unSaved = true;
 
     this.router.navigate ([AppRouteEnum.Users]);

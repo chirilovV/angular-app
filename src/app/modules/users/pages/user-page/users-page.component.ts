@@ -1,9 +1,8 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {User} from '../../models/user.interface';
-import {shareReplay, Subject, Subscription, switchMap, tap} from 'rxjs';
+import {Subject, Subscription} from 'rxjs';
 import {PaginatorComponent} from '../../../shared/components/paginator/paginator.component';
 import {PageOptions} from '../../../shared/models/pageOptions';
-import {delay} from 'rxjs/operators';
 import {FavoriteUsersService} from '../../services/favorite-users.service';
 import {UsersResourceService} from '../../services/users-resource.service';
 
@@ -17,21 +16,20 @@ export class UsersPageComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
   totalItems: number = 0;
   subscription: Subscription[] = [];
-  subject$ = new Subject ();
+  subject$: Subject<any>;
 
   @Output () updateTotals = new EventEmitter ();
   @ViewChild (PaginatorComponent) paginator!: PaginatorComponent;
 
-  private defaultPageOptions: PageOptions = {
-    pageIndex: 0,
-    pageSize: 5
-  };
   private randomNumber = Math.floor (Math.random () * (6000 - 1000 + 1)) + 1000;
+
 
   constructor (
     private usersService: UsersResourceService,
     private favoriteUser: FavoriteUsersService
-  ) {};
+  ) {
+    this.subject$ = this.usersService.reloadSubject$;
+  };
 
   get favorites (): User[] {
     let favoriteUsers: User[] = [];
@@ -44,13 +42,12 @@ export class UsersPageComponent implements OnInit, OnDestroy {
 
   ngOnInit (): void {
     this.getAllUsers ();
-    this.initializeReloadSubscription ();
   };
 
   getAllUsers (pageOptions?: PageOptions): void {
     this.isLoading = true;
     this.subscription.push (
-      this.usersService.getUsers (pageOptions ? pageOptions : this.defaultPageOptions)
+      this.usersService.getUsers (pageOptions)
         .subscribe (
           response => {
             this.totalItems = response.total_count;
@@ -88,7 +85,7 @@ export class UsersPageComponent implements OnInit, OnDestroy {
   }
 
   refresh (): void {
-    this.subject$.next (null);
+    this.subject$.next (this.randomNumber);
   }
 
   downloadExcel (id: any): void {
@@ -112,22 +109,10 @@ export class UsersPageComponent implements OnInit, OnDestroy {
       });
   }
 
+
   ngOnDestroy (): void {
     this.subscription?.forEach (item => {
       item.unsubscribe ();
-    });
-  }
-
-  private initializeReloadSubscription (): void {
-    this.subject$.pipe (
-      tap (() => (this.isLoading = true)),
-      switchMap (() => {
-        return this.usersService.getUsers (this.defaultPageOptions)
-          .pipe (shareReplay (1), delay (this.randomNumber));
-      }),
-    ).subscribe (value => {
-      this.isLoading = false;
-      console.log (value);
     });
   }
 }

@@ -2,13 +2,12 @@ import {Injectable} from '@angular/core';
 import {GenderEnum} from '../../core/Enums/gender.enum';
 import {FavoriteService} from '../../shared/services/favorite.service';
 import {User} from '../models/user.interface';
-import {forkJoin, Observable, of, switchMap, tap} from 'rxjs';
+import {forkJoin, Observable, of, Subject, switchMap, tap} from 'rxjs';
 import {HttpService} from '../../core/services/http.service';
 import {HttpMethods} from '../../core/Enums/http-methods.enum';
 import {UserResponse} from '../models/UserResponse.interface';
 import {PageOptions} from '../../shared/models/pageOptions';
 import {delay} from 'rxjs/operators';
-import {UserDataPreparationService} from './user-data-preparation.service';
 
 @Injectable ({
   providedIn: 'root'
@@ -16,6 +15,7 @@ import {UserDataPreparationService} from './user-data-preparation.service';
 
 export class UsersResourceService {
 
+  reloadSubject$ = new Subject ();
   private users: User[] = [
     {
       id: 'a2',
@@ -53,18 +53,24 @@ export class UsersResourceService {
         }]
     },
   ];
-
   private apiURL = 'https://api.github.com';
   private randomNumber = Math.floor (Math.random () * (6000 - 1000 + 1)) + 1000;
 
+  private defaultPageOptions: PageOptions = {
+    pageIndex: 0,
+    pageSize: 5
+  };
+
   constructor (
-    private userData: UserDataPreparationService,
     private favoritesService: FavoriteService,
     private httpService: HttpService
   ) {
+    this.initializeReloadSubscription ();
   };
 
-  getUsers (pageOption: PageOptions,): Observable<UserResponse> {
+  getUsers (paginatorOption?: PageOptions,): Observable<UserResponse> {
+    let pageOption = paginatorOption ? paginatorOption : this.defaultPageOptions;
+
     return this.httpService.dispatchData ({
       method: HttpMethods.Get,
       url: this.apiURL + `/search/users?per_page=${pageOption.pageSize}&q=${pageOption.pageIndex}`,
@@ -88,9 +94,7 @@ export class UsersResourceService {
     });
   }
 
-  addNewUser (userForm: any): void {
-    let newUser = this.userData.createNewUser (userForm);
-
+  addNewUser (newUser: User): void {
     this.httpService.dispatchData ({
       method: HttpMethods.Put,
       url: this.apiURL + `/addNewUser`,
@@ -133,7 +137,30 @@ export class UsersResourceService {
       }));
   }
 
+//  downloadUser(id: string): Observable<any> {
+//    return of ('').pipe (
+//      tap (() => console.log (`User with id = ${id} START GET USER`)),
+//      switchMap (() => {
+//        return of (`User with id = ${id} END GET USER.`)
+//          .pipe (delay (this.randomNumber));
+//      }));
+//  }
+
+
   getLocalUsers (): User[] {
     return this.users;
+  }
+
+  private initializeReloadSubscription (): void {
+    let someId = this.randomNumber;
+    this.reloadSubject$.pipe (
+      tap (() => console.log (`Start to reload`)),
+      switchMap (() => {
+        return this.getUsers ().pipe (delay (this.randomNumber));
+      }),
+    ).subscribe (response => {
+      console.log (`End to reload`, someId + '====', response);
+      return response;
+    });
   }
 }

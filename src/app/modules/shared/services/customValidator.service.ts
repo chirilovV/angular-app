@@ -28,7 +28,7 @@ export class CustomValidatorService {
     };
   }
 
-  static conditionallyRequiredValidator (formControl: AbstractControl) {
+  static conditionallyRequiredValidator (formControl: AbstractControl): ValidationErrors | null {
     if (!formControl.parent) {
       return null;
     }
