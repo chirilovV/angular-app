@@ -147,14 +147,13 @@ export class UsersResourceService {
 
 
   private initializeReloadSubscription (): void {
-    let someId = this.randomNumber;
     this.reloadSubject$.pipe (
-      tap (() => console.log (`Start to reload`)),
+      tap ((someId) => console.log (`Start to reload`, someId)),
       switchMap (() => {
         return this.getUsers ().pipe (delay (this.randomNumber));
       }),
     ).subscribe (response => {
-      console.log (`End to reload`, someId + '====', response);
+      console.log (`End to reload`, ' ==== ', response);
       return response;
     });
   }
@@ -162,7 +161,9 @@ export class UsersResourceService {
   private initializeExcelSubscription (): void {
     this.excelSubject$.pipe (
       tap ((id) => console.log (`START excel`, id)),
-      delay (this.randomNumber)
+      switchMap ((id) => {
+        return of (`START EXCEL ${id}`);
+      },)
     ).subscribe (response => {
       console.log (`END excel`, response);
     });
