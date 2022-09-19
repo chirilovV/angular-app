@@ -3,7 +3,7 @@
     <list-item
       (addToFavorite)="addInFavoritesEvent.emit(user)"
       (downloadExcel)="downloadExcelEvent.emit(user.id)"
-      (getUser)="getUserEvent.emit(user.id)"
+      (getUser)="getUserEvent.emit(user.login)"
       (saveUser)="saveUserEvent.emit(user.id)"
       [item]="user"
     >
