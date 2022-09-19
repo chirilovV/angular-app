@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {UsersService} from '../../services/users.service';
 import {Router} from '@angular/router';
 import {AppRouteEnum} from '../../../core/Enums/appRouteEnum';
 import {CanComponentDeactivateInterface} from '../../../shared/models/canComponentDeactivate.interface';
+import {UsersResourceService} from '../../services/users-resource.service';
 
 @Component ({
   selector: 'app-new-user-page',
@@ -12,7 +12,7 @@ import {CanComponentDeactivateInterface} from '../../../shared/models/canCompone
 export class NewUserPageComponent implements CanComponentDeactivateInterface {
   unSaved: boolean = false;
 
-  constructor (private userService: UsersService, private router: Router) {
+  constructor (private userService: UsersResourceService, private router: Router) {
   }
 
   saveUser (user: any) {

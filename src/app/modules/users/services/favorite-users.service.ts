@@ -3,14 +3,15 @@ import {EntitiesEnum} from '../../core/Enums/entities.enum';
 import {Observable, of} from 'rxjs';
 import {User} from '../models/user.interface';
 import {FavoriteService} from '../../shared/services/favorite.service';
-import {UsersService} from './users.service';
+import {UsersResourceService} from './users-resource.service';
+
 
 @Injectable ({
   providedIn: 'root'
 })
 export class FavoriteUsersService {
 
-  constructor (private favoritesService: FavoriteService, private usersService: UsersService) { }
+  constructor (private favoritesService: FavoriteService, private usersService: UsersResourceService) { }
 
   toggleFavorites (id: string): void {
     this.favoritesService.toggleFavorites (EntitiesEnum.user, id);

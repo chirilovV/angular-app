@@ -14,7 +14,7 @@ import {UserDataPreparationService} from './user-data-preparation.service';
   providedIn: 'root'
 })
 
-export class UsersService {
+export class UsersResourceService {
 
   private users: User[] = [
     {

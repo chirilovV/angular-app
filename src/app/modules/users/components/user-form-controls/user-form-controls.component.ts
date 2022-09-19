@@ -2,8 +2,8 @@ import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angula
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {GenderEnum} from '../../../core/Enums/gender.enum';
 import {CustomValidatorService} from '../../../shared/services/customValidator.service';
-import {UsersService} from '../../services/users.service';
 import {combineLatest, map, startWith, Subscription} from 'rxjs';
+import {UsersResourceService} from '../../services/users-resource.service';
 
 @Component ({
   selector: 'user-form-controls',
@@ -20,7 +20,10 @@ export class UserFormControlsComponent implements OnInit, OnDestroy {
   GenderEnum = GenderEnum;
   subscription: Subscription | undefined;
 
-  constructor (private formBuilder: FormBuilder, private userService: UsersService,) {
+  constructor (
+    private formBuilder: FormBuilder,
+    private userService: UsersResourceService,
+  ) {
   }
 
   public ngOnInit (): void {

@@ -1,11 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {UsersService} from '../../services/users.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../models/user.interface';
 import {NotificationService} from '../../../shared/services/notification.service';
 import {Subscription, take} from 'rxjs';
 import {CanComponentDeactivateInterface} from '../../../shared/models/canComponentDeactivate.interface';
 import {UserFormShellComponent} from '../../components/user-form-shell/user-form-shell.component';
+import {UsersResourceService} from '../../services/users-resource.service';
 
 @Component ({
   selector: 'edit-user-page',
@@ -21,7 +21,7 @@ export class EditUserPageComponent implements OnInit, CanComponentDeactivateInte
   private userId: string = '';
 
   constructor (
-    private userService: UsersService,
+    private userService: UsersResourceService,
     private router: Router,
     private route: ActivatedRoute,
     public notificationService: NotificationService,
@@ -50,10 +50,6 @@ export class EditUserPageComponent implements OnInit, CanComponentDeactivateInte
     });
 
     this.isFormSaved = false;
-
-    // setInterval(() => {
-    //   this.router.navigate([AppRouteEnum.Users]);
-    // }, 2500)
   }
 
   canDeactivate (): boolean {

@@ -2,9 +2,9 @@ import {Component, DoCheck, EventEmitter, Input, OnInit, Output} from '@angular/
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {User} from '../../models/user.interface';
-import {UsersService} from '../../services/users.service';
 import {Address} from '../../models/address.interface';
 import {take} from 'rxjs';
+import {UsersResourceService} from '../../services/users-resource.service';
 
 @Component ({
   selector: 'user-form-shell',
@@ -22,7 +22,7 @@ export class UserFormShellComponent implements OnInit, DoCheck {
   constructor (
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private userService: UsersService
+    private userService: UsersResourceService
   ) {
   }
 

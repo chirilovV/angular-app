@@ -24,6 +24,7 @@ import {UserFormControlsComponent} from './components/user-form-controls/user-fo
 import {EditUserPageComponent} from './pages/edit-user-page/edit-user-page.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule ({
   declarations: [
@@ -55,7 +56,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     FormsModule,
     UsersRouting,
     MatSnackBarModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatProgressSpinnerModule
   ],
 
 })

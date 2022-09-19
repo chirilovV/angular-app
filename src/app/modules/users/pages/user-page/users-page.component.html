@@ -1,9 +1,10 @@
 <div class="container">
   <div class="row header">
     <p> Users List </p>
-    <a mat-button routerLink="/new-user" routerLinkActive="active-button">Add new user</a>
 
+    <a mat-button routerLink="/new-user" routerLinkActive="active-button">Add new user</a>
     <button (click)="refresh()" type="submit"> Refresh</button>
+
   </div>
 
   <user-search
@@ -21,6 +22,7 @@
 
   <div class="row">
     <div class="users">
+      <!--      <mat-spinner *ngIf="isLoading"></mat-spinner>-->
       <img *ngIf="isLoading" alt="loading" src="/assets/img/loading.gif">
       <div *ngIf="!isLoading && 0 === totalItems" class="row not-found">Not Found any user</div>
 

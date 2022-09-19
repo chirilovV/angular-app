@@ -1,11 +1,11 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
-import {UsersService} from '../../services/users.service';
 import {User} from '../../models/user.interface';
 import {shareReplay, Subject, Subscription, switchMap, tap} from 'rxjs';
 import {PaginatorComponent} from '../../../shared/components/paginator/paginator.component';
 import {PageOptions} from '../../../shared/models/pageOptions';
 import {delay} from 'rxjs/operators';
 import {FavoriteUsersService} from '../../services/favorite-users.service';
+import {UsersResourceService} from '../../services/users-resource.service';
 
 @Component ({
   selector: 'users-page',
@@ -29,7 +29,7 @@ export class UsersPageComponent implements OnInit, OnDestroy {
   private randomNumber = Math.floor (Math.random () * (6000 - 1000 + 1)) + 1000;
 
   constructor (
-    private usersService: UsersService,
+    private usersService: UsersResourceService,
     private favoriteUser: FavoriteUsersService
   ) {};
 
