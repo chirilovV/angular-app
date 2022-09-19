@@ -23,7 +23,7 @@ export class TimerComponent implements OnInit {
 
     this.stop$.subscribe (() => {
       this.subscription.unsubscribe ();
-      this.currentValue = 'READY!';
+      this.currentValue = 'STOP!';
     });
   }
 

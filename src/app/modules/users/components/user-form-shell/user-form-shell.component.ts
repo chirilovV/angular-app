@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, DoCheck, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {User} from '../../models/user.interface';
@@ -11,7 +11,7 @@ import {take} from 'rxjs';
   templateUrl: './user-form-shell.component.html',
   styleUrls: ['./user-form-shell.component.scss']
 })
-export class UserFormShellComponent implements OnInit {
+export class UserFormShellComponent implements OnInit, DoCheck {
   formGroup!: FormGroup;
   id!: string;
   isUpdateMode!: boolean;
@@ -32,7 +32,7 @@ export class UserFormShellComponent implements OnInit {
     this.isUpdateMode = this.id !== undefined;
 
     if (this.isUpdateMode) {
-      this.userService.getUserById (this.id)
+      this.userService.getUser (this.id)
         .pipe (take (1))
         .subscribe (response => {
           if (response !== undefined) {
@@ -70,9 +70,14 @@ export class UserFormShellComponent implements OnInit {
 
   onSubmit (): void {
     this.formGroup.markAllAsTouched ();
-    this.formGroup.markAsDirty ();
     if (this.formGroup.valid) {
       this.submitForm.emit (this.formGroup);
+    }
+  }
+
+  public ngDoCheck (): void {
+    if (this.formGroup.touched && !this.formGroup.pristine) {
+      this.formGroup.markAsDirty ();
     }
   }
 }

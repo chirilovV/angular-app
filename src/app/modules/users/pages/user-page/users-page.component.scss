@@ -33,14 +33,20 @@ h2 {
 img {
   width: 200px;
   height: 200px;
-  margin:100px 300px;
+  margin: 100px 300px;
 }
 
-.not-found{
+.not-found {
   padding: 30px;
   justify-content: center;
   font-size: 32px;
   text-align: center;
   font-weight: bold;
   color: #58595c;
+}
+
+button {
+  width: 100px;
+  margin: 0;
+  font-size: 16px;
 }

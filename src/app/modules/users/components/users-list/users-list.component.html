@@ -1,6 +1,12 @@
 <div class="d-flex flex-wrap justify-content-center">
   <div *ngFor="let user of users" class="user-item">
-    <list-item (newItemEvent)="this.addInFavoritesList.emit(user)" [item]="user">
+    <list-item
+      (addToFavorite)="addInFavoritesEvent.emit(user)"
+      (downloadExcel)="downloadExcelEvent.emit(user.id)"
+      (getUser)="getUserEvent.emit(user.id)"
+      (saveUser)="saveUserEvent.emit(user.id)"
+      [item]="user"
+    >
 
       <!--      <mat-card-title header> {{ user.login + ' ' + user.name.last  }} <span> {{ user.dob.age }} years</span>-->
       <!--      </mat-card-title>-->

@@ -1,4 +1,4 @@
-<form [formGroup]="formGroup">
+<form #userForm [formGroup]="formGroup">
   <user-form-controls
     (onFormGroupChange)="formInit('user',$event)"
     [formGroup]="formGroup"

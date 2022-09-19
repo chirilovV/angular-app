@@ -43,4 +43,10 @@ img {
   color: #58595c;
 }
 
+button {
+  width: 100px;
+  margin: 0;
+  font-size: 16px;
+}
+
 /*# sourceMappingURL=users-page.component.css.map */

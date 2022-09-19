@@ -18,14 +18,14 @@ export class HttpService {
     ).pipe (retry (1), catchError (this.handleError));
   }
 
-  handleError (error: any) {
+  handleError (error: any): Observable<never> {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message;
     } else {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-//    window.alert (errorMessage);
+    console.log (errorMessage);
     return throwError (() => {
       return errorMessage;
     });

@@ -11,18 +11,43 @@
   </mat-card-content>
 
   <mat-card-actions *ngIf="isActionShowing">
-    <button mat-icon-button
+
+    <button (click)="this.addToFavorite.emit(item)"
+            aria-label="favorite"
             color="{{ item.isFavorite ? 'warn' : '' }}"
-            (click)="this.newItemEvent.emit(item)"
-            aria-label="favorite">
+            mat-icon-button>
       <mat-icon>favorite</mat-icon>
     </button>
+
     <button aria-label="edit"
             mat-icon-button
-            routerLink="/edit-user/{{item.id}}"
+            routerLink="/edit-user/{{item.login}}"
             routerLinkActive="active-button">
       <mat-icon>edit</mat-icon>
     </button>
+
+    <button
+      (click)="this.downloadExcel.emit(item)"
+      aria-label="edit"
+      mat-icon-button
+    >
+      <mat-icon>download</mat-icon>
+    </button>
+
+    <button
+      (click)="this.saveUser.emit(item)"
+      aria-label="edit"
+      mat-icon-button>
+      <mat-icon>save</mat-icon>
+    </button>
+
+    <button
+      (click)="this.getUser.emit()"
+      aria-label="edit"
+      mat-icon-button>
+      GET
+    </button>
+
   </mat-card-actions>
 
 </mat-card>

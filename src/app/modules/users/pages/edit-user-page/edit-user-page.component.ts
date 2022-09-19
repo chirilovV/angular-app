@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {UsersService} from '../../services/users.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../models/user.interface';
 import {NotificationService} from '../../../shared/services/notification.service';
-import {Observable, Subscription, take} from 'rxjs';
+import {Subscription, take} from 'rxjs';
 import {CanComponentDeactivateInterface} from '../../../shared/models/canComponentDeactivate.interface';
+import {UserFormShellComponent} from '../../components/user-form-shell/user-form-shell.component';
 
 @Component ({
   selector: 'edit-user-page',
@@ -16,6 +17,7 @@ export class EditUserPageComponent implements OnInit, CanComponentDeactivateInte
   user!: User;
   isFormSaved: boolean = true;
   subscription: Subscription | undefined;
+  @ViewChild (UserFormShellComponent) userForm!: UserFormShellComponent;
   private userId: string = '';
 
   constructor (
@@ -30,7 +32,7 @@ export class EditUserPageComponent implements OnInit, CanComponentDeactivateInte
     this.userId = this.route.snapshot.params['id'];
 
     if ('' !== this.userId) {
-      this.userService.getUserById (this.userId)
+      this.userService.getUser (this.userId)
         .pipe (take (1))
         .subscribe (
           response => {
@@ -54,11 +56,7 @@ export class EditUserPageComponent implements OnInit, CanComponentDeactivateInte
     // }, 2500)
   }
 
-  canDeactivate (): Observable<boolean> | boolean {
-//    if (this.isFormSaved) {
-//      const result = window.confirm ('There are unsaved changes! Are you sure?');
-//      return of (result);
-//    }
-    return true;
+  canDeactivate (): boolean {
+    return this.isFormSaved && !this.userForm.formGroup.dirty;
   }
 }

@@ -7,7 +7,10 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 })
 export class UsersListComponent {
   @Input () users!: any[];
-  @Output () addInFavoritesList = new EventEmitter ();
+  @Output () addInFavoritesEvent = new EventEmitter ();
+  @Output () downloadExcelEvent = new EventEmitter ();
+  @Output () saveUserEvent = new EventEmitter ();
+  @Output () getUserEvent = new EventEmitter ();
 
   constructor () {
   };

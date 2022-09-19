@@ -1,9 +1,11 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {UsersService} from '../../services/users.service';
 import {User} from '../../models/user.interface';
-import {Subscription} from 'rxjs';
+import {shareReplay, Subject, Subscription, switchMap, tap} from 'rxjs';
 import {PaginatorComponent} from '../../../shared/components/paginator/paginator.component';
 import {PageOptions} from '../../../shared/models/pageOptions';
+import {delay} from 'rxjs/operators';
+import {FavoriteUsersService} from '../../services/favorite-users.service';
 
 @Component ({
   selector: 'users-page',
@@ -12,9 +14,10 @@ import {PageOptions} from '../../../shared/models/pageOptions';
 })
 export class UsersPageComponent implements OnInit, OnDestroy {
   users: any[] = [];
-  loader: boolean = true;
-  subscription: Subscription[] = [];
+  isLoading: boolean = false;
   totalItems: number = 0;
+  subscription: Subscription[] = [];
+  subject$ = new Subject ();
 
   @Output () updateTotals = new EventEmitter ();
   @ViewChild (PaginatorComponent) paginator!: PaginatorComponent;
@@ -23,12 +26,16 @@ export class UsersPageComponent implements OnInit, OnDestroy {
     pageIndex: 0,
     pageSize: 5
   };
+  private randomNumber = Math.floor (Math.random () * (6000 - 1000 + 1)) + 1000;
 
-  constructor (private usersService: UsersService) {};
+  constructor (
+    private usersService: UsersService,
+    private favoriteUser: FavoriteUsersService
+  ) {};
 
   get favorites (): User[] {
     let favoriteUsers: User[] = [];
-    this.subscription.push (this.usersService.getFavorites ().subscribe (items => {
+    this.subscription.push (this.favoriteUser.getFavorites ().subscribe (items => {
       favoriteUsers = items;
     }));
 
@@ -37,17 +44,18 @@ export class UsersPageComponent implements OnInit, OnDestroy {
 
   ngOnInit (): void {
     this.getAllUsers ();
+    this.initializeReloadSubscription ();
   };
 
   getAllUsers (pageOptions?: PageOptions): void {
-    this.loader = true;
+    this.isLoading = true;
     this.subscription.push (
       this.usersService.getUsers (pageOptions ? pageOptions : this.defaultPageOptions)
         .subscribe (
           response => {
             this.totalItems = response.total_count;
             this.users = response.items;
-            this.loader = false;
+            this.isLoading = false;
 
             if (this.paginator) {
               this.paginator.length = response.total_count;
@@ -58,14 +66,14 @@ export class UsersPageComponent implements OnInit, OnDestroy {
   }
 
   search (keyword: string): void {
-    this.loader = true;
+    this.isLoading = true;
     this.users = [];
 
     this.subscription.push (this.usersService.search (keyword).subscribe (
       response => {
         this.totalItems = response.total_count;
         this.users = response.items;
-        this.loader = false;
+        this.isLoading = false;
 
         if (this.paginator) {
           this.paginator.length = response.total_count;
@@ -76,12 +84,50 @@ export class UsersPageComponent implements OnInit, OnDestroy {
 
   toggleFavorites (user: User): void {
     user.isFavorite = !user.isFavorite;
-    this.usersService.toggleFavorites (user.id);
+    this.favoriteUser.toggleFavorites (user.id);
+  }
+
+  refresh (): void {
+    this.subject$.next (null);
+  }
+
+  downloadExcel (id: any): void {
+    this.usersService.downloadExcel (id).subscribe (
+      res => {
+        console.log (res);
+      });
+  }
+
+  saveUser (id: any): void {
+    this.usersService.saveUser (id).subscribe (
+      res => {
+        console.log (res);
+      });
+  }
+
+  getUser (id: any): void {
+    this.usersService.getUser (id).subscribe (
+      res => {
+        console.log (res);
+      });
   }
 
   ngOnDestroy (): void {
     this.subscription?.forEach (item => {
       item.unsubscribe ();
+    });
+  }
+
+  private initializeReloadSubscription (): void {
+    this.subject$.pipe (
+      tap (() => (this.isLoading = true)),
+      switchMap (() => {
+        return this.usersService.getUsers (this.defaultPageOptions)
+          .pipe (shareReplay (1), delay (this.randomNumber));
+      }),
+    ).subscribe (value => {
+      this.isLoading = false;
+      console.log (value);
     });
   }
 }
