@@ -16,7 +16,8 @@ export class UsersPageComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
   totalItems: number = 0;
   subscription: Subscription[] = [];
-  subject$: Subject<any>;
+  reloadSubject$: Subject<any>;
+  excelSubject$: Subject<any>;
 
   @Output () updateTotals = new EventEmitter ();
   @ViewChild (PaginatorComponent) paginator!: PaginatorComponent;
@@ -28,7 +29,8 @@ export class UsersPageComponent implements OnInit, OnDestroy {
     private usersService: UsersResourceService,
     private favoriteUser: FavoriteUsersService
   ) {
-    this.subject$ = this.usersService.reloadSubject$;
+    this.reloadSubject$ = this.usersService.reloadSubject$;
+    this.excelSubject$ = this.usersService.excelSubject$;
   };
 
   get favorites (): User[] {
@@ -85,14 +87,16 @@ export class UsersPageComponent implements OnInit, OnDestroy {
   }
 
   refresh (): void {
-    this.subject$.next (this.randomNumber);
+    this.reloadSubject$.next (this.randomNumber);
   }
 
   downloadExcel (id: any): void {
-    this.usersService.downloadExcel (id).subscribe (
-      res => {
-        console.log (res);
-      });
+    this.excelSubject$.next (id);
+
+//    this.usersService.downloadExcel (id).subscribe (
+//      res => {
+//        console.log (res);
+//      });
   }
 
   saveUser (id: any): void {

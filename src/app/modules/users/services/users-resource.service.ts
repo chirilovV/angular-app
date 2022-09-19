@@ -16,6 +16,8 @@ import {delay} from 'rxjs/operators';
 export class UsersResourceService {
 
   reloadSubject$ = new Subject ();
+  excelSubject$ = new Subject ();
+
   private users: User[] = [
     {
       id: 'a2',
@@ -66,6 +68,7 @@ export class UsersResourceService {
     private httpService: HttpService
   ) {
     this.initializeReloadSubscription ();
+    this.initializeExcelSubscription ();
   };
 
   getUsers (paginatorOption?: PageOptions,): Observable<UserResponse> {
@@ -137,19 +140,11 @@ export class UsersResourceService {
       }));
   }
 
-//  downloadUser(id: string): Observable<any> {
-//    return of ('').pipe (
-//      tap (() => console.log (`User with id = ${id} START GET USER`)),
-//      switchMap (() => {
-//        return of (`User with id = ${id} END GET USER.`)
-//          .pipe (delay (this.randomNumber));
-//      }));
-//  }
-
 
   getLocalUsers (): User[] {
     return this.users;
   }
+
 
   private initializeReloadSubscription (): void {
     let someId = this.randomNumber;
@@ -161,6 +156,15 @@ export class UsersResourceService {
     ).subscribe (response => {
       console.log (`End to reload`, someId + '====', response);
       return response;
+    });
+  }
+
+  private initializeExcelSubscription (): void {
+    this.excelSubject$.pipe (
+      tap ((id) => console.log (`START excel`, id)),
+      delay (this.randomNumber)
+    ).subscribe (response => {
+      console.log (`END excel`, response);
     });
   }
 }
