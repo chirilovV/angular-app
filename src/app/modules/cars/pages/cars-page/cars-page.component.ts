@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {CarsService} from "../../services/cars.service";
-import {Car} from "../../models/car.interface";
+import {Car} from '../../models/car.interface';
+import {CarsService} from '../../services/cars.service';
 
 @Component({
   selector: 'app-cars-page',
@@ -13,10 +13,13 @@ export class CarsPageComponent implements OnInit {
   constructor(private carsService: CarsService) {
   }
 
+  get favorites(): Car[] {
+    return this.carsService.getFavorites();
+  }
+
   ngOnInit(): void {
     this.getCars();
   }
-
 
   getCars(): void {
     this.carsService.getCars().subscribe(
@@ -24,13 +27,8 @@ export class CarsPageComponent implements OnInit {
     );
   }
 
-  get favorites(): Car[] {
-    return this.carsService.getFavorites();
-  }
-
   toggleFavorites(car: Car): void {
     car.isFavorite = !car.isFavorite;
     this.carsService.toggleFavorites(car.id);
   }
-
 }

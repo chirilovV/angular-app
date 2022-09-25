@@ -2,7 +2,7 @@
   <div class="row header">
     <p> Users List </p>
 
-    <a mat-button routerLink="/new-user" routerLinkActive="active-button">Add new user</a>
+    <a mat-button routerLink="/users/new-user" routerLinkActive="active-button">Add new user</a>
     <button (click)="refresh()" type="submit"> Refresh</button>
 
   </div>
@@ -39,7 +39,7 @@
     <div *ngIf="0 < favorites.length" class="favorites">
       <h2> Favorites </h2>
 
-      <users-favorite-list [favorites]="favorites"></users-favorite-list>
+      <!--      <users-favorite-list [favorites]="favorites"></users-favorite-list>-->
 
     </div>
   </div>

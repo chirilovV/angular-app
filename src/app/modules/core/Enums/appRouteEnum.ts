@@ -1,11 +1,13 @@
 export enum AppRouteEnum {
+  Register = 'register',
+  Login = 'login',
   Users = 'users',
   Home = 'home',
   News = 'news',
   Cars = 'cars',
   NewUser = 'new-user',
-  EditUser = 'edit-use' +
-    'r/:id',
+  UserDetails = 'user-details',
+  EditUser = 'edit-user/:id',
   Default = '',
-  Error404 = "**"
+  Error404 = '**'
 }

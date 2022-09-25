@@ -16,7 +16,6 @@ html {
 }
 
 .header {
-  padding-top: 100px;
   font-size: 26px;
   font-weight: bold;
 }
@@ -25,13 +24,12 @@ html {
   display: none;
 }
 
-.home, .news, .users, .cars, .new-user {
+.home, .news, .users, .cars, .new-user, .register {
   color: #2C3333;
 }
 
 .new-user {
- height: 100vh
-;
+  height: 100vh;
 }
 
 

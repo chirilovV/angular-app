@@ -2,17 +2,17 @@
   <div class="container">
     <div class="row">
       <label>My favorite car</label>
-      <input type="text"
-             [(ngModel)]="carFormControl"
-             placeholder="Audi A7">
-      <button type="submit" (click)="addNewCar()">Add</button>
+      <input [(ngModel)]="carFormControl"
+             placeholder="Audi A7"
+             type="text">
+      <button (click)="addNewCar()" type="submit">Add</button>
     </div>
 
-    <div class="row" *ngIf="cars.length>0">
+    <div *ngIf="0 < cars.length" class="row">
       <p>Cars List</p>
       <hr>
       <ul>
-        <li class="car-list" *ngFor="let car of cars; let i = index">
+        <li *ngFor="let car of cars; let i = index" class="car-list">
           <span>{{i + 1}}.</span>  {{car.name}}
         </li>
       </ul>

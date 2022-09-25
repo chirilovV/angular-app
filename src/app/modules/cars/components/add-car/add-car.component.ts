@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Car} from "../../models/car.interface";
+import {Car} from '../../models/car.interface';
 
 @Component({
   selector: 'app-cars',
@@ -11,7 +11,7 @@ export class AddCarComponent {
   carFormControl: string = 'Audi A7';
 
   addNewCar(): void {
-    if (this.carFormControl !== '') {
+    if('' !== this.carFormControl) {
       this.cars.push(<Car>{name: this.carFormControl});
       this.clear();
     }

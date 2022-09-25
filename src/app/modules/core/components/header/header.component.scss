@@ -11,11 +11,6 @@ a {
   background: #bddbfa linear-gradient(to bottom, #5e2179 35%, #452259 100%);
 }
 
-mat-toolbar{
-  position: fixed;
-  z-index: 99;
-}
-
-mat-slide-toggle {
+.logged-user {
   margin-left: auto;
 }

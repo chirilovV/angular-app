@@ -5,25 +5,31 @@ import {AppRoutingModule} from './app-routing.module';
 import {CoreModule} from './modules/core/core.module';
 import {HomeModule} from './modules/home/home.module';
 import {NewsModule} from './modules/news/news.module';
-import {CarsModule} from './modules/cars/cars.module';
-import {UsersModule} from './modules/users/users.module';
 import {HttpClientModule} from '@angular/common/http';
 import {SharedModule} from './modules/shared/shared.module';
+import {AuthModule} from './modules/auth/auth.module';
+import {DefaultPageComponent} from './modules/default/pages/default-page/default-page.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
-@NgModule ({
+@NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DefaultPageComponent
   ],
   imports: [
     AppRoutingModule,
-    UsersModule,
-    CarsModule,
+    AuthModule,
     SharedModule,
     CoreModule,
     HomeModule,
     NewsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   exports: [],

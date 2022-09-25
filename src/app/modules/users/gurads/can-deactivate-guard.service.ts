@@ -4,21 +4,21 @@ import {ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot, UrlTree} fro
 import {CanComponentDeactivateInterface} from '../../shared/models/canComponentDeactivate.interface';
 
 
-@Injectable ({
+@Injectable({
   providedIn: 'root'
 })
 export class CanDeactivateGuard implements CanDeactivate<CanComponentDeactivateInterface> {
 
-  constructor () {
+  constructor() {
   }
 
-  canDeactivate (
+  canDeactivate(
     component: CanComponentDeactivateInterface,
     currentRoute: ActivatedRouteSnapshot,
     currentState: RouterStateSnapshot,
     nextState?: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 //    window.confirm ('There are unsaved changes! Are you sure?');
-    return component.canDeactivate ();
+    return component.canDeactivate();
   }
 }

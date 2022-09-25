@@ -1,0 +1,23 @@
+<div class="register">
+  <div class="container">
+    <div class="formGroup">
+      <p> Sign in </p>
+      <span>or</span><a mat-button routerLink="/register" routerLinkActive="active-button">register for free</a>
+
+      <form [formGroup]="registerFormGroup" action="">
+        <mat-form-field appearance="fill">
+          <mat-label>User name</mat-label>
+          <input formControlName='userName' matInput placeholder="User name">
+          <mat-error *ngIf="errorHandler('userName', 'required')">Address line is required</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input formControlName='password' matInput placeholder="Password" type="password">
+          <mat-error *ngIf="errorHandler('password', 'required')">Address line is required</mat-error>
+        </mat-form-field>
+      </form>
+
+      <button (click)="submit()" class="button" type="submit">Submit</button>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AppRouteEnum} from "../../Enums/appRouteEnum";
+import {AppRouteEnum} from '../../Enums/appRouteEnum';
+import {AuthService} from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'header',
@@ -9,11 +10,19 @@ import {AppRouteEnum} from "../../Enums/appRouteEnum";
 export class HeaderComponent implements OnInit {
 
   appPaths = AppRouteEnum;
+  isAuth = false;
 
-  constructor() {
+  constructor(private authService: AuthService) {
+  }
+
+  get isAuthorised() {
+    this.authService.authorise().subscribe(response => {
+      this.isAuth = response;
+    });
+
+    return this.isAuth;
   }
 
   ngOnInit(): void {
   }
-
 }
