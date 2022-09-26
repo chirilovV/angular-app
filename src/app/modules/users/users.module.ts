@@ -19,6 +19,11 @@ import {MatButtonModule} from '@angular/material/button';
 import {CommonModule} from '@angular/common';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {UserDetailsComponent} from './pages/user-details/user-details.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {CompanyInfoComponent} from './components/company-info/company-info.component';
+import {PersonalInfoComponent} from './components/personal-info/personal-info.component';
+import {ContactsComponent} from './components/contacts/contacts.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -32,7 +37,10 @@ import {UserDetailsComponent} from './pages/user-details/user-details.component'
     EditUserPageComponent,
     UsersPageComponent,
     UserFormShellComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    CompanyInfoComponent,
+    PersonalInfoComponent,
+    ContactsComponent
   ],
 
   imports: [
@@ -45,7 +53,9 @@ import {UserDetailsComponent} from './pages/user-details/user-details.component'
     MatIconModule,
     MatButtonModule,
     CommonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTabsModule,
+    MatChipsModule
   ],
 
 })

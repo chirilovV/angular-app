@@ -1,5 +1,5 @@
 <div *ngIf="isAuth">
-  <p> Welcome {{ userName }}</p>
+  <a mat-button routerLink="/users/user-details" routerLinkActive="active-button">{{ userName }}</a>
   <button (click)="logOut()" mat-button>
     <img alt="logOut" src="/assets/img/power.png">
   </button>

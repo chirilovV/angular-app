@@ -4,11 +4,29 @@ import {UsersPageComponent} from './pages/user-page/users-page.component';
 import {AppRouteEnum} from '../core/Enums/appRouteEnum';
 import {NewUserPageComponent} from './pages/new-user-page/new-user-page.component';
 import {EditUserPageComponent} from './pages/edit-user-page/edit-user-page.component';
+import {UserDetailsComponent} from './pages/user-details/user-details.component';
 
 const routes: Routes = [
-  {path: '', component: UsersPageComponent},
-  {path: AppRouteEnum.NewUser, component: NewUserPageComponent},
-  {path: AppRouteEnum.EditUser, component: EditUserPageComponent},
+  {
+    path: '',
+    component: UsersPageComponent,
+    title: 'Users'
+  },
+  {
+    path: AppRouteEnum.NewUser,
+    component: NewUserPageComponent,
+    title: 'Add new User'
+  },
+  {
+    path: AppRouteEnum.EditUser,
+    component: EditUserPageComponent,
+    title: 'Edit User'
+  },
+  {
+    path: AppRouteEnum.UserDetails,
+    component: UserDetailsComponent,
+    title: 'User Profile'
+  },
 ];
 
 @NgModule({

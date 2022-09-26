@@ -4,9 +4,9 @@ import {Subject, Subscription} from 'rxjs';
 import {PaginatorComponent} from '../../../shared/components/paginator/paginator.component';
 import {PageOptions} from '../../../shared/models/pageOptions';
 import {FavoriteUsersService} from '../../services/favorite-users.service';
-import {UsersResourceService} from '../../services/users-resource.service';
+import {UsersApiService} from '../../services/users-api.service';
 
-@Component ({
+@Component({
   selector: 'users-page',
   templateUrl: './users-page.component.html',
   styleUrls: ['./users-page.component.scss'],
@@ -19,79 +19,79 @@ export class UsersPageComponent implements OnInit, OnDestroy {
   reloadSubject$: Subject<any>;
   excelSubject$: Subject<any>;
 
-  @Output () updateTotals = new EventEmitter ();
-  @ViewChild (PaginatorComponent) paginator!: PaginatorComponent;
+  @Output() updateTotals = new EventEmitter();
+  @ViewChild(PaginatorComponent) paginator!: PaginatorComponent;
 
-  private randomNumber = Math.floor (Math.random () * (6000 - 1000 + 1)) + 1000;
+  private randomNumber = Math.floor(Math.random() * (6000 - 1000 + 1)) + 1000;
 
 
-  constructor (
-    private usersService: UsersResourceService,
+  constructor(
+    private usersService: UsersApiService,
     private favoriteUser: FavoriteUsersService
   ) {
     this.reloadSubject$ = this.usersService.reloadSubject$;
     this.excelSubject$ = this.usersService.excelSubject$;
   };
 
-  get favorites (): User[] {
+  get favorites(): User[] {
     let favoriteUsers: User[] = [];
-    this.subscription.push (this.favoriteUser.getFavorites ().subscribe (items => {
+    this.subscription.push(this.favoriteUser.getFavorites().subscribe(items => {
       favoriteUsers = items;
     }));
 
     return favoriteUsers;
   }
 
-  ngOnInit (): void {
-    this.getAllUsers ();
+  ngOnInit(): void {
+    this.getAllUsers();
   };
 
-  getAllUsers (pageOptions?: PageOptions): void {
+  getAllUsers(pageOptions?: PageOptions): void {
     this.isLoading = true;
-    this.subscription.push (
-      this.usersService.getUsers (pageOptions)
-        .subscribe (
-          response => {
-            this.totalItems = response.total_count;
-            this.users = response.items;
-            this.isLoading = false;
+    this.subscription.push(
+      this.usersService.getUsers(pageOptions)
+      .subscribe(
+        response => {
+          this.totalItems = response.total_count;
+          this.users = response.items;
+          this.isLoading = false;
 
-            if (this.paginator) {
-              this.paginator.length = response.total_count;
-            }
-          },
-        )
+          if(this.paginator) {
+            this.paginator.length = response.total_count;
+          }
+        },
+      )
     );
   }
 
-  search (keyword: string): void {
+  search(keyword: string): void {
     this.isLoading = true;
     this.users = [];
 
-    this.subscription.push (this.usersService.search (keyword).subscribe (
+    this.subscription.push(this.usersService.search(keyword).subscribe(
       response => {
         this.totalItems = response.total_count;
         this.users = response.items;
         this.isLoading = false;
 
-        if (this.paginator) {
+        if(this.paginator) {
           this.paginator.length = response.total_count;
         }
       },
     ));
   }
 
-  toggleFavorites (user: User): void {
+  toggleFavorites(user: User): void {
     user.isFavorite = !user.isFavorite;
-    this.favoriteUser.toggleFavorites (user.id);
+    this.favoriteUser.toggleFavorites(user.id);
   }
 
-  refresh (): void {
-    this.reloadSubject$.next (this.randomNumber);
+  refresh(): void {
+    this.reloadSubject$.next(this.randomNumber);
   }
 
-  downloadExcel (id: any): void {
-    this.excelSubject$.next (id);
+  downloadExcel(id: any): void {
+    this.excelSubject$.next(id);
 
 //    this.usersService.downloadExcel (id).subscribe (
 //      res => {
@@ -99,24 +99,24 @@ export class UsersPageComponent implements OnInit, OnDestroy {
 //      });
   }
 
-  saveUser (id: any): void {
-    this.usersService.saveUser (id).subscribe (
+  saveUser(id: any): void {
+    this.usersService.saveUser(id).subscribe(
       res => {
-        console.log (res);
+        console.log(res);
       });
   }
 
-  getUser (id: any): void {
-    this.usersService.getUser (id).subscribe (
+  getUser(id: any): void {
+    this.usersService.getUser(id).subscribe(
       res => {
-        console.log (res);
+        console.log(res);
       });
   }
 
 
-  ngOnDestroy (): void {
-    this.subscription?.forEach (item => {
-      item.unsubscribe ();
+  ngOnDestroy(): void {
+    this.subscription?.forEach(item => {
+      item.unsubscribe();
     });
   }
 }

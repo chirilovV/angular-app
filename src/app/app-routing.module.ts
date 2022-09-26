@@ -25,15 +25,44 @@ const routes: Routes = [
     )
   },
 
-  {path: 'timer', component: TimerComponent},
-  {path: AppRouteEnum.Register, component: RegisterPageComponent},
-  {path: AppRouteEnum.Login, component: LoginPageComponent},
+  {
+    path: 'timer',
+    component: TimerComponent
+  },
+  {
+    path: AppRouteEnum.Register,
+    component: RegisterPageComponent,
+    data: {title: 'Register'}
+  },
+  {
+    path: AppRouteEnum.Login,
+    component: LoginPageComponent,
+    data: {title: 'Login'}
+  },
 
-  {path: AppRouteEnum.Home, component: HomePageComponent, canActivate: [AuthGuardService]},
-  {path: AppRouteEnum.News, component: NewsPageComponent, canActivate: [AuthGuardService]},
+  {
+    path: AppRouteEnum.Home,
+    component: HomePageComponent,
+    data: {title: 'Home'},
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: AppRouteEnum.News,
+    component: NewsPageComponent,
+    data: {title: 'News'},
+    canActivate: [AuthGuardService]
+  },
 
-  {path: AppRouteEnum.Default, component: DefaultPageComponent},
-  {path: AppRouteEnum.Error404, component: PageNotFoundComponent},
+  {
+    path: AppRouteEnum.Default,
+    component: DefaultPageComponent,
+    data: {title: 'Welcome'}
+  },
+  {
+    path: AppRouteEnum.Error404,
+    component: PageNotFoundComponent,
+    data: {title: 'Error 404'}
+  },
 ];
 
 @NgModule({

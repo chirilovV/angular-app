@@ -1,5 +1,7 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
-import {FormControl} from "@angular/forms";
+import {Component, HostBinding, OnInit} from '@angular/core';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {Title} from '@angular/platform-browser';
+import {filter, map} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +9,25 @@ import {FormControl} from "@angular/forms";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'angular-app';
-  @Input() toggleControl = new FormControl(false);
 
   @HostBinding('class') className = '';
 
-  constructor() { }
+  constructor(private router: Router, private titleService: Title, private activatedRoute: ActivatedRoute) {
+    const appTitle = this.titleService.getTitle();
+
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd),
+      map(() => {
+        const child = this.activatedRoute.firstChild;
+        if(child?.snapshot.data['title']) {
+          return child.snapshot.data['title'];
+        }
+        return appTitle;
+      })
+    ).subscribe((title: string) => {
+      this.titleService.setTitle(title);
+    });
+  }
 
   ngOnInit(): void {
   }
