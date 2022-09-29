@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {RegisteredUser} from '../models/registred-user.interface';
+import {RegisteredUser} from '../models/account.interface';
 import {Observable, of} from 'rxjs';
 import {delay} from 'rxjs/operators';
 import {Response} from '../models/response.interface';
@@ -39,9 +39,5 @@ export class RegisterService {
     }
 
     return of(this.response);
-  }
-
-  logOut(): void {
-    sessionStorage.removeItem('name');
   }
 }

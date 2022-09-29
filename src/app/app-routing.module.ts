@@ -6,10 +6,10 @@ import {PageNotFoundComponent} from './modules/core/components/not-found-404/pag
 import {AppRouteEnum} from './modules/core/Enums/appRouteEnum';
 import {CanDeactivateGuard} from './modules/users/gurads/can-deactivate-guard.service';
 import {TimerComponent} from './modules/shared/components/timer/timer.component';
-import {RegisterPageComponent} from './modules/auth/pages/register/register-page/register-page.component';
-import {LoginPageComponent} from './modules/auth/pages/login/login-page/login-page.component';
-import {AuthGuardService} from './modules/auth/guards/authGuardService';
 import {DefaultPageComponent} from './modules/default/pages/default-page/default-page.component';
+import {RegisterPageComponent} from './modules/accounts/pages/register/register-page/register-page.component';
+import {LoginPageComponent} from './modules/accounts/pages/login/login-page/login-page.component';
+import {AuthGuardService} from './modules/accounts/guards/authGuardService';
 
 const routes: Routes = [
   {
@@ -22,6 +22,20 @@ const routes: Routes = [
     path: AppRouteEnum.Cars,
     loadChildren: () => import('./modules/cars/cars.module').then(
       m => m.CarsModule
+    )
+  },
+
+  {
+    path: AppRouteEnum.Cars,
+    loadChildren: () => import('./modules/cars/cars.module').then(
+      m => m.CarsModule
+    )
+  },
+
+  {
+    path: AppRouteEnum.UserDetails,
+    loadChildren: () => import('./modules/auth-user/auth-user.module').then(
+      m => m.AuthUserModule
     )
   },
 

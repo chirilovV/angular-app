@@ -4,7 +4,6 @@ import {UsersPageComponent} from './pages/user-page/users-page.component';
 import {AppRouteEnum} from '../core/Enums/appRouteEnum';
 import {NewUserPageComponent} from './pages/new-user-page/new-user-page.component';
 import {EditUserPageComponent} from './pages/edit-user-page/edit-user-page.component';
-import {UserDetailsComponent} from './pages/user-details/user-details.component';
 
 const routes: Routes = [
   {
@@ -21,11 +20,6 @@ const routes: Routes = [
     path: AppRouteEnum.EditUser,
     component: EditUserPageComponent,
     title: 'Edit User'
-  },
-  {
-    path: AppRouteEnum.UserDetails,
-    component: UserDetailsComponent,
-    title: 'User Profile'
   },
 ];
 

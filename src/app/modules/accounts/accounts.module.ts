@@ -33,5 +33,5 @@ import {RouterModule} from '@angular/router';
   ],
 
 })
-export class AuthModule {
+export class AccountsModule {
 }

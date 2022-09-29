@@ -7,24 +7,30 @@
   padding: 35px;
   text-align: center;
 }
-
 .formGroup mat-form-field {
   width: 80%;
   margin: 10px 0;
 }
-
 .formGroup mat-error {
   margin: 5px 0;
 }
 
 p {
   text-align: center;
-  margin: 15px auto;
+  font-weight: bold;
+  font-size: 30px;
+  margin: auto;
 }
 
-p a {
+a {
   font-weight: bold;
   color: #452259;
+  margin: 0;
+  font-size: 18px;
 }
 
-/*# sourceMappingURL=register-page.component.css.map */
+.register {
+  margin-top: 50px;
+}
+
+/*# sourceMappingURL=login-page.component.css.map */

@@ -1,0 +1,22 @@
+<div class="container">
+  <mat-spinner *ngIf="!user"></mat-spinner>
+  <div *ngIf="user">
+    <div>
+      <label class="hoverable" for="fileInput">
+        <img alt="" mat-card-avatar src="{{filePath}}">
+        <div class="hover-text">Choose file</div>
+        <div class="background"></div>
+      </label>
+
+      <input #imageInput (change)="onSelectFile( imageInput)" id="fileInput" type='file'>
+    </div>
+    <div>
+      <p>Name: {{user.firstName | fullName:  user.lastName}} </p>
+      <p>Age: {{user.age | age}}</p>
+      <p>Email: {{user.email}}</p>
+      <p>Gender: {{user.gender}}</p>
+    </div>
+
+    <button (click)="onSubmit()" mat-button>Update</button>
+  </div>
+</div>

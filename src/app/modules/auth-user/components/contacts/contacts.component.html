@@ -1,0 +1,9 @@
+<div class="container">
+  <mat-spinner *ngIf="!contacts; else contact"></mat-spinner>
+  <ng-template #contact>
+    <div *ngFor="let contact of contacts; index as i">
+      <p><b>{{i + 1}}:</b> {{contact | fullAddress }}</p>
+      <hr>
+    </div>
+  </ng-template>
+</div>

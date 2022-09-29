@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {GenderEnum} from '../../core/Enums/gender.enum';
 import {User} from '../models/user.interface';
-import {HttpService} from '../../core/services/http.service';
 import {Observable, of} from 'rxjs';
 import {delay} from 'rxjs/operators';
 
@@ -50,9 +49,7 @@ export class LocalUsersService {
     },
   ];
 
-  constructor(
-    private httpService: HttpService
-  ) {
+  constructor() {
   };
 
 
@@ -67,5 +64,4 @@ export class LocalUsersService {
 
     return of(user).pipe(delay(1000));
   }
-
 }

@@ -1,0 +1,7 @@
+<div class="container">
+  <mat-spinner *ngIf="!company"></mat-spinner>
+  <div *ngIf="company">
+    <p>Company name: {{company.fullName}}</p>
+    <p>Department: {{company.department}}</p>
+  </div>
+</div>

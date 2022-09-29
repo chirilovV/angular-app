@@ -14,21 +14,34 @@ import {AddressItemComponent} from './components/address-item/address-item.compo
 import {PaginatorComponent} from './components/paginator/paginator.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {TimerComponent} from './components/timer/timer.component';
+import {ConfirmDialogComponent} from './components/confirm-dialog/confirm-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {FullNamePipe} from './pipes/full-name.pipe';
+import {AgePipe} from './pipes/age.pipe';
+import {FullAddressPipe} from './pipes/full-address.pipe';
 
 
-@NgModule ({
+@NgModule({
   declarations: [
     ListItemComponent,
     WelcomeComponent,
     AddressItemComponent,
     PaginatorComponent,
     TimerComponent,
+    ConfirmDialogComponent,
+    FullNamePipe,
+    AgePipe,
+    FullAddressPipe,
   ],
   exports: [
     ListItemComponent,
     WelcomeComponent,
     AddressItemComponent,
     PaginatorComponent,
+    ConfirmDialogComponent,
+    FullNamePipe,
+    AgePipe,
+    FullAddressPipe,
   ],
   imports: [
     CommonModule,
@@ -40,7 +53,8 @@ import {TimerComponent} from './components/timer/timer.component';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule,
   ]
 })
 export class SharedModule {

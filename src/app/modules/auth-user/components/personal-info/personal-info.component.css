@@ -1,0 +1,75 @@
+.container {
+  width: 70%;
+  padding: 30px;
+  margin: 50px auto;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.0509803922);
+  border-radius: 4px;
+  border: 1px solid transparent;
+}
+
+.container mat-spinner {
+  width: 500px;
+  height: 500px;
+  margin: 100px auto;
+}
+
+.container img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+.container button {
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.0509803922);
+  border-radius: 4px;
+  border: 1px solid transparent;
+  margin: 10px;
+}
+
+.container .hoverable {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  height: 200px;
+  width: 200px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.0509803922);
+  border: 1px solid transparent;
+  border-radius: 50%;
+  margin: 15px;
+}
+
+.container .hoverable .hover-text {
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.container .hoverable .background {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.container .hoverable:hover .hover-text {
+  display: block;
+}
+
+.container .hoverable:hover .background {
+  display: block;
+}
+
+.container #fileInput {
+  display: none;
+}
+
+/*# sourceMappingURL=personal-info.component.css.map */
