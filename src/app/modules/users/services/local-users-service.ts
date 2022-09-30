@@ -20,6 +20,8 @@ export class LocalUsersService {
       imageUrl: 'assets/img/avatar2.png',
       department: 'Data Management',
       company: 'Coherent Solutions',
+      salary: 1000,
+      currency: 'usd',
       gender: GenderEnum.Female,
       email: 'some@gmail.com'
     },
@@ -31,6 +33,8 @@ export class LocalUsersService {
       imageUrl: 'assets/img/avatar5.png',
       department: 'Data Management',
       company: 'Coherent Solutions',
+      salary: 1000,
+      currency: 'USD',
       gender: GenderEnum.Male,
       email: 'some@mail.com',
       addresses: [{
@@ -51,11 +55,6 @@ export class LocalUsersService {
 
   constructor() {
   };
-
-
-  getLocalUsers(): User[] {
-    return this.users;
-  }
 
   getUserById(id: string): Observable<any> {
     let user = this.users.find(item => {

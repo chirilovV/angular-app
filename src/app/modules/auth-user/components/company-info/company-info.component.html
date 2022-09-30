@@ -3,5 +3,6 @@
   <div *ngIf="company">
     <p>Company name: {{company.fullName}}</p>
     <p>Department: {{company.department}}</p>
+    <p>Salary: {{company.salary | currency: company.currency}}</p>
   </div>
 </div>

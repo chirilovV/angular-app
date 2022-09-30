@@ -27,6 +27,8 @@ export class UsersApiService {
       imageUrl: 'assets/img/avatar2.png',
       department: 'Data Management',
       company: 'Coherent Solutions',
+      salary: 1000,
+      currency: 'usd',
       gender: GenderEnum.Female,
       email: 'some@gmail.com'
     },

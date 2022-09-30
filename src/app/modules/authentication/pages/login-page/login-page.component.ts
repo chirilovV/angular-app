@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {RegisterService} from '../../../services/register.service';
-import {NotificationService} from '../../../../shared/services/notification.service';
-import {AppRouteEnum} from '../../../../core/Enums/appRouteEnum';
 import {Router} from '@angular/router';
+import {RegisterService} from '../../services/register.service';
+import {NotificationService} from '../../../shared/services/notification.service';
+import {AppRouteEnum} from '../../../core/Enums/appRouteEnum';
 
 @Component({
   selector: 'login-page',

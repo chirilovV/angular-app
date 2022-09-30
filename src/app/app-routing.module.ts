@@ -7,9 +7,9 @@ import {AppRouteEnum} from './modules/core/Enums/appRouteEnum';
 import {CanDeactivateGuard} from './modules/users/gurads/can-deactivate-guard.service';
 import {TimerComponent} from './modules/shared/components/timer/timer.component';
 import {DefaultPageComponent} from './modules/default/pages/default-page/default-page.component';
-import {RegisterPageComponent} from './modules/accounts/pages/register/register-page/register-page.component';
-import {LoginPageComponent} from './modules/accounts/pages/login/login-page/login-page.component';
-import {AuthGuardService} from './modules/accounts/guards/authGuardService';
+import {RegisterPageComponent} from './modules/authentication/pages/register-page/register-page.component';
+import {LoginPageComponent} from './modules/authentication/pages/login-page/login-page.component';
+import {AuthGuardService} from './modules/core/guards/authGuardService';
 
 const routes: Routes = [
   {

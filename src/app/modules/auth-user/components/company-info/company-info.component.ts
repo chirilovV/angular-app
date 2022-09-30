@@ -22,7 +22,9 @@ export class CompanyInfoComponent implements OnInit {
       response => {
         this.company = {
           fullName: response.company,
-          department: response.department
+          department: response.department,
+          salary: response.salary,
+          currency: response.currency
         };
       }
     );

@@ -1,9 +1,8 @@
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import {Injectable} from '@angular/core';
 import {NotificationService} from '../../shared/services/notification.service';
-import {AuthService} from '../services/auth.service';
-import {AppRouteEnum} from '../../core/Enums/appRouteEnum';
-
+import {AuthService} from '../../authentication/services/auth.service';
+import {AppRouteEnum} from '../Enums/appRouteEnum';
 
 @Injectable({
   providedIn: 'root'

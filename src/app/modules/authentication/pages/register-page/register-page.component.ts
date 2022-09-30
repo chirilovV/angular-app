@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {RegisterService} from '../../../services/register.service';
-import {NotificationService} from '../../../../shared/services/notification.service';
-import {CustomValidatorService} from '../../../../shared/services/customValidator.service';
-import {AppRouteEnum} from '../../../../core/Enums/appRouteEnum';
 import {Router} from '@angular/router';
+import {NotificationService} from 'src/app/modules/shared/services/notification.service';
+import {RegisterService} from '../../services/register.service';
+import {AppRouteEnum} from '../../../core/Enums/appRouteEnum';
+import {CustomValidatorService} from '../../../shared/services/customValidator.service';
 
 @Component({
   selector: 'app-register-page',
@@ -16,6 +16,7 @@ export class RegisterPageComponent implements OnInit {
   pageName: string = 'Register';
   registerFormGroup!: FormGroup;
 
+  //@ts-ignore
   constructor(
     private fb: FormBuilder,
     private registerService: RegisterService,

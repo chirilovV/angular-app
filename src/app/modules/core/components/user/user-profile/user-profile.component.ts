@@ -4,7 +4,7 @@ import {ConfirmDialog} from '../../../../shared/models/confirm-dialog.interface'
 import {ConfirmDialogComponent} from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {AppRouteEnum} from '../../../Enums/appRouteEnum';
-import {AuthService} from '../../../../accounts/services/auth.service';
+import {AuthService} from '../../../../authentication/services/auth.service';
 
 @Component({
   selector: 'user-profile',

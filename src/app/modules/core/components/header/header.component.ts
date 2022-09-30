@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AppRouteEnum} from '../../Enums/appRouteEnum';
-import {AuthService} from '../../../accounts/services/auth.service';
+import {AuthService} from '../../../authentication/services/auth.service';
 
 @Component({
   selector: 'header',

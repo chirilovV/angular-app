@@ -1,5 +1,5 @@
-import {GenderEnum} from "../../core/Enums/gender.enum";
-import {Address} from "./address.interface";
+import {GenderEnum} from '../../core/Enums/gender.enum';
+import {Address} from './address.interface';
 
 export interface User {
   id: string,
@@ -11,6 +11,8 @@ export interface User {
   imageUrl: string,
   department: string,
   company: string,
+  salary?: number,
+  currency?: string,
   isFavorite?: boolean,
-  addresses?:Address[]
+  addresses?: Address[]
 }
