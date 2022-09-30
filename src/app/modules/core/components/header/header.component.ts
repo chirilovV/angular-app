@@ -1,28 +1,19 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {AppRouteEnum} from '../../Enums/appRouteEnum';
-import {AuthService} from '../../../authentication/services/auth.service';
+import {AuthorisationService} from '../../../authentication/services/authorisation.service';
 
 @Component({
   selector: 'header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
-
+export class HeaderComponent {
   appPaths = AppRouteEnum;
-  isAuth = false;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthorisationService) {
   }
 
   get isAuthorised() {
-    this.authService.authorise().subscribe(response => {
-      this.isAuth = response;
-    });
-
-    return this.isAuth;
-  }
-
-  ngOnInit(): void {
+    return this.authService.isUserAuthorised();
   }
 }

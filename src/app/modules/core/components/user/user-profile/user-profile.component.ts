@@ -4,7 +4,7 @@ import {ConfirmDialog} from '../../../../shared/models/confirm-dialog.interface'
 import {ConfirmDialogComponent} from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {AppRouteEnum} from '../../../Enums/appRouteEnum';
-import {AuthService} from '../../../../authentication/services/auth.service';
+import {AuthorisationService} from '../../../../authentication/services/authorisation.service';
 
 @Component({
   selector: 'user-profile',
@@ -16,17 +16,13 @@ export class UserProfileComponent {
   isUserAuth: boolean = false;
 
   constructor(
-    private authService: AuthService,
+    private authService: AuthorisationService,
     private router: Router,
     private dialog: MatDialog
   ) { }
 
   get isAuth(): boolean {
-    this.authService.authorise().subscribe(response => {
-      this.isUserAuth = response;
-    });
-
-    return this.isUserAuth;
+    return this.authService.isUserAuthorised();
   }
 
   get userName(): string | null {
@@ -39,7 +35,7 @@ export class UserProfileComponent {
   logOut(): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       maxWidth: '400px',
-      data: new ConfirmDialog('', 'Pleas confirm')
+      data: new ConfirmDialog('', 'Are you sure to logout?')
     });
 
     dialogRef.afterClosed().subscribe(dialogResult => {

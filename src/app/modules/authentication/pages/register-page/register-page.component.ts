@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {NotificationService} from 'src/app/modules/shared/services/notification.service';
-import {RegisterService} from '../../services/register.service';
+import {AuthenticationService} from '../../services/authentication.service';
 import {AppRouteEnum} from '../../../core/Enums/appRouteEnum';
 import {CustomValidatorService} from '../../../shared/services/customValidator.service';
 
@@ -19,7 +19,7 @@ export class RegisterPageComponent implements OnInit {
   //@ts-ignore
   constructor(
     private fb: FormBuilder,
-    private registerService: RegisterService,
+    private registerService: AuthenticationService,
     private notify: NotificationService,
     private router: Router,
   ) { }

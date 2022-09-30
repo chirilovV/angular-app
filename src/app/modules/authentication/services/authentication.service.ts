@@ -8,7 +8,7 @@ import {Response} from '../models/response.interface';
   providedIn: 'root'
 })
 
-export class RegisterService {
+export class AuthenticationService {
   registeredUsers: RegisteredUser[] = [
     {
       userName: 'Ion',
@@ -16,13 +16,11 @@ export class RegisterService {
       confirm: '11'
     }
   ];
-  response: Response = {
-    message: 'Successfully logged.',
-    status: 'ok'
-  };
+  response!: Response;
 
   addUser(user: RegisteredUser): Observable<string> {
     this.registeredUsers.push(user);
+
     return of('Successfully saved.').pipe(delay(1000));
   }
 
@@ -33,8 +31,13 @@ export class RegisterService {
 
     if(item === undefined) {
       this.response = {
-        message: 'Not found.',
+        message: 'Pleas try again.',
         status: 'bad'
+      };
+    } else {
+      this.response = {
+        message: 'Successfully logged.',
+        status: 'ok'
       };
     }
 

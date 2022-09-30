@@ -1,7 +1,7 @@
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, Router} from '@angular/router';
 import {Injectable} from '@angular/core';
 import {NotificationService} from '../../shared/services/notification.service';
-import {AuthService} from '../../authentication/services/auth.service';
+import {AuthorisationService} from '../../authentication/services/authorisation.service';
 import {AppRouteEnum} from '../Enums/appRouteEnum';
 
 @Injectable({
@@ -11,19 +11,16 @@ export class AuthGuardService implements CanActivate {
   constructor(
     private router: Router,
     private notify: NotificationService,
-    private authService: AuthService
+    private authService: AuthorisationService
   ) {
   }
 
-  public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    this.authService.authorise()
-    .subscribe(isUserAuth => {
-      if(!isUserAuth) {
-        this.notify.warning('Pleas go to Login or Register !!!!');
-        this.router.navigate([AppRouteEnum.Register]);
-      }
-    });
+  public canActivate(route: ActivatedRouteSnapshot): boolean {
+    const isLogged: boolean = this.authService.isUserAuthorised();
+    if(!isLogged) {
+      this.router.navigate([AppRouteEnum.Register]);
+    }
 
-    return true;
+    return isLogged;
   }
 }

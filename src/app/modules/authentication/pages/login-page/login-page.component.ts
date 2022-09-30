@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {RegisterService} from '../../services/register.service';
+import {AuthenticationService} from '../../services/authentication.service';
 import {NotificationService} from '../../../shared/services/notification.service';
 import {AppRouteEnum} from '../../../core/Enums/appRouteEnum';
+import {AuthorisationService} from '../../services/authorisation.service';
 
 @Component({
   selector: 'login-page',
@@ -21,8 +22,9 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private registerService: RegisterService,
+    private registerService: AuthenticationService,
     private notify: NotificationService,
+    private authService: AuthorisationService
   ) { }
 
   ngOnInit(): void {
@@ -35,19 +37,17 @@ export class LoginPageComponent implements OnInit {
 
   submit(): void {
     this.registerFormGroup.markAllAsTouched();
-    if(this.registerFormGroup.valid) {
-      this.registerService.findUser(
-        this.registerFormGroup.value['userName'],
-        this.registerFormGroup.value['password'],
-      ).subscribe(response => {
-          if('ok' === response.status) {
-            sessionStorage.setItem('name', this.registerFormGroup.value['userName']);
+    let userName = this.registerFormGroup.value['userName'];
+    let password = this.registerFormGroup.value['password'];
 
+    if(this.registerFormGroup.valid) {
+      this.registerService.findUser(userName, password)
+      .subscribe(response => {
+          if('ok' === response.status) {
+            this.authService.authorise();
             this.notify.success(response.message);
 
-            setInterval(() => {
-              this.router.navigate([AppRouteEnum.Home]);
-            }, 50);
+            this.router.navigate([AppRouteEnum.Home]);
           } else {
             this.notify.warning(response.message);
           }
