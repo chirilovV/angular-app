@@ -1,28 +1,12 @@
 <div class="container">
-  <mat-tab-group animationDuration="0ms">
-    <mat-tab label="Personal info">
-      <ng-template matTabContent>
-        <personal-info></personal-info>
-      </ng-template>
-    </mat-tab>
-    <mat-tab label="Company info">
-      <ng-template matTabContent>
-        <company-info></company-info>
-      </ng-template>
-    </mat-tab>
-    <mat-tab label="Contacts">
-      <ng-template matTabContent>
-        <contacts></contacts>
-      </ng-template>
-    </mat-tab>
-  </mat-tab-group>
-
-  <!--  <nav class="tabs" mat-tab-nav-bar>-->
-  <!--    <a mat-tab-link routerLink="{{appPaths.UserInfo}}" routerLinkActive="active-link">User info</a>-->
-  <!--    <a mat-tab-link routerLink="{{appPaths.CompanyInfo}}" routerLinkActive="active-link">Company info</a>-->
-  <!--    <a mat-tab-link routerLink="{{appPaths.UserContacts}}" routerLinkActive="active-link">Contacts</a>-->
-  <!--  </nav>-->
-  <!--  <div>-->
-  <!--    <router-outlet></router-outlet>-->
-  <!--  </div>-->
+  <nav mat-tab-nav-bar>
+    <a #rla="routerLinkActive"
+       *ngFor="let link of navLinks"
+       [active]="rla.isActive"
+       [routerLink]="link.route" mat-tab-link
+       routerLinkActive="">
+      {{link.label}}
+    </a>
+  </nav>
+  <router-outlet></router-outlet>
 </div>

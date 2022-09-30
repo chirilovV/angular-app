@@ -24,21 +24,12 @@ const routes: Routes = [
       m => m.CarsModule
     )
   },
-
-  {
-    path: AppRouteEnum.Cars,
-    loadChildren: () => import('./modules/cars/cars.module').then(
-      m => m.CarsModule
-    )
-  },
-
   {
     path: AppRouteEnum.UserDetails,
     loadChildren: () => import('./modules/auth-user/auth-user.module').then(
       m => m.AuthUserModule
     )
   },
-
   {
     path: 'timer',
     component: TimerComponent
@@ -46,14 +37,13 @@ const routes: Routes = [
   {
     path: AppRouteEnum.Register,
     component: RegisterPageComponent,
-    data: {title: 'Register'}
+    title: 'Register'
   },
   {
     path: AppRouteEnum.Login,
     component: LoginPageComponent,
-    data: {title: 'Login'}
+    title: 'Login'
   },
-
   {
     path: AppRouteEnum.Home,
     component: HomePageComponent,
@@ -66,7 +56,6 @@ const routes: Routes = [
     data: {title: 'News'},
     canActivate: [AuthGuardService]
   },
-
   {
     path: AppRouteEnum.Default,
     component: DefaultPageComponent,

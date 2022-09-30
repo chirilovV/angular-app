@@ -1,4 +1,4 @@
-import {Component, HostBinding, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {filter, map} from 'rxjs';
@@ -10,9 +10,13 @@ import {filter, map} from 'rxjs';
 })
 export class AppComponent implements OnInit {
 
-  @HostBinding('class') className = '';
+  constructor(
+    private router: Router,
+    private titleService: Title,
+    private activatedRoute: ActivatedRoute) {
+  }
 
-  constructor(private router: Router, private titleService: Title, private activatedRoute: ActivatedRoute) {
+  ngOnInit(): void {
     const appTitle = this.titleService.getTitle();
 
     this.router.events.pipe(
@@ -27,8 +31,5 @@ export class AppComponent implements OnInit {
     ).subscribe((title: string) => {
       this.titleService.setTitle(title);
     });
-  }
-
-  ngOnInit(): void {
   }
 }
