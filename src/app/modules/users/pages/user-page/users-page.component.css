@@ -49,4 +49,10 @@ button {
   font-size: 16px;
 }
 
+mat-spinner {
+  width: 500px;
+  height: 500px;
+  margin: 50px auto;
+}
+
 /*# sourceMappingURL=users-page.component.css.map */

@@ -1,6 +1,12 @@
+.header {
+  padding-top: 50px;
+  text-align: center;
+}
+
 .cars {
   width: 70%;
-  padding: 35px 35px 35px 0;
+  padding: 50px 35px 35px 0;
+  margin: auto;
 }
 
 .favorites {

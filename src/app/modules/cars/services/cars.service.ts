@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Car} from "../models/car.interface";
-import {FavoriteService} from "../../shared/services/favorite.service";
-import {EntitiesEnum} from "../../core/Enums/entities.enum";
-import {Observable, of} from "rxjs";
-import {delay} from "rxjs/operators";
+import {Car} from '../models/car.interface';
+import {FavoriteService} from '../../shared/services/favorite.service';
+import {EntitiesEnum} from '../../core/Enums/entities.enum';
+import {Observable, of} from 'rxjs';
+import {delay} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -27,13 +27,37 @@ export class CarsService {
       number: 123456,
       releaseYear: 2021
     },
+    {
+      id: 'a3',
+      name: 'Mercedes',
+      color: 'green',
+      imageUrl: 'assets/img/auto3.png',
+      number: 123456,
+      releaseYear: 2021
+    },
+    {
+      id: 'a4',
+      name: 'Audi',
+      color: 'green',
+      imageUrl: 'assets/img/auto4.png',
+      number: 123456,
+      releaseYear: 2021
+    },
+    {
+      id: 'a5',
+      name: 'Tesla',
+      color: 'green',
+      imageUrl: 'assets/img/auto6.png',
+      number: 123456,
+      releaseYear: 2021
+    },
   ];
 
   constructor(private favoritesService: FavoriteService) {
   };
 
   getFavorites(): Car[] {
-    let favoriteCars: Car[] = []
+    let favoriteCars: Car[] = [];
 
     this.favoritesService.getItems(EntitiesEnum.car).subscribe(value => {
       favoriteCars = this.cars.filter(

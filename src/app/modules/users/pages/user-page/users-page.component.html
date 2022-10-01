@@ -22,8 +22,7 @@
 
   <div class="row">
     <div class="users">
-      <!--      <mat-spinner *ngIf="isLoading"></mat-spinner>-->
-      <img *ngIf="isLoading" alt="loading" src="/src/assets/img/loading.gif">
+      <mat-spinner *ngIf="isLoading"></mat-spinner>
       <div *ngIf="!isLoading && 0 === totalItems" class="row not-found">Not Found any user</div>
 
       <users-list
