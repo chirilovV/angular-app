@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LocalUsersService} from '../../../users/services/local-users-service';
 import {CompanyInfo} from '../../models/company-info.interface';
+import {take} from 'rxjs';
 
 @Component({
   selector: 'company-info',
@@ -18,7 +19,9 @@ export class CompanyInfoComponent implements OnInit {
   }
 
   getCompanyData(): void {
-    this.usersService.getUserById('a5').subscribe(
+    this.usersService.getUserById('a5')
+    .pipe(take(1))
+    .subscribe(
       response => {
         this.company = {
           fullName: response.company,

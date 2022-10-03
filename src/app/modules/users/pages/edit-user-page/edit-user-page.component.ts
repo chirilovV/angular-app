@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../models/user.interface';
 import {NotificationService} from '../../../shared/services/notification.service';
-import {Subscription, take} from 'rxjs';
+import {take} from 'rxjs';
 import {CanComponentDeactivateInterface} from '../../../shared/models/canComponentDeactivate.interface';
 import {UserFormShellComponent} from '../../components/user-form-shell/user-form-shell.component';
 import {UsersApiService} from '../../services/users-api.service';
@@ -16,8 +16,9 @@ export class EditUserPageComponent implements OnInit, CanComponentDeactivateInte
 
   user!: User;
   isFormSaved: boolean = true;
-  subscription: Subscription | undefined;
+
   @ViewChild(UserFormShellComponent) userForm!: UserFormShellComponent;
+
   private userId: string = '';
 
   constructor(
@@ -44,8 +45,10 @@ export class EditUserPageComponent implements OnInit, CanComponentDeactivateInte
     }
   }
 
-  updateUser(userForm: any) {
-    this.userService.updateUser(this.userId, userForm).pipe(take(1)).subscribe(response => {
+  updateUser(userForm: any): void {
+    this.userService.updateUser(this.userId, userForm)
+    .pipe(take(1))
+    .subscribe(response => {
       this.notificationService.success(response);
     });
 

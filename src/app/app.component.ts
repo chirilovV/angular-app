@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
-import {filter, map} from 'rxjs';
+import {filter, map, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +9,7 @@ import {filter, map} from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  subscription: Subscription | undefined;
 
   constructor(
     private router: Router,
@@ -19,7 +20,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     const appTitle = this.titleService.getTitle();
 
-    this.router.events.pipe(
+    this.subscription = this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),
       map(() => {
         const child = this.activatedRoute.firstChild;
@@ -31,5 +32,9 @@ export class AppComponent implements OnInit {
     ).subscribe((title: string) => {
       this.titleService.setTitle(title);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }

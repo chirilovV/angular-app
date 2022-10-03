@@ -1,14 +1,15 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnDestroy} from '@angular/core';
 import {Car} from '../models/car.interface';
 import {FavoriteService} from '../../shared/services/favorite.service';
 import {EntitiesEnum} from '../../core/Enums/entities.enum';
-import {Observable, of} from 'rxjs';
+import {Observable, of, Subscription} from 'rxjs';
 import {delay} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CarsService {
+export class CarsService implements OnDestroy {
+  subscription: Subscription | undefined;
 
   private cars: Car[] = [
     {
@@ -54,12 +55,12 @@ export class CarsService {
   ];
 
   constructor(private favoritesService: FavoriteService) {
-  };
+  }
 
   getFavorites(): Car[] {
     let favoriteCars: Car[] = [];
 
-    this.favoritesService.getItems(EntitiesEnum.car).subscribe(value => {
+    this.subscription = this.favoritesService.getItems(EntitiesEnum.car).subscribe(value => {
       favoriteCars = this.cars.filter(
         item => value.includes(item.id)).map(
         cars => ({...cars, isFavorite: true}
@@ -76,5 +77,10 @@ export class CarsService {
   toggleFavorites(id: string): void {
     this.favoritesService.toggleFavorites(EntitiesEnum.car, id);
   }
+
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
+  };
 }
 

@@ -1,22 +1,24 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../../services/authentication.service';
 import {NotificationService} from '../../../shared/services/notification.service';
 import {AppRouteEnum} from '../../../core/Enums/appRouteEnum';
 import {AuthorizationService} from '../../services/authorization.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss']
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent implements OnInit, OnDestroy {
 
   pageName: string = 'Login';
   registerFormGroup!: FormGroup;
   username!: string;
   password!: string;
+  private subscription: Subscription | undefined;
 
   constructor(
     private router: Router,
@@ -40,7 +42,7 @@ export class LoginPageComponent implements OnInit {
     let password = this.registerFormGroup.value['password'];
 
     if(this.registerFormGroup.valid) {
-      this.registerService.findUser(userName, password)
+      this.subscription = this.registerService.findUser(userName, password)
       .subscribe(response => {
           if('ok' === response.status) {
             this.authService.authorise(userName);
@@ -59,4 +61,8 @@ export class LoginPageComponent implements OnInit {
   errorHandler(controlName: string, errorName: string): boolean {
     return this.registerFormGroup.controls[controlName].hasError(errorName);
   }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
+  };
 }

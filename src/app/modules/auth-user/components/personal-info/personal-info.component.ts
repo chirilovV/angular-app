@@ -4,6 +4,7 @@ import {User} from '../../../users/models/user.interface';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {UploadImageService} from '../../../shared/services/upload-image.service';
 import {NotificationService} from '../../../shared/services/notification.service';
+import {take} from 'rxjs';
 
 
 @Component({
@@ -36,7 +37,9 @@ export class PersonalInfoComponent implements OnInit {
   }
 
   getUser(): void {
-    this.usersService.getUserById('a5').subscribe(
+    this.usersService.getUserById('a5')
+    .pipe(take(1))
+    .subscribe(
       response => {
         this.user = response;
         this.filePath = this.user.imageUrl;
@@ -56,7 +59,9 @@ export class PersonalInfoComponent implements OnInit {
 
   onSubmit(): void {
     if(null !== this.file) {
-      this.uploadImageService.uploadImage(this.file).subscribe(
+      this.uploadImageService.uploadImage(this.file)
+      .pipe(take(1))
+      .subscribe(
         response => this.notificationService.success(response)
       );
     }

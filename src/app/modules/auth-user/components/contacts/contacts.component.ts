@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LocalUsersService} from '../../../users/services/local-users-service';
 import {Address} from '../../../users/models/address.interface';
+import {take} from 'rxjs';
 
 @Component({
   selector: 'contacts',
@@ -18,7 +19,9 @@ export class ContactsComponent implements OnInit {
   }
 
   getContactData(): void {
-    this.usersService.getUserById('a5').subscribe(
+    this.usersService.getUserById('a5')
+    .pipe(take(1))
+    .subscribe(
       response => {
         this.contacts = response.addresses;
       }

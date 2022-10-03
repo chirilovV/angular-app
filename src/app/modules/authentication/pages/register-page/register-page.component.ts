@@ -5,6 +5,7 @@ import {NotificationService} from 'src/app/modules/shared/services/notification.
 import {AuthenticationService} from '../../services/authentication.service';
 import {AppRouteEnum} from '../../../core/Enums/appRouteEnum';
 import {CustomValidatorService} from '../../../shared/services/customValidator.service';
+import {take} from 'rxjs';
 
 @Component({
   selector: 'app-register-page',
@@ -46,7 +47,9 @@ export class RegisterPageComponent implements OnInit {
   submit(): void {
     this.registerFormGroup.markAllAsTouched();
     if(this.registerFormGroup.valid) {
-      this.registerService.addUser(this.registerFormGroup.value).subscribe(
+      this.registerService.addUser(this.registerFormGroup.value)
+      .pipe(take(1))
+      .subscribe(
         response => {
           this.notify.success(response);
 
