@@ -13,8 +13,6 @@ import {AuthorisationService} from '../../../../authentication/services/authoris
 })
 export class UserProfileComponent {
 
-  isUserAuth: boolean = false;
-
   constructor(
     private authService: AuthorisationService,
     private router: Router,
@@ -26,10 +24,7 @@ export class UserProfileComponent {
   }
 
   get userName(): string | null {
-    return sessionStorage.getItem('name');
-  }
-
-  ngOnInit(): void {
+    return sessionStorage.getItem('userName');
   }
 
   logOut(): void {

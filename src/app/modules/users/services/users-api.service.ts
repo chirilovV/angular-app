@@ -2,12 +2,11 @@ import {Injectable} from '@angular/core';
 import {GenderEnum} from '../../core/Enums/gender.enum';
 import {FavoriteService} from '../../shared/services/favorite.service';
 import {User} from '../models/user.interface';
-import {forkJoin, Observable, of, Subject, switchMap, tap} from 'rxjs';
+import {Observable} from 'rxjs';
 import {HttpService} from '../../core/services/http.service';
 import {HttpMethods} from '../../core/Enums/http-methods.enum';
 import {UserResponse} from '../models/UserResponse.interface';
 import {PageOptions} from '../../shared/models/pageOptions';
-import {delay} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +14,6 @@ import {delay} from 'rxjs/operators';
 
 export class UsersApiService {
 
-  reloadSubject$ = new Subject();
-  excelSubject$ = new Subject();
 
   private users: User[] = [
     {
@@ -69,8 +66,7 @@ export class UsersApiService {
     private favoritesService: FavoriteService,
     private httpService: HttpService
   ) {
-    this.initializeReloadSubscription();
-    this.initializeExcelSubscription();
+
   };
 
   getUsers(paginatorOption?: PageOptions,): Observable<UserResponse> {
@@ -123,51 +119,9 @@ export class UsersApiService {
     });
   }
 
-  downloadExcel(id: any): Observable<any> {
-    return forkJoin(
-      of(`User with id = ${id} START to download EXCEL.`)
-      .pipe(
-        tap(() => console.log(`User with id = ${id} START to save`)),
-        delay(this.randomNumber)
-      )
-    );
-  }
-
-  saveUser(id: any): Observable<any> {
-    return of('').pipe(
-      tap(() => console.log(`User with id = ${id} START to save`)),
-      switchMap(() => {
-        return of(`User with id = ${id} END to save.`)
-        .pipe(delay(this.randomNumber));
-      }));
-  }
-
 
   getLocalUsers(): User[] {
     return this.users;
   }
 
-
-  private initializeReloadSubscription(): void {
-    this.reloadSubject$.pipe(
-      tap((someId) => console.log(`Start to reload`, someId)),
-      switchMap(() => {
-        return this.getUsers().pipe(delay(this.randomNumber));
-      }),
-    ).subscribe(response => {
-      console.log(`End to reload`, ' ==== ', response);
-      return response;
-    });
-  }
-
-  private initializeExcelSubscription(): void {
-    this.excelSubject$.pipe(
-      tap((id) => console.log(`START excel`, id)),
-      switchMap((id) => {
-        return of(`START EXCEL ${id}`);
-      },)
-    ).subscribe(response => {
-      console.log(`END excel`, response);
-    });
-  }
 }

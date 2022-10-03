@@ -10,13 +10,14 @@ export class AuthorisationService {
 
   }
 
-  authorise(): void {
+  authorise(userName: string): void {
     sessionStorage.setItem('isUserLoggedIn', 'true');
+    sessionStorage.setItem('userName', userName);
   }
 
   logOut(): void {
     sessionStorage.removeItem('isUserLoggedIn');
-    sessionStorage.removeItem('name');
+    sessionStorage.removeItem('userName');
   }
 
   isUserAuthorised() {

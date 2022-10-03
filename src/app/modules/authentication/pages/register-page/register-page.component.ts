@@ -30,6 +30,7 @@ export class RegisterPageComponent implements OnInit {
         password: [null, Validators.compose([
           Validators.required,
           Validators.minLength(8),
+          Validators.maxLength(20),
           CustomValidatorService.patternValidator(/\d/, {hasNumber: true}),
           CustomValidatorService.patternValidator(/[A-Z]/, {hasCapitalCase: true}),
           CustomValidatorService.patternValidator(/[a-z]/, {hasSmallCase: true}),]),

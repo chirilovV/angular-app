@@ -4,7 +4,12 @@ import {CarsPageComponent} from './pages/cars-page/cars-page.component';
 import {AuthGuardService} from '../core/guards/authGuardService';
 
 const routes: Routes = [
-  {path: '', component: CarsPageComponent, canActivate: [AuthGuardService]},
+  {
+    path: '',
+    component: CarsPageComponent,
+    canActivate: [AuthGuardService],
+    title: 'Cars'
+  },
 ];
 
 @NgModule({

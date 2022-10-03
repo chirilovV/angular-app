@@ -8,12 +8,14 @@
         <mat-form-field appearance="fill">
           <mat-label>User name</mat-label>
           <input formControlName='userName' matInput placeholder="User name">
-          <mat-error *ngIf="errorHandler('userName', 'required')">Address line is required</mat-error>
+          <mat-error *ngIf="errorHandler('userName', 'required')">User name is required</mat-error>
+          <mat-error *ngIf="errorHandler('userName', 'incorrect')">The username or password is incorrect</mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Password</mat-label>
           <input formControlName='password' matInput placeholder="Password" type="password">
-          <mat-error *ngIf="errorHandler('password', 'required')">Address line is required</mat-error>
+          <mat-error *ngIf="errorHandler('password', 'required')">Password is required</mat-error>
+          <mat-error *ngIf="errorHandler('password', 'incorrect')">The username or password is incorrect</mat-error>
         </mat-form-field>
       </form>
 

@@ -27,7 +27,7 @@
 
       <users-list
         (addInFavoritesEvent)="toggleFavorites($event)"
-        (downloadExcelEvent)="downloadExcel($event)"
+        (downloadExcelEvent)="getExcel($event)"
         (getUserEvent)="getUser($event)"
         (saveUserEvent)="saveUser($event)"
         *ngIf="!isLoading"

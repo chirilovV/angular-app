@@ -5,7 +5,6 @@ import {NewsPageComponent} from './modules/news/pages/news-page/news-page.compon
 import {PageNotFoundComponent} from './modules/core/components/not-found-404/page-not-found.component';
 import {AppRouteEnum} from './modules/core/Enums/appRouteEnum';
 import {CanDeactivateGuard} from './modules/users/gurads/can-deactivate-guard.service';
-import {TimerComponent} from './modules/shared/components/timer/timer.component';
 import {DefaultPageComponent} from './modules/default/pages/default-page/default-page.component';
 import {RegisterPageComponent} from './modules/authentication/pages/register-page/register-page.component';
 import {LoginPageComponent} from './modules/authentication/pages/login-page/login-page.component';
@@ -31,10 +30,6 @@ const routes: Routes = [
     )
   },
   {
-    path: 'timer',
-    component: TimerComponent
-  },
-  {
     path: AppRouteEnum.Register,
     component: RegisterPageComponent,
     title: 'Register'
@@ -47,24 +42,24 @@ const routes: Routes = [
   {
     path: AppRouteEnum.Home,
     component: HomePageComponent,
-    data: {title: 'Home'},
+    title: 'Home',
     canActivate: [AuthGuardService]
   },
   {
     path: AppRouteEnum.News,
     component: NewsPageComponent,
-    data: {title: 'News'},
+    title: 'News',
     canActivate: [AuthGuardService]
   },
   {
     path: AppRouteEnum.Default,
     component: DefaultPageComponent,
-    data: {title: 'Welcome'}
+    title: 'Welcome'
   },
   {
     path: AppRouteEnum.Error404,
     component: PageNotFoundComponent,
-    data: {title: 'Error 404'}
+    title: 'Error 404'
   },
 ];
 

@@ -4,14 +4,14 @@
       <app-welcome title="{{ pageName }}"></app-welcome>
     </div>
     <div class="formGroup">
-      <form [formGroup]="registerFormGroup" action="">
+      <form [formGroup]="registerFormGroup">
         <mat-form-field appearance="fill">
           <mat-label>User name</mat-label>
           <input formControlName='userName' matInput placeholder="User name">
           <mat-error *ngIf="errorHandler('userName', 'required')">User name is required</mat-error>
-          <mat-error *ngIf="errorHandler('userName', 'minlength')">This field must have more than 6 characters .
+          <mat-error *ngIf="errorHandler('userName', 'minlength')">This field must have more than 6 characters.
           </mat-error>
-          <mat-error *ngIf="errorHandler('userName', 'maxlength')">This field must have less than 15 characters .
+          <mat-error *ngIf="errorHandler('userName', 'maxlength')">This field must have less than 15 characters.
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
@@ -19,8 +19,11 @@
           <input formControlName='password' matInput placeholder="Password" type="password">
           <mat-error *ngIf="errorHandler('password', 'required')">Password is required</mat-error>
           <mat-error *ngIf="errorHandler('password', 'hasNumber')">Number is required</mat-error>
-          <mat-error *ngIf="errorHandler('password', 'hasCapitalCase')">hasCapitalCase is required</mat-error>
-          <mat-error *ngIf="errorHandler('password', 'hasSmallCase')">hasSmallCase is required</mat-error>
+          <mat-error *ngIf="errorHandler('password', 'hasCapitalCase')">CapitalCase is required</mat-error>
+          <mat-error *ngIf="errorHandler('password', 'hasSmallCase')">SmallCase is required</mat-error>
+          <mat-error *ngIf="errorHandler('password', 'minlength')">This field must have min 8 characters.</mat-error>
+          <mat-error *ngIf="errorHandler('password', 'maxlength')">This field must have less than 20 characters.
+          </mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Confirm</mat-label>

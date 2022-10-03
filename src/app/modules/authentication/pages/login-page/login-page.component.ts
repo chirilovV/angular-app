@@ -44,11 +44,14 @@ export class LoginPageComponent implements OnInit {
       this.registerService.findUser(userName, password)
       .subscribe(response => {
           if('ok' === response.status) {
-            this.authService.authorise();
+            this.authService.authorise(userName);
             this.notify.success(response.message);
 
             this.router.navigate([AppRouteEnum.Home]);
           } else {
+            this.registerFormGroup.controls['userName'].setErrors({'incorrect': true});
+            this.registerFormGroup.controls['password'].setErrors({'incorrect': true});
+            this.registerFormGroup.markAllAsTouched();
             this.notify.warning(response.message);
           }
         },
