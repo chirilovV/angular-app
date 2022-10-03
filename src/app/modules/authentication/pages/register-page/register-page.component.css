@@ -7,18 +7,25 @@
   padding: 35px;
   text-align: center;
 }
+
 .formGroup mat-form-field {
   width: 80%;
   margin: 10px 0;
 }
+
 .formGroup mat-error {
   margin: 5px 0;
+}
+
+.formGroup button:active {
+  opacity: 0.6;
 }
 
 p {
   text-align: center;
   margin: 15px auto;
 }
+
 p a {
   font-weight: bold;
   color: #452259;

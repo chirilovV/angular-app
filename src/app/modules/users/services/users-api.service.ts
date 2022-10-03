@@ -14,7 +14,6 @@ import {PageOptions} from '../../shared/models/pageOptions';
 
 export class UsersApiService {
 
-
   private users: User[] = [
     {
       id: 'a2',
@@ -55,7 +54,6 @@ export class UsersApiService {
     },
   ];
   private apiURL = 'https://api.github.com';
-  private randomNumber = Math.floor(Math.random() * (6000 - 1000 + 1)) + 1000;
 
   private defaultPageOptions: PageOptions = {
     pageIndex: 0,
@@ -66,7 +64,6 @@ export class UsersApiService {
     private favoritesService: FavoriteService,
     private httpService: HttpService
   ) {
-
   };
 
   getUsers(paginatorOption?: PageOptions,): Observable<UserResponse> {
@@ -74,7 +71,7 @@ export class UsersApiService {
 
     return this.httpService.dispatchData({
       method: HttpMethods.Get,
-      url: this.apiURL + `/search/users?per_page=${pageOption.pageSize}&q=${pageOption.pageIndex}`,
+      url: this.apiURL + `/search/users?per_page=${pageOption.pageSize}&page=${pageOption.pageIndex}&q=${pageOption.pageIndex}`,
       options: {}
     });
   }
@@ -118,7 +115,6 @@ export class UsersApiService {
       options: {}
     });
   }
-
 
   getLocalUsers(): User[] {
     return this.users;

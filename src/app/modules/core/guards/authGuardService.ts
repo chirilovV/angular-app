@@ -1,7 +1,7 @@
 import {ActivatedRouteSnapshot, CanActivate, Router} from '@angular/router';
 import {Injectable} from '@angular/core';
 import {NotificationService} from '../../shared/services/notification.service';
-import {AuthorisationService} from '../../authentication/services/authorisation.service';
+import {AuthorizationService} from '../../authentication/services/authorization.service';
 import {AppRouteEnum} from '../Enums/appRouteEnum';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class AuthGuardService implements CanActivate {
   constructor(
     private router: Router,
     private notify: NotificationService,
-    private authService: AuthorisationService
+    private authService: AuthorizationService
   ) {
   }
 

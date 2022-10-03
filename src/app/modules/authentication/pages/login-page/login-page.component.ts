@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {AuthenticationService} from '../../services/authentication.service';
 import {NotificationService} from '../../../shared/services/notification.service';
 import {AppRouteEnum} from '../../../core/Enums/appRouteEnum';
-import {AuthorisationService} from '../../services/authorisation.service';
+import {AuthorizationService} from '../../services/authorization.service';
 
 @Component({
   selector: 'login-page',
@@ -14,7 +14,6 @@ import {AuthorisationService} from '../../services/authorisation.service';
 export class LoginPageComponent implements OnInit {
 
   pageName: string = 'Login';
-
   registerFormGroup!: FormGroup;
   username!: string;
   password!: string;
@@ -24,7 +23,7 @@ export class LoginPageComponent implements OnInit {
     private fb: FormBuilder,
     private registerService: AuthenticationService,
     private notify: NotificationService,
-    private authService: AuthorisationService
+    private authService: AuthorizationService
   ) { }
 
   ngOnInit(): void {
@@ -51,8 +50,6 @@ export class LoginPageComponent implements OnInit {
           } else {
             this.registerFormGroup.controls['userName'].setErrors({'incorrect': true});
             this.registerFormGroup.controls['password'].setErrors({'incorrect': true});
-            this.registerFormGroup.markAllAsTouched();
-            this.notify.warning(response.message);
           }
         },
       );

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {AppRouteEnum} from '../../Enums/appRouteEnum';
-import {AuthorisationService} from '../../../authentication/services/authorisation.service';
+import {AuthorizationService} from '../../../authentication/services/authorization.service';
 
 @Component({
   selector: 'header',
@@ -10,7 +10,7 @@ import {AuthorisationService} from '../../../authentication/services/authorisati
 export class HeaderComponent {
   appPaths = AppRouteEnum;
 
-  constructor(private authService: AuthorisationService) {
+  constructor(private authService: AuthorizationService) {
   }
 
   get isAuthorised() {

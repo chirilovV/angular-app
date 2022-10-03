@@ -4,7 +4,7 @@ import {ConfirmDialog} from '../../../../shared/models/confirm-dialog.interface'
 import {ConfirmDialogComponent} from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {AppRouteEnum} from '../../../Enums/appRouteEnum';
-import {AuthorisationService} from '../../../../authentication/services/authorisation.service';
+import {AuthorizationService} from '../../../../authentication/services/authorization.service';
 
 @Component({
   selector: 'user-profile',
@@ -14,7 +14,7 @@ import {AuthorisationService} from '../../../../authentication/services/authoris
 export class UserProfileComponent {
 
   constructor(
-    private authService: AuthorisationService,
+    private authService: AuthorizationService,
     private router: Router,
     private dialog: MatDialog
   ) { }
