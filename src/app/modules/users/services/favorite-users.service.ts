@@ -21,11 +21,11 @@ export class FavoriteUsersService {
     let favoriteUsers: User[] = [];
 
     this.favoritesService.getItems(EntitiesEnum.user).subscribe(value => {
-      favoriteUsers = this.usersService.getLocalUsers().filter(
-        item => value.includes(item.id)).map(
-        user => (
-          {...user, isFavorite: true}
-        ));
+//      favoriteUsers = this.usersService.getLocalUsers().filter(
+//        item => value.includes(item.id)).map(
+//        user => (
+//          {...user, isFavorite: true}
+//        ));
     });
 
     return of(favoriteUsers);

@@ -1,12 +1,14 @@
 <div class="container">
-  <nav mat-tab-nav-bar>
-    <a #rla="routerLinkActive"
-       *ngFor="let link of navLinks"
-       [active]="rla.isActive"
-       [routerLink]="link.route" mat-tab-link
-       routerLinkActive="">
-      {{link.label}}
-    </a>
-  </nav>
+  <mat-tab-group>
+    <mat-tab class="left-default-tab" label="Personal info">
+      <personal-info [user]="user"></personal-info>
+    </mat-tab>
+    <mat-tab class="center" label="Company info">
+      <company-info [company]="companyInfo"></company-info>
+    </mat-tab>
+    <mat-tab class="right" label="Contacts">
+      <contacts [contacts]="addresses"></contacts>
+    </mat-tab>
+  </mat-tab-group>
   <router-outlet></router-outlet>
 </div>

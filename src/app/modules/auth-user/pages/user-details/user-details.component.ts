@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {AppRouteEnum} from '../../../core/Enums/appRouteEnum';
-
-export interface NavLink {
-  label: string;
-  route: string;
-}
+import {take} from 'rxjs';
+import {LocalUsersService} from '../../../users/services/local-users-service';
+import {Address} from '../../../users/models/address.interface';
+import {CompanyInfo} from '../../models/company-info.interface';
+import {NewUser, PersonalInfo} from '../../../users/models/new-user.interface';
+import {NotificationService} from '../../../shared/services/notification.service';
 
 @Component({
   selector: 'app-user-details',
@@ -15,23 +16,34 @@ export interface NavLink {
 export class UserDetailsComponent implements OnInit {
 
   appPaths = AppRouteEnum;
+  user!: PersonalInfo;
+  companyInfo!: CompanyInfo;
+  addresses: Address[] = [];
 
-  navLinks: NavLink[] = [
-    {
-      label: 'Personal Info',
-      route: AppRouteEnum.ProfileInfo
-    },
-    {
-      label: 'Company Info',
-      route: AppRouteEnum.CompanyInfo
-    },
-    {
-      label: 'Contacts',
-      route: AppRouteEnum.UserContacts
-    }
-  ];
-
+  constructor(
+    private usersService: LocalUsersService,
+    private notificationService: NotificationService
+  ) {}
 
   ngOnInit(): void {
+    this.getUser();
+  }
+
+  getUser(): void {
+    this.usersService.getUserById('a5')
+    .pipe(take(1))
+    .subscribe((response: NewUser | undefined) => {
+        if(response === undefined) {
+          this.notificationService.warning('User not found');
+        } else {
+          this.user = response.personalInfo;
+          this.companyInfo = response.companyInfo;
+
+          if(response.addresses) {
+            this.addresses = response.addresses;
+          }
+        }
+      }
+    );
   }
 }

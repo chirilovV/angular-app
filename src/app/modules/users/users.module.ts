@@ -22,6 +22,7 @@ import {UserDetailsComponent} from '../auth-user/pages/user-details/user-details
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatChipsModule} from '@angular/material/chips';
 import {AuthUserModule} from '../auth-user/auth-user.module';
+import {CoreModule} from '../core/core.module';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {AuthUserModule} from '../auth-user/auth-user.module';
     MatProgressSpinnerModule,
     MatTabsModule,
     MatChipsModule,
-    AuthUserModule
+    AuthUserModule,
+    CoreModule
   ],
 
 })

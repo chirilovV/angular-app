@@ -1,7 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {LocalUsersService} from '../../../users/services/local-users-service';
-import {CompanyInfo} from '../../models/company-info.interface';
-import {take} from 'rxjs';
+import {Component, Input} from '@angular/core';
+import {CompanyInfo} from '../../../users/models/new-user.interface';
 
 @Component({
   selector: 'company-info',
@@ -9,27 +7,6 @@ import {take} from 'rxjs';
   styleUrls: ['./company-info.component.scss']
 })
 
-export class CompanyInfoComponent implements OnInit {
-  company!: CompanyInfo;
-
-  constructor(private usersService: LocalUsersService,) { }
-
-  ngOnInit(): void {
-    this.getCompanyData();
-  }
-
-  getCompanyData(): void {
-    this.usersService.getUserById('a5')
-    .pipe(take(1))
-    .subscribe(
-      response => {
-        this.company = {
-          fullName: response.company,
-          department: response.department,
-          salary: response.salary,
-          currency: response.currency
-        };
-      }
-    );
-  }
+export class CompanyInfoComponent {
+  @Input() company!: CompanyInfo;
 }

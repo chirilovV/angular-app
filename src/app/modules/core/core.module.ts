@@ -17,7 +17,8 @@ import {MatMenuModule} from '@angular/material/menu';
   ],
   exports: [
     HeaderComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    UserProfileComponent
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {GenderEnum} from '../../core/Enums/gender.enum';
 import {FavoriteService} from '../../shared/services/favorite.service';
 import {User} from '../models/user.interface';
 import {Observable} from 'rxjs';
@@ -13,48 +12,7 @@ import {PageOptions} from '../../shared/models/pageOptions';
 })
 
 export class UsersApiService {
-
-  private users: User[] = [
-    {
-      id: 'a2',
-      firstName: 'Ana',
-      lastName: 'Maria',
-      age: 27,
-      imageUrl: 'assets/img/avatar2.png',
-      department: 'Data Management',
-      company: 'Coherent Solutions',
-      salary: 1000,
-      currency: 'usd',
-      gender: GenderEnum.Female,
-      email: 'some@gmail.com'
-    },
-    {
-      id: 'a5',
-      firstName: 'George',
-      lastName: 'Bush',
-      age: 38,
-      imageUrl: 'assets/img/avatar5.png',
-      department: 'Data Management',
-      company: 'Coherent Solutions',
-      gender: GenderEnum.Male,
-      email: 'some@mail.com',
-      addresses: [{
-        addressLine: 'czxczcz',
-      },
-        {
-          addressLine: 'czxczcz',
-          city: 'London',
-          zip: 'MD-2021'
-        },
-        {
-          addressLine: 'czxczcz',
-          city: 'Chisinau',
-          zip: 'MD-2021'
-        }]
-    },
-  ];
   private apiURL = 'https://api.github.com';
-
   private defaultPageOptions: PageOptions = {
     pageIndex: 0,
     pageSize: 5
@@ -115,9 +73,4 @@ export class UsersApiService {
       options: {}
     });
   }
-
-  getLocalUsers(): User[] {
-    return this.users;
-  }
-
 }

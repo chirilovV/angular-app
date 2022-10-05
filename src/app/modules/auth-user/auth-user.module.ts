@@ -26,7 +26,10 @@ import {SharedModule} from '../shared/shared.module';
   ],
 
   exports: [
-    AuthUserRoutingModule
+    AuthUserRoutingModule,
+    PersonalInfoComponent,
+    CompanyInfoComponent,
+    ContactsComponent
   ]
 })
 export class AuthUserModule {

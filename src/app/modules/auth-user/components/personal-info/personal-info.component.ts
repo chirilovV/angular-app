@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {LocalUsersService} from '../../../users/services/local-users-service';
-import {User} from '../../../users/models/user.interface';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {UploadImageService} from '../../../shared/services/upload-image.service';
 import {NotificationService} from '../../../shared/services/notification.service';
 import {take} from 'rxjs';
+import {UsersApiService} from '../../../users/services/users-api.service';
+import {PersonalInfo} from '../../../users/models/new-user.interface';
 
 
 @Component({
@@ -14,13 +14,14 @@ import {take} from 'rxjs';
 })
 export class PersonalInfoComponent implements OnInit {
 
-  user!: User;
+  @Input() user!: PersonalInfo;
+
   myForm!: FormGroup;
   filePath!: string;
   file!: File;
 
   constructor(
-    private usersService: LocalUsersService,
+    private usersService: UsersApiService,
     private formBuilder: FormBuilder,
     private uploadImageService: UploadImageService,
     private notificationService: NotificationService
@@ -29,36 +30,23 @@ export class PersonalInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getUser();
     this.myForm = this.formBuilder.group({
       img: [null],
       filename: ['']
     });
   }
 
-  getUser(): void {
-    this.usersService.getUserById('a5')
-    .pipe(take(1))
-    .subscribe(
-      response => {
-        this.user = response;
-        this.filePath = this.user.imageUrl;
-      }
-    );
-  }
-
-  onSelectFile(inputFile: any) {
-    this.file = inputFile.files[0];
-    const reader = new FileReader();
+  onSelectFile(inputFile: any): void {
+    const reader: FileReader = new FileReader();
     reader.onload = () => {
       this.filePath = reader.result as string;
     };
 
-    reader.readAsDataURL(this.file);
+    reader.readAsDataURL(inputFile.files[0]);
   }
 
   onSubmit(): void {
-    if(null !== this.file) {
+    if(this.file !== null) {
       this.uploadImageService.uploadImage(this.file)
       .pipe(take(1))
       .subscribe(

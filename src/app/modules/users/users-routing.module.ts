@@ -14,12 +14,12 @@ const routes: Routes = [
   {
     path: AppRouteEnum.NewUser,
     component: NewUserPageComponent,
-    title: 'Add new User'
+    title: 'Add new NewUser'
   },
   {
     path: AppRouteEnum.EditUser,
     component: EditUserPageComponent,
-    title: 'Edit User'
+    title: 'Edit NewUser'
   },
 ];
 
