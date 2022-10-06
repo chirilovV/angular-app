@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {CompanyInfo} from '../../../users/models/new-user.interface';
+import {CompanyInfo} from '../../models/new-user.interface';
 
 @Component({
   selector: 'company-info',

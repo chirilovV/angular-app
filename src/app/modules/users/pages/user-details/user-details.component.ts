@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {AppRouteEnum} from '../../../core/Enums/appRouteEnum';
-import {take} from 'rxjs';
-import {LocalUsersService} from '../../../users/services/local-users-service';
-import {Address} from '../../../users/models/address.interface';
-import {CompanyInfo} from '../../models/company-info.interface';
-import {NewUser, PersonalInfo} from '../../../users/models/new-user.interface';
+import {CompanyInfo, NewUser, PersonalInfo} from '../../models/new-user.interface';
+import {Address} from '../../models/address.interface';
+import {LocalUsersService} from '../../services/local-users-service';
 import {NotificationService} from '../../../shared/services/notification.service';
+import {take} from 'rxjs';
 
 @Component({
   selector: 'app-user-details',

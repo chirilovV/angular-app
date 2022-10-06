@@ -4,7 +4,6 @@ import {Router} from '@angular/router';
 import {NotificationService} from 'src/app/modules/shared/services/notification.service';
 import {AuthenticationService} from '../../services/authentication.service';
 import {AppRouteEnum} from '../../../core/Enums/appRouteEnum';
-import {CustomValidatorService} from '../../../shared/services/customValidator.service';
 import {take} from 'rxjs';
 
 @Component({
@@ -17,7 +16,6 @@ export class RegisterPageComponent implements OnInit {
   pageName: string = 'Register';
   registerFormGroup!: FormGroup;
 
-  //@ts-ignore
   constructor(
     private fb: FormBuilder,
     private registerService: AuthenticationService,
@@ -27,19 +25,24 @@ export class RegisterPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerFormGroup = this.fb.group({
-        userName: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
-        password: [null, Validators.compose([
+        userName: ['', [
           Validators.required,
-          Validators.minLength(8),
-          Validators.maxLength(20),
-          CustomValidatorService.patternValidator(/\d/, {hasNumber: true}),
-          CustomValidatorService.patternValidator(/[A-Z]/, {hasCapitalCase: true}),
-          CustomValidatorService.patternValidator(/[a-z]/, {hasSmallCase: true}),]),
+//          Validators.minLength(6),
+//          Validators.maxLength(15)
+        ]],
+        password: [null, Validators.compose([
+//          Validators.required,
+//          Validators.minLength(8),
+//          Validators.maxLength(20),
+//          CustomValidatorService.patternValidator(/\d/, {hasNumber: true}),
+//          CustomValidatorService.patternValidator(/[A-Z]/, {hasCapitalCase: true}),
+//          CustomValidatorService.patternValidator(/[a-z]/, {hasSmallCase: true}),
+        ]),
         ],
         confirm: [null, [Validators.required]],
       },
       {
-        validators: CustomValidatorService.passwordMatchValidator
+//        validators: CustomValidatorService.passwordMatchValidator
       }
     );
   }

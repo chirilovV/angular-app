@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Address} from '../../../users/models/address.interface';
+import {Address} from '../../models/address.interface';
 
 @Component({
   selector: 'contacts',

@@ -9,7 +9,6 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {SharedModule} from './modules/shared/shared.module';
 import {DefaultPageComponent} from './modules/default/pages/default-page/default-page.component';
 import {BrowserModule} from '@angular/platform-browser';
-import {AuthUserModule} from './modules/auth-user/auth-user.module';
 import {AuthenticationModule} from './modules/authentication/authentication.module';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -27,7 +26,6 @@ import {AuthInterceptor} from './modules/core/interceptors/auth-interceptor.serv
     CoreModule,
     HomeModule,
     NewsModule,
-    AuthUserModule,
     AuthenticationModule,
     HttpClientModule,
     BrowserModule,

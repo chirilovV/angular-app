@@ -3,8 +3,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {UploadImageService} from '../../../shared/services/upload-image.service';
 import {NotificationService} from '../../../shared/services/notification.service';
 import {take} from 'rxjs';
-import {UsersApiService} from '../../../users/services/users-api.service';
-import {PersonalInfo} from '../../../users/models/new-user.interface';
+import {UsersApiService} from '../../services/users-api.service';
+import {PersonalInfo} from '../../models/new-user.interface';
 
 
 @Component({
