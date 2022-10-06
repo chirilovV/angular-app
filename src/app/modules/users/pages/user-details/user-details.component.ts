@@ -19,6 +19,21 @@ export class UserDetailsComponent implements OnInit {
   companyInfo!: CompanyInfo;
   addresses: Address[] = [];
 
+  navLinks = [
+    {
+      label: 'Personal Info',
+      link: AppRouteEnum.ProfileInfo,
+    },
+    {
+      label: 'Company info',
+      link: AppRouteEnum.CompanyInfo,
+    },
+    {
+      label: 'Contacts',
+      link: AppRouteEnum.UserContacts,
+    },
+  ];
+
   constructor(
     private usersService: LocalUsersService,
     private notificationService: NotificationService
