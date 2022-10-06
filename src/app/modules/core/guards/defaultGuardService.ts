@@ -4,7 +4,6 @@ import {NotificationService} from '../../shared/services/notification.service';
 import {AuthorizationService} from '../../authentication/services/authorization.service';
 import {AppRouteEnum} from '../Enums/appRouteEnum';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -17,11 +16,12 @@ export class DefaultGuardService implements CanActivate {
   }
 
   public canActivate(route: ActivatedRouteSnapshot): boolean {
+    const isLogged: boolean = this.authService.isUserAuthorised();
 
-    if(this.authService.isUserAuthorised()) {
+    if(isLogged) {
       this.router.navigate([AppRouteEnum.Home]);
     }
 
-    return !this.authService.isUserAuthorised();
+    return !isLogged;
   }
 }

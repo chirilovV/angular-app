@@ -3,8 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {NotificationService} from 'src/app/modules/shared/services/notification.service';
 import {AuthenticationService} from '../../services/authentication.service';
-import {AppRouteEnum} from '../../../core/Enums/appRouteEnum';
-import {take} from 'rxjs';
+import {Subscription, take} from 'rxjs';
 
 @Component({
   selector: 'app-register-page',
@@ -15,6 +14,7 @@ export class RegisterPageComponent implements OnInit {
 
   pageName: string = 'Register';
   registerFormGroup!: FormGroup;
+  subscription: Subscription | undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -55,10 +55,10 @@ export class RegisterPageComponent implements OnInit {
       .subscribe(
         response => {
           this.notify.success(response);
-
-          setInterval(() => {
-            this.router.navigate([AppRouteEnum.Login]);
-          }, 1000);
+//          console.log('aici');
+//          setInterval(() => {
+//            this.router.navigate([AppRouteEnum.Login]);
+//          }, 1000);
         }
       );
     }

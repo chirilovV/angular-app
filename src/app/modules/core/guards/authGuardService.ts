@@ -17,6 +17,7 @@ export class AuthGuardService implements CanActivate {
 
   public canActivate(route: ActivatedRouteSnapshot): boolean {
     const isLogged: boolean = this.authService.isUserAuthorised();
+
     if(!isLogged) {
       this.router.navigate([AppRouteEnum.Register]);
     }
