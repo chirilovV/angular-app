@@ -5,43 +5,63 @@ import {NewsPageComponent} from './modules/news/pages/news-page/news-page.compon
 import {PageNotFoundComponent} from './modules/core/components/not-found-404/page-not-found.component';
 import {AppRouteEnum} from './modules/core/Enums/appRouteEnum';
 import {CanDeactivateGuard} from './modules/users/gurads/can-deactivate-guard.service';
-import {RegisterPageComponent} from './modules/authentication/pages/register-page/register-page.component';
 import {LoginPageComponent} from './modules/authentication/pages/login-page/login-page.component';
 import {AuthGuardService} from './modules/core/guards/authGuardService';
-import {UserDetailsComponent} from './modules/users/pages/user-details/user-details.component';
 import {DefaultPageComponent} from './modules/default/pages/default-page/default-page.component';
 import {DefaultGuardService} from './modules/core/guards/defaultGuardService';
+import {LoggedOnlyLayoutComponent} from './modules/shared/components/logged-only-layout/logged-only-layout.component';
+import {DefaultLayoutComponent} from './modules/shared/components/default-layout/default-layout.component';
+import {RegisterPageComponent} from './modules/authentication/pages/register-page/register-page.component';
 
 const routes: Routes = [
   {
     path: AppRouteEnum.Register,
-    component: RegisterPageComponent,
-    title: 'Register',
-    canActivate: [DefaultGuardService]
+    component: DefaultLayoutComponent,
+    canActivate: [DefaultGuardService],
+    children: [
+      {
+        path: '',
+        component: RegisterPageComponent,
+        title: 'Register',
+      },
+    ]
   },
   {
     path: AppRouteEnum.Login,
-    component: LoginPageComponent,
-    title: 'Login',
-    canActivate: [DefaultGuardService]
+    component: DefaultLayoutComponent,
+    canActivate: [DefaultGuardService],
+    children: [
+      {
+        path: '',
+        component: LoginPageComponent,
+        title: 'Login',
+      },
+    ]
   },
   {
     path: AppRouteEnum.Home,
-    component: HomePageComponent,
+    component: LoggedOnlyLayoutComponent,
     title: 'Home',
-    canActivate: [AuthGuardService]
-  },
-  {
-    path: AppRouteEnum.UserDetails,
-    component: UserDetailsComponent,
-    title: 'Profile',
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
+    children: [
+      {
+        path: '',
+        component: HomePageComponent,
+        title: 'Cars',
+      },]
   },
   {
     path: AppRouteEnum.News,
-    component: NewsPageComponent,
+    component: LoggedOnlyLayoutComponent,
     title: 'News',
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
+    children: [
+      {
+        path: '',
+        component: NewsPageComponent,
+        title: 'Cars',
+      },
+    ]
   },
   {
     path: AppRouteEnum.Users,
@@ -59,8 +79,14 @@ const routes: Routes = [
   },
   {
     path: AppRouteEnum.Default,
-    component: DefaultPageComponent,
-    title: 'Welcome'
+    component: DefaultLayoutComponent,
+    title: 'Welcome',
+    children: [
+      {
+        path: '',
+        component: DefaultPageComponent,
+      },
+    ]
   },
   {
     path: AppRouteEnum.Error404,

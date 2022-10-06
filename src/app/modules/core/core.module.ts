@@ -1,24 +1,27 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {HeaderComponent} from './components/header/header.component';
+import {AuthHeaderComponent} from './components/header/auth-header.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {RouterModule} from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import {PageNotFoundComponent} from './components/not-found-404/page-not-found.component';
 import {UserProfileComponent} from './components/user/user-profile/user-profile.component';
 import {MatMenuModule} from '@angular/material/menu';
+import {DefaultHeaderComponent} from './components/default-header/default-header.component';
 
 
 @NgModule({
   declarations: [
-    HeaderComponent,
+    AuthHeaderComponent,
     PageNotFoundComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    DefaultHeaderComponent
   ],
   exports: [
-    HeaderComponent,
+    AuthHeaderComponent,
     PageNotFoundComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    DefaultHeaderComponent
   ],
   imports: [
     CommonModule,

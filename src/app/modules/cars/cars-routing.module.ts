@@ -1,14 +1,18 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {CarsPageComponent} from './pages/cars-page/cars-page.component';
-import {AuthGuardService} from '../core/guards/authGuardService';
+import {LoggedOnlyLayoutComponent} from '../shared/components/logged-only-layout/logged-only-layout.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: CarsPageComponent,
-    canActivate: [AuthGuardService],
-    title: 'Cars'
+    component: LoggedOnlyLayoutComponent,
+    children: [
+      {
+        path: 'all',
+        component: CarsPageComponent,
+        title: 'Cars',
+      },]
   },
 ];
 
