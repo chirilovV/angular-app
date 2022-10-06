@@ -10,17 +10,20 @@ import {LoginPageComponent} from './modules/authentication/pages/login-page/logi
 import {AuthGuardService} from './modules/core/guards/authGuardService';
 import {UserDetailsComponent} from './modules/users/pages/user-details/user-details.component';
 import {DefaultPageComponent} from './modules/default/pages/default-page/default-page.component';
+import {DefaultGuardService} from './modules/core/guards/defaultGuardService';
 
 const routes: Routes = [
   {
     path: AppRouteEnum.Register,
     component: RegisterPageComponent,
     title: 'Register',
+    canActivate: [DefaultGuardService]
   },
   {
     path: AppRouteEnum.Login,
     component: LoginPageComponent,
     title: 'Login',
+    canActivate: [DefaultGuardService]
   },
   {
     path: AppRouteEnum.Home,
