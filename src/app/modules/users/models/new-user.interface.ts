@@ -1,7 +1,7 @@
 import {GenderEnum} from '../../core/Enums/gender.enum';
 import {Address} from './address.interface';
 
-export interface NewUser {
+export interface LocalUser {
   id: string,
   personalInfo: PersonalInfo,
   companyInfo: CompanyInfo

@@ -8,6 +8,8 @@ export enum AppRouteEnum {
   NewUser = 'new-user',
   UserDetails = 'user-details',
   EditUser = 'edit-user/:id',
+  UserStatistics = 'user-statistics',
+  ClientStatistics = 'client-statistics',
 
   Home = 'home',
   News = 'news',

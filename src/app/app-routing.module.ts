@@ -12,8 +12,31 @@ import {DefaultGuardService} from './modules/core/guards/defaultGuardService';
 import {LoggedOnlyLayoutComponent} from './modules/shared/components/logged-only-layout/logged-only-layout.component';
 import {DefaultLayoutComponent} from './modules/shared/components/default-layout/default-layout.component';
 import {RegisterPageComponent} from './modules/authentication/pages/register-page/register-page.component';
+import {
+  ClientSideStatisticsComponent
+} from './modules/statistics/client-side-statistics/client-side-statistics.component';
+import {
+  ServerSideStatisticsComponent
+} from './modules/statistics/server-side-statistics/server-side-statistics.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: LoggedOnlyLayoutComponent,
+    canActivate: [AuthGuardService],
+    children: [
+      {
+        path: AppRouteEnum.UserStatistics,
+        component: ServerSideStatisticsComponent,
+        title: 'Users statistics',
+      },
+      {
+        path: AppRouteEnum.ClientStatistics,
+        component: ClientSideStatisticsComponent,
+        title: 'Client statistics',
+      },
+    ]
+  },
   {
     path: AppRouteEnum.Register,
     component: DefaultLayoutComponent,

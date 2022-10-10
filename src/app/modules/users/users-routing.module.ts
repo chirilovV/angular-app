@@ -23,12 +23,12 @@ const routes: Routes = [
       {
         path: AppRouteEnum.NewUser,
         component: NewUserPageComponent,
-        title: 'Add new NewUser'
+        title: 'Add new LocalUser'
       },
       {
         path: AppRouteEnum.EditUser,
         component: EditUserPageComponent,
-        title: 'Edit NewUser'
+        title: 'Edit LocalUser'
       },
       {
         path: AppRouteEnum.UserDetails,

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AppRouteEnum} from '../../../core/Enums/appRouteEnum';
-import {CompanyInfo, NewUser, PersonalInfo} from '../../models/new-user.interface';
+import {CompanyInfo, LocalUser, PersonalInfo} from '../../models/new-user.interface';
 import {Address} from '../../models/address.interface';
 import {LocalUsersService} from '../../services/local-users-service';
 import {NotificationService} from '../../../shared/services/notification.service';
@@ -46,7 +46,7 @@ export class UserDetailsComponent implements OnInit {
   getUser(): void {
     this.usersService.getUserById('a5')
     .pipe(take(1))
-    .subscribe((response: NewUser | undefined) => {
+    .subscribe((response: LocalUser | undefined) => {
         if(response === undefined) {
           this.notificationService.warning('User not found');
         } else {

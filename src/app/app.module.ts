@@ -12,6 +12,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AuthenticationModule} from './modules/authentication/authentication.module';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {StatisticsModule} from './modules/statistics/statistics.module';
 
 @NgModule({
   declarations: [
@@ -24,11 +25,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     CoreModule,
     HomeModule,
     NewsModule,
+    StatisticsModule,
     AuthenticationModule,
     HttpClientModule,
     BrowserModule,
     MatSnackBarModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   exports: [],

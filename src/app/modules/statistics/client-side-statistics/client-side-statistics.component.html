@@ -1,0 +1,48 @@
+<div class="container">
+
+  <div class="header">Client side statistics</div>
+
+  <div class="row">
+    <table [dataSource]="dataSource" mat-table matSort>
+
+      <div matColumnDef="name">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header="">{{ columnsName.name | uppercase }}</th>
+        <td *matCellDef="let element" mat-cell>
+          {{ element.personalInfo.firstName | fullName:element.personalInfo.lastName }}
+        </td>
+      </div>
+
+      <div matColumnDef="email">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Email</th>
+        <td *matCellDef="let element" mat-cell> {{ element.personalInfo.email }} </td>
+      </div>
+
+      <div matColumnDef={{columnsName.age}}>
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> {{ columnsName.age | uppercase }} </th>
+        <td *matCellDef="let element" mat-cell> {{ element.personalInfo.age }} </td>
+      </div>
+
+      <div matColumnDef={{columnsName.department}}>
+        <th *matHeaderCellDef mat-header-cell mat-sort-header> {{ columnsName.department | uppercase }}</th>
+        <td *matCellDef="let element" mat-cell> {{ element.companyInfo.department }} </td>
+      </div>
+
+      <div matColumnDef={{columnsName.addresses}}>
+        <th *matHeaderCellDef mat-header-cell> {{ columnsName.addresses | uppercase }}</th>
+        <td *matCellDef="let element" mat-cell>
+          <div *ngFor="let address of element.addresses; let i=index">
+            <b>{{i + 1}}.</b>
+            <span>{{ address | fullAddress }}</span>
+          </div>
+        </td>
+      </div>
+
+      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   aria-label="Select page of periodic elements"
+                   showFirstLastButtons>
+    </mat-paginator>
+  </div>
+</div>

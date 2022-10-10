@@ -1,0 +1,34 @@
+<div class="container">
+
+  <div class="header">Client side statistics</div>
+
+  <div class="row">
+    <table [dataSource]="dataSource" mat-table matSort>
+      <div matColumnDef="id">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>ID</th>
+        <td *matCellDef="let element" mat-cell> {{ element.id }} </td>
+      </div>
+
+      <div matColumnDef="login">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header="">Login</th>
+        <td *matCellDef="let element" mat-cell>
+          {{ element.login }}
+        </td>
+      </div>
+
+      <div matColumnDef="url">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Url</th>
+        <td *matCellDef="let element" mat-cell> {{ element.url }} </td>
+      </div>
+
+      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+    </table>
+    <mat-paginator #paginator
+                   (page)="pageChanged($event)"
+                   [pageSizeOptions]="[5, 10, 20]">
+      aria-label="Select page of periodic elements"
+      showFirstLastButtons>
+    </mat-paginator>
+  </div>
+</div>

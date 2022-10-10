@@ -4,7 +4,7 @@ import {User} from '../models/user.interface';
 import {Observable} from 'rxjs';
 import {HttpService} from '../../core/services/http.service';
 import {HttpMethods} from '../../core/Enums/http-methods.enum';
-import {UserResponse} from '../models/UserResponse.interface';
+import {UsersResponse} from '../models/UsersResponse.interface';
 import {PageOptions} from '../../shared/models/pageOptions';
 
 @Injectable({
@@ -24,8 +24,8 @@ export class UsersApiService {
   ) {
   };
 
-  getUsers(paginatorOption?: PageOptions,): Observable<UserResponse> {
-    let pageOption = paginatorOption ? paginatorOption : this.defaultPageOptions;
+  getUsers(paginatorOption?: PageOptions,): Observable<UsersResponse> {
+    let pageOption: PageOptions = paginatorOption ? paginatorOption : this.defaultPageOptions;
 
     return this.httpService.dispatchData({
       method: HttpMethods.Get,
