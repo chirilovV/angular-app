@@ -1,5 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {Address} from '../../models/address.interface';
+import {LocalUsersService} from '../../services/local-users-service';
 
 @Component({
   selector: 'contacts',
@@ -7,5 +8,16 @@ import {Address} from '../../models/address.interface';
   styleUrls: ['./contacts.component.scss']
 })
 export class ContactsComponent {
-  @Input() contacts!: Address[];
+  contacts: Address[] = [];
+
+  constructor(private usersService: LocalUsersService) {
+  }
+
+  public ngOnInit(): void {
+    this.usersService.getUserById('1').subscribe(response => {
+      if(response && response.addresses) {
+        this.contacts = response.addresses;
+      }
+    });
+  }
 }

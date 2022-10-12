@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {UploadImageService} from '../../../shared/services/upload-image.service';
 import {NotificationService} from '../../../shared/services/notification.service';
 import {take} from 'rxjs';
-import {UsersApiService} from '../../services/users-api.service';
 import {PersonalInfo} from '../../models/new-user.interface';
+import {LocalUsersService} from '../../services/local-users-service';
 
 
 @Component({
@@ -14,25 +14,26 @@ import {PersonalInfo} from '../../models/new-user.interface';
 })
 export class PersonalInfoComponent implements OnInit {
 
-  @Input() user!: PersonalInfo;
+  personalInfo!: PersonalInfo;
 
   myForm!: FormGroup;
   filePath!: string;
   file!: File;
 
   constructor(
-    private usersService: UsersApiService,
+    private usersService: LocalUsersService,
     private formBuilder: FormBuilder,
     private uploadImageService: UploadImageService,
     private notificationService: NotificationService
   ) {
-
   }
 
   ngOnInit(): void {
-    this.myForm = this.formBuilder.group({
-      img: [null],
-      filename: ['']
+    this.createFormData();
+    this.usersService.getUserById('1').subscribe(response => {
+      if(response) {
+        this.personalInfo = response.personalInfo;
+      }
     });
   }
 
@@ -53,5 +54,12 @@ export class PersonalInfoComponent implements OnInit {
         response => this.notificationService.success(response)
       );
     }
+  }
+
+  private createFormData(): void {
+    this.myForm = this.formBuilder.group({
+      img: [null],
+      filename: ['']
+    });
   }
 }
