@@ -15,7 +15,7 @@ import {Subscription} from 'rxjs';
 export class LoginPageComponent implements OnInit, OnDestroy {
 
   pageName: string = 'Login';
-  registerFormGroup!: FormGroup;
+  loginFormGroup!: FormGroup;
   username!: string;
   password!: string;
   private subscription: Subscription | undefined;
@@ -29,7 +29,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.registerFormGroup = this.fb.group({
+    this.loginFormGroup = this.fb.group({
         userName: ['', [Validators.required]],
         password: ['', [Validators.required]],
       }
@@ -37,11 +37,11 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   }
 
   submit(): void {
-    this.registerFormGroup.markAllAsTouched();
-    let userName = this.registerFormGroup.value['userName'];
-    let password = this.registerFormGroup.value['password'];
+    this.loginFormGroup.markAllAsTouched();
+    let userName = this.loginFormGroup.value['userName'];
+    let password = this.loginFormGroup.value['password'];
 
-    if(this.registerFormGroup.valid) {
+    if(this.loginFormGroup.valid) {
       this.subscription = this.registerService.findUser(userName, password)
       .subscribe(response => {
           if('ok' === response.status) {
@@ -50,8 +50,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
             this.router.navigate([AppRouteEnum.Home]);
           } else {
-            this.registerFormGroup.controls['userName'].setErrors({'incorrect': true});
-            this.registerFormGroup.controls['password'].setErrors({'incorrect': true});
+            this.loginFormGroup.controls['userName'].setErrors({'incorrect': true});
+            this.loginFormGroup.controls['password'].setErrors({'incorrect': true});
           }
         },
       );
@@ -59,7 +59,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   }
 
   errorHandler(controlName: string, errorName: string): boolean {
-    return this.registerFormGroup.controls[controlName].hasError(errorName);
+    return this.loginFormGroup.controls[controlName].hasError(errorName);
   }
 
   ngOnDestroy(): void {

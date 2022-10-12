@@ -32,9 +32,8 @@
           <mat-error *ngIf="errorHandler('confirm', 'required')">Confirm is required</mat-error>
           <mat-error *ngIf="errorHandler('confirm', 'noPasswordMatch')">Confirm not match</mat-error>
         </mat-form-field>
+        <button (click)="submit()" class="button" type="submit">Submit</button>
       </form>
-
-      <button (click)="submit()" class="button" type="submit">Submit</button>
     </div>
     <p>Already have an account?<a mat-button routerLink="/login" routerLinkActive="active-button">Please Sign in</a>
     </p>

@@ -4,7 +4,7 @@
       <p> Sign in </p>
       <span>or</span><a mat-button routerLink="/register" routerLinkActive="active-button">register for free</a>
 
-      <form [formGroup]="registerFormGroup" action="">
+      <form [formGroup]="loginFormGroup">
         <mat-form-field appearance="fill">
           <mat-label>User name</mat-label>
           <input formControlName='userName' matInput placeholder="User name">
@@ -17,9 +17,9 @@
           <mat-error *ngIf="errorHandler('password', 'required')">Password is required</mat-error>
           <mat-error *ngIf="errorHandler('password', 'incorrect')">The username or password is incorrect</mat-error>
         </mat-form-field>
-      </form>
 
-      <button (click)="submit()" class="button" type="submit">Submit</button>
+        <button (click)="submit()" class="button" type="submit">Submit</button>
+      </form>
     </div>
   </div>
 </div>
