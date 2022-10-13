@@ -1,6 +1,7 @@
 <div class="container">
   <mat-spinner *ngIf="!personalInfo"></mat-spinner>
   <div *ngIf="personalInfo">
+    <p>Name: {{personalInfo.firstName | fullName:  personalInfo.lastName}} </p>
     <label class="hoverable" for="fileInput">
       <img alt="" mat-card-avatar src="{{personalInfo.imageUrl}}">
       <div class="hover-text">Choose file</div>
@@ -9,7 +10,6 @@
     <input #imageInput (change)="onSelectFile( imageInput)" id="fileInput" type='file'>
     <button (click)="onSubmit()" mat-button>Upload</button>
     <hr>
-    <p>Name: {{personalInfo.firstName | fullName:  personalInfo.lastName}} </p>
     <p>Age: {{personalInfo.age | age}}</p>
     <p>Email: {{personalInfo.email}}</p>
     <p>Gender: {{personalInfo.gender}}</p>

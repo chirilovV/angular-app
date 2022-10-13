@@ -17,6 +17,7 @@ import {
 } from './modules/statistics/server-side-statistics/server-side-statistics.component';
 import {DefaultGuardService} from './modules/core/guards/defaultGuardService';
 import {DefaultPageComponent} from './modules/default/pages/default-page/default-page.component';
+import {CanLoadGuardService} from './modules/core/guards/canLoadGuardService';
 
 const routes: Routes = [
   {
@@ -70,12 +71,14 @@ const routes: Routes = [
       // Lazy loading
       {
         path: AppRouteEnum.Users,
+        canLoad: [CanLoadGuardService],
         loadChildren: () => import('./modules/users/users.module').then(
           m => m.UsersModule
         ),
       },
       {
         path: AppRouteEnum.Cars,
+        canLoad: [CanLoadGuardService],
         loadChildren: () => import('./modules/cars/cars.module').then(
           m => m.CarsModule
         ),

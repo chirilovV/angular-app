@@ -30,7 +30,7 @@ import {MatCardModule} from '@angular/material/card';
     RouterModule,
     MatButtonModule,
     MatMenuModule,
-    MatCardModule
+    MatCardModule,
   ]
 })
 export class CoreModule {}
