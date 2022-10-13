@@ -1,18 +1,35 @@
-<div class="header">
-  <mat-toolbar color="primary">
+<div class="main-nav block">
+  <div class="main-nav__logo">
+    <a href="/home">
+      <img alt="logo" class="main-nav__logo--image" src="assets/img/logo.png">
+      <p class="main-nav__logo--name">INSTA</p>
+    </a>
 
-    <div class="menu-items">
-      <a mat-button routerLink="/{{appPaths.Home}}" routerLinkActive="active-button">Home</a>
-      <a mat-button routerLink="/{{appPaths.News}}" routerLinkActive="active-button">News</a>
-      <a mat-button routerLink="/{{appPaths.Users}}" routerLinkActive="active-button">Users</a>
-      <a mat-button routerLink="/{{appPaths.Cars}}" routerLinkActive="active-button">Cars</a>
-      <a mat-button routerLink="/{{appPaths.UserStatistics}}" routerLinkActive="active-button">User Statistics</a>
-      <a mat-button routerLink="/{{appPaths.ClientStatistics}}" routerLinkActive="active-button">Client Statistics</a>
-    </div>
+  </div>
+  <!--    <div class="menu-items">-->
+  <!--      <a mat-button routerLink="/{{appPaths.Home}}" routerLinkActive="active-button">Home</a>-->
+  <!--      <a mat-button routerLink="/{{appPaths.News}}" routerLinkActive="active-button">News</a>-->
+  <!--      <a mat-button routerLink="/{{appPaths.Users}}" routerLinkActive="active-button">Users</a>-->
+  <!--      <a mat-button routerLink="/{{appPaths.Cars}}" routerLinkActive="active-button">Cars</a>-->
+  <!--      <a mat-button routerLink="/{{appPaths.UserStatistics}}" routerLinkActive="active-button">User Statistics</a>-->
+  <!--      <a mat-button routerLink="/{{appPaths.ClientStatistics}}" routerLinkActive="active-button">Client Statistics</a>-->
+  <!--    </div>-->
+  <div class="main-nav__list">
+    <a class="main-nav__link main-nav__link--home"
+       routerLink="/{{appPaths.Home}}"
+       routerLinkActive="active-button">Home</a>
+    <a class="main-nav__link main-nav__news" routerLink="/{{appPaths.News}}"
+       routerLinkActive="main-nav__link--active-button">News</a>
+    <a class="main-nav__link" routerLink="/{{appPaths.Users}}" routerLinkActive="active-button">Users</a>
+    <a class="main-nav__link" routerLink="/{{appPaths.Cars}}" routerLinkActive="active-button">Cars</a>
+    <a class="main-nav__link" routerLink="/{{appPaths.UserStatistics}}" routerLinkActive="active-button">User
+      Statistics</a>
+    <a class="main-nav__link" routerLink="/{{appPaths.ClientStatistics}}" routerLinkActive="active-button">Client
+      Statistics</a>
+  </div>
 
-    <div class="logged-user">
-      <user-profile></user-profile>
-    </div>
 
-  </mat-toolbar>
+  <div class="main-nav__logged-user">
+    <user-profile></user-profile>
+  </div>
 </div>

@@ -1,16 +1,49 @@
-a {
-  margin-right: 5px;
-}
-a:hover {
-  color: white;
-  background-color: #5e2179;
-}
-
-.active-button {
-  background: #bddbfa linear-gradient(to bottom, #5e2179 35%, #452259 100%);
+.main-nav {
+  display: flex;
+  background-color: #ddb8ee;
+  height: 100px;
+  padding: 20px;
 }
 
-.logged-user {
+.main-nav__logo {
+  text-align: center;
+}
+
+.main-nav__logo a {
+  color: #452259;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.main-nav__logo--image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.main-nav__logo--name {
+  font-size: 14px;
+  margin: auto;
+}
+
+.main-nav__list {
+  padding-top: 20px;
+}
+
+.main-nav__link {
+  font-size: 18px;
+  margin: 20px 15px;
+  color: black;
+  text-decoration: none;
+  border-radius: 4px;
+  padding: 3px 5px;
+}
+
+.main-nav__link--active-button, .main-nav__link .news {
+  background: #dad2d4 linear-gradient(to bottom, #eaa4b6 35%, #f36470 100%);
+}
+
+.main-nav__logged-user {
   margin-left: auto;
 }
 

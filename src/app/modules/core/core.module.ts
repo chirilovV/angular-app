@@ -8,6 +8,7 @@ import {PageNotFoundComponent} from './components/not-found-404/page-not-found.c
 import {UserProfileComponent} from './components/user/user-profile/user-profile.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {DefaultHeaderComponent} from './components/default-header/default-header.component';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {DefaultHeaderComponent} from './components/default-header/default-header
     MatToolbarModule,
     RouterModule,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCardModule
   ]
 })
 export class CoreModule {}
